@@ -1,0 +1,52 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 29px 88px 29px 80px;
+  height: 78px;
+  box-sizing: border-box;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 21px;
+  list-style-type: none;
+  color: #cfcfcf;
+  min-height: 78px;
+  margin: 0;
+}
+
+.navbar a {
+  transition: color 0.3s ease-in-out;
+}
+.navbar a:hover {
+  color: #618967;
+}
+
+a:visited {
+  color: #cfcfcf;
+}
+
+.active {
+  padding: 0 0 26px 0;
+  border-bottom: 3px solid #618967;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 30px 30px 0 30px;
+    font-size: 16px;
+    line-height: 21px;
+  }
+}
+
+@media (max-width: 375px) {
+  .navbar {
+    padding: 20px 15px;
+    width: 955px;
+    height: 55px;
+    overflow-x: scroll;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

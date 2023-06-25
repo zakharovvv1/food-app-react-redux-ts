@@ -1,0 +1,160 @@
+.product {
+  background-color: #494544;
+  border-radius: 10px;
+  padding-bottom: 18px;
+  cursor: pointer;
+  height: 385px;
+  margin-right: 20px;
+  transition: box-shadow 0.3s ease-out;
+  min-width: 325px;
+  border-radius: 10px;
+}
+.titleCategoryTitle {
+  border-left: 4px solid #618967;
+  margin: 40px 0 0 91px;
+  padding-left: 19px;
+}
+
+.product:hover {
+  box-shadow: 0px 30px 45px rgba(43, 40, 40, 0.6);
+  border-radius: 10px;
+}
+
+.count {
+  top: -15px;
+  right: -15px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+  background-image: url("./assets/Ellipse48.png");
+  background-repeat: no-repeat;
+}
+
+img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.imgBuy {
+  height: 24px;
+  width: 24px;
+}
+
+.btnToBuy {
+  color: #fff;
+  font-size: 14px;
+  font-family: Gilroy;
+  font-weight: 600;
+  border-radius: 10px;
+  border-radius: 10px;
+  background-color: #618967;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 13px 18px 13px 19px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 12px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btnToBuy:hover {
+  background: #1f5b25;
+}
+
+.count-text {
+  margin-top: 14px;
+}
+
+.description {
+  padding: 14px 16px 0 20px;
+  /* 18 */
+}
+
+.title-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  color: #ffffff;
+}
+
+.weight {
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+}
+
+.text {
+  margin: 5px 0 15px 0;
+  height: 34px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #cfcfcf;
+}
+
+.price-block-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px 0 20px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #ffffff;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 19px 14px 19px;
+  border-radius: 10px;
+  width: 137px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  color: #ffffff;
+  background-color: #618967;
+}
+
+.min-button {
+  border-radius: 10px;
+  width: 62px;
+  height: 44px;
+  box-sizing: border-box;
+  font-size: 28px;
+  color: #ffffff;
+  background-color: #618967;
+  cursor: pointer;
+}
+
+.min-button:hover {
+  border-radius: 10px;
+  background: linear-gradient(114.93deg, #618967 5.11%, #72a479 94%);
+  box-shadow: 0px 5px 10px rgba(114, 163, 121, 0.7);
+}
+
+.mainDivCategory {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 400px;
+  overflow-x: scroll;
+  overflow: hidden;
+
+  overflow-y: hidden;
+  padding: 40px 0;
+}

@@ -1,0 +1,223 @@
+.header {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 98px;
+  height: 99px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.logo {
+  color: #fff;
+  font-size: 25px;
+  font-family: Gilroy;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 3.75px;
+}
+
+.burger-menu {
+  display: none;
+  border: none;
+  background-color: inherit;
+}
+
+.search,
+.search-mobil {
+  padding: 15px 0 16px 18px;
+  border: none;
+  border-radius: 10px;
+  width: 555px;
+  height: 52px;
+  box-sizing: border-box;
+  background-color: #504b4a;
+  margin-left: 72px;
+  margin-right: 20px;
+  color: aliceblue;
+}
+
+.search-mobil {
+  display: none;
+}
+
+.search::placeholder,
+.search-mobil::placeholder {
+  padding-left: 48px;
+  font-family: "Gilroy";
+  font-size: 18px;
+  line-height: 21px;
+  color: #cfcfcf;
+  background-image: url("./assets/Location.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.searchImg {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  right: 5%;
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  margin-right: 188px;
+}
+
+.caller-block {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  background-image: url("./assets/Ellipse.png");
+  background-repeat: no-repeat;
+}
+
+.caller {
+  margin: 10.67px 0 0 9.67px;
+  width: 13px;
+  height: 13px;
+}
+
+.contact-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #cfcfcf;
+}
+
+.contact-number {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  padding: 18px 13px 17px 24px;
+  border-radius: 10px;
+  width: 149px;
+  height: 52px;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #618967;
+  border: none;
+}
+
+.cart-text {
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+}
+
+.cart-count {
+  margin-left: 12px;
+  padding: 5px 9px 5px 8px;
+  width: 24px;
+  height: auto;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+  color: #403c3b;
+  background-image: url("./assets/Ellipse50.png");
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+.cart2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  padding: 5px 0 9px 0;
+  border: 1px solid #618967;
+  border-radius: 10px;
+  width: 62px;
+  height: 56px;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  background-color: #618967;
+}
+
+.promt {
+  position: absolute;
+  top: 55px;
+  left: 170px;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Gilroy";
+  background-color: #403c3b;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+  font-size: 16px;
+}
+
+.promt li {
+  border: 1px solid #618967;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+  .search {
+    width: 325px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-block {
+    padding-bottom: 13px;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .search-mobil {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .header {
+    margin: 0;
+    padding: 12px 15px 13px 26px;
+    height: auto;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .search-mobil {
+    margin-bottom: 0;
+    width: 345px;
+    height: 52px;
+  }
+
+  .search-mobil::placeholder {
+    padding: 0 18px 0 48px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .contacts {
+    display: none;
+  }
+
+  .cart {
+    display: none;
+  }
+
+  .cart2 {
+    display: flex;
+  }
+}

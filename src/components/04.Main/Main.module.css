@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+
+.titleCategoryTitle {
+  border-left: 4px solid #618967;
+  margin: 40px 0 0 91px;
+  padding-left: 19px;
+}
+
+.titleCatogory {
+  border-left: 4px solid #618967;
+  margin: 40px 0 0 91px;
+  padding-left: 19px;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
+}

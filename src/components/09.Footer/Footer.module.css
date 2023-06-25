@@ -1,0 +1,153 @@
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 26px 0 30px 40px;
+  background-color: #2e2b2c;
+}
+
+.icon-link {
+  margin-right: 55px;
+  width: 64px;
+  height: 64px;
+  box-sizing: border-box;
+  background-image: url("./assets/EllipseWhite50.png");
+  background-repeat: no-repeat;
+}
+
+.icon {
+  padding: 25px 20px;
+}
+
+.footer img {
+  width: auto;
+}
+
+.footer a:hover {
+  color: #79b282;
+}
+
+.policy-block {
+  display: flex;
+  flex-direction: column;
+  margin-right: 89px;
+  max-width: 208px;
+}
+
+.rights {
+  margin: 15px 0 7px 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: rgba(207, 207, 207, 1);
+}
+
+.policy-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 64px;
+  box-sizing: border-box;
+}
+
+.policy-link {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.policy-link span {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.links-block {
+  display: flex;
+  justify-content: space-between;
+  width: 621px;
+}
+
+.link {
+  font-style: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .icon-link-block {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column-reverse;
+    padding: 40px;
+  }
+
+  .logo-links {
+    display: flex;
+  }
+
+  .policy-block {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0 0 0;
+    max-width: none;
+    width: 100%;
+  }
+
+  .links-block {
+    width: 100%;
+  }
+
+  .policy-links {
+    flex-direction: row;
+    height: auto;
+  }
+
+  .policy-link span {
+    text-align: center;
+  }
+
+  .rights {
+    margin: 0 0 0 15px;
+  }
+}
+
+@media (max-width: 375px) {
+  .footer {
+    flex-wrap: nowrap;
+    padding: 27px 83px 47px 84px;
+  }
+
+  .icon-link-block {
+    position: absolute;
+    top: 30px;
+    left: 17px;
+    display: block;
+  }
+
+  .links-block {
+    display: none;
+  }
+
+  .policy-block {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .policy-links {
+    flex-direction: column;
+    height: 64px;
+    text-align: center;
+  }
+
+  .rights {
+    margin: 25px 0 13px 0;
+    width: 189px;
+    text-align: center;
+  }
+}

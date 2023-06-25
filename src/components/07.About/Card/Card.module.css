@@ -1,0 +1,70 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 471px;
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 228px;
+  height: 227px;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: 80px 55px;
+  background-color: rgba(80, 75, 74, 0.9);
+  cursor: pointer;
+  transition: color 0.3s ease-out;
+}
+
+.card1:hover,
+.card2:hover,
+.card3:hover,
+.card4:hover {
+  color: #79b282;
+}
+
+.card1,
+.card3 {
+  margin-right: 15px;
+}
+
+.card3,
+.card4 {
+  margin-top: 15px;
+}
+
+.card1,
+.card4 {
+  background-image: url("./../assets/onion.svg");
+}
+
+.card1:hover,
+.card4:hover {
+  background-image: url("./../assets/onionHover.svg");
+}
+
+.card2 {
+  background-image: url("./../assets/card2.svg");
+}
+
+.card2:hover {
+  background-image: url("./../assets/card2Hover.svg");
+}
+
+.card3 {
+  background-image: url("./../assets/card3.svg");
+}
+
+.card3:hover {
+  background-image: url("./../assets/card3Hover.svg");
+}
+
+.text {
+  margin-top: 55px;
+}
