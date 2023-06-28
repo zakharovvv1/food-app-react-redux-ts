@@ -9,10 +9,15 @@ import gStick from "./assets/gLine.png";
 import search from "./assets/Search.png";
 import { fetchAdress } from "../API/dadata/dadataApi.js";
 import { useEffect } from "react";
-import { IPromtDaData } from "./IHeaders.js";
+import { IPromtDaData } from "../Interfaces/IHeaders.js";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Header: React.FC = () => {
   const [adress, setAdress] = useState("");
   const [promt, setPromt] = useState();
+  const buy = useSelector((state) => (state as any).reducerBuy);
+  const navigate = useNavigate();
+  console.log("buy", buy);
   console.log(adress);
   useEffect(() => {
     fetchAdress(adress).then((data) => console.log(setPromt(JSON.parse(data))));
@@ -25,7 +30,7 @@ const Header: React.FC = () => {
           <img src={burgerMenu} alt="menu" />
         </button>
         <a href="#">
-          <img src={logo} alt="logo" />
+          <img onClick={() => navigate("/")} src={logo} alt="logo" />
         </a>
         <input
           className={styles.search}
@@ -60,7 +65,7 @@ const Header: React.FC = () => {
         <button className={styles.cart}>
           <span className={styles["cart-text"]}>Корзина</span>
           <img src={stick} alt="" />
-          <span className={styles["cart-count"]}>4</span>
+          <span className={styles["cart-count"]}>{buy.length}</span>
         </button>
         <div className={styles.cart2}>
           <img src={buyIcon} alt="buyIcon" />

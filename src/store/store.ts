@@ -4,7 +4,9 @@ import {
   configureStore,
 } from "@reduxjs/toolkit";
 import { api } from "../components/API/dadata/dadataApi";
+import reducerBuy from "./buySlice/buySlice";
 const rootReducer = combineReducers({
+  reducerBuy,
   [api.reducerPath]: api.reducer,
 });
 export const store = () => {

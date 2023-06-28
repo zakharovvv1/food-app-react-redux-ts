@@ -1,6 +1,6 @@
 import Product from "../05. Product/Product";
 import styles from "./Main.module.css";
-import { IProps } from "../05. Product/Product";
+import { IProps } from "../Interfaces/IProps";
 interface Main {
   isLoading: boolean;
   data: IProps | any;
@@ -14,7 +14,7 @@ const Main: React.FC<Main> = ({ isLoading, data, category }) => {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          data.map((food: any, i: number) => <Product key={i} food={food} />)
+          data.map((food: any) => <Product key={Date.now()} food={food} />)
         )}
       </div>
     </section>

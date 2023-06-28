@@ -2,12 +2,18 @@
   display: flex;
   overflow: hidden;
   overflow-x: scroll;
+  padding-top: 50px;
 }
 
 .titleCategoryTitle {
   border-left: 4px solid #618967;
   margin: 40px 0 0 91px;
   padding-left: 19px;
+  color: #fff;
+  font-size: 32px;
+  font-family: Gilroy;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .titleCatogory {
