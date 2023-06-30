@@ -39,7 +39,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
             {buy.length !== 0 ? (
               buy.includes(food) ? (
                 <div className={styles["price-block-flex"]}>
-                  <div className={styles.price}>{food.price + " ₽"}</div>
+                  <div className={styles.priceInBuy}>{food.price + " ₽"}</div>
                   <button
                     onClick={() => dispatch(buySlice.actions.addToBuy(food))}
                     className={styles.btnToBuy}
