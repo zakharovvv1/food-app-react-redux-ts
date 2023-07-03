@@ -16,13 +16,12 @@ const ProductCardMain = () => {
   const params = useParams();
   let { isLoading, data } = useGetFoodQuery();
   let food;
+  let newData;
   if (data) {
-    food = data.find((e: IProps) => e.id === params.id);
-    data = [...data, data[0], data[1], data[0]];
+    data = [...data, data[0], data[1], data[0], data[1]];
+    newData = data.map((item: any) => Object.assign({}, item, { count: 1 }));
+    food = newData.find((e: IProps) => e.id === params.id);
   }
-  console.log("Food", food);
-  console.log("Data", data);
-  console.log(params);
   return (
     <>
       {isLoading ? (
@@ -34,7 +33,7 @@ const ProductCardMain = () => {
           <ProductCard food={food} />
           <Main
             isLoading={isLoading}
-            data={data}
+            data={newData}
             category="С этим товаром покупают"
           />
           <div style={{ paddingTop: 84 }}>

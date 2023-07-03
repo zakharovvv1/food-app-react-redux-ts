@@ -12,17 +12,23 @@ import { useEffect } from "react";
 import { IPromtDaData } from "../Interfaces/IHeaders.js";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { IShoppingBasket } from "../Interfaces/IShoppingBasket.js";
+import Modal from "../00.Modal/Modal.js";
 const Header: React.FC = () => {
   const [adress, setAdress] = useState("");
   const [promt, setPromt] = useState();
-  const buy = useSelector((state) => (state as any).reducerBuy);
+  const buy: IShoppingBasket = useSelector(
+    (state) => (state as any).reducerBuy
+  );
+  const [modalWindow, setModalWindow] = useState(false);
   const navigate = useNavigate();
-  console.log("buy", buy);
-  console.log(adress);
+  console.log(modalWindow);
+  console.log(setModalWindow);
+
   useEffect(() => {
     fetchAdress(adress).then((data) => console.log(setPromt(JSON.parse(data))));
   }, [adress]);
-  console.log("Promt", promt);
+
   return (
     <header className={styles["header-block"]}>
       <div className={styles.header}>
@@ -62,11 +68,30 @@ const Header: React.FC = () => {
             <div className={styles["contact-number"]}>+7 (917) 510-57-59</div>
           </div>
         </div>
-        <button className={styles.cart}>
+        <button
+          onClick={() => {
+            if (
+              buy.coldAppetizers.length +
+                buy.hotAppetizers.length +
+                buy.meat.length ===
+              0
+            ) {
+              setModalWindow(true);
+            }
+          }}
+          className={styles.cart}
+        >
           <span className={styles["cart-text"]}>Корзина</span>
           <img src={stick} alt="" />
-          <span className={styles["cart-count"]}>{buy.length}</span>
+          <span className={styles["cart-count"]}>
+            {buy.coldAppetizers.length +
+              buy.hotAppetizers.length +
+              buy.meat.length}
+          </span>
         </button>
+        {modalWindow && (
+          <Modal setModalWindow={setModalWindow} modalWindow={modalWindow} />
+        )}
         <div className={styles.cart2}>
           <img src={buyIcon} alt="buyIcon" />
           <img src={gStick} alt="" />

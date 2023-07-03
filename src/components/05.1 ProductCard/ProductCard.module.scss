@@ -69,7 +69,7 @@ img {
 
 .btnToBuy {
   color: #fff;
-  font-size: 14px;
+  font-size: 20px;
   font-family: Gilroy;
   font-weight: 600;
   border-radius: 10px;
@@ -77,12 +77,17 @@ img {
   background-color: #618967;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 13px 18px 13px 19px;
-  margin-right: 25px;
+  margin-right: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   column-gap: 20px;
   transition: background-color 0.3s ease-in-out;
+}
+
+.btn {
+  @extend .btnToBuy;
+  font-size: 14px;
 }
 
 .btnToBuy:hover {
@@ -139,6 +144,7 @@ img {
   font-weight: 600;
   line-height: 24px;
   color: #ffffff;
+  margin-right: 50px;
 }
 
 .button {

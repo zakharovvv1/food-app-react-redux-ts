@@ -1,0 +1,60 @@
+.modal {
+  width: 458px;
+  height: 348px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #494544 0%, #504b4a 100%);
+  position: absolute;
+  text-align: center;
+  padding-top: 52px;
+  position: relative;
+
+  p {
+    color: #fff;
+    font-size: 30px;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 14px;
+    margin-bottom: 43px;
+  }
+
+  button {
+    padding: 17px 34px 17px 34px;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    color: #ffffff;
+    background-color: #618967;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+
+  button:hover {
+    border-radius: 10px;
+    background: linear-gradient(114.93deg, #618967 5.11%, #72a479 94%);
+    box-shadow: 0px 5px 10px rgba(114, 163, 121, 0.7);
+  }
+}
+
+.basket {
+  height: 89px;
+  width: 76px;
+}
+
+.exit {
+  height: 19px;
+  width: 19px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.main {
+  position: absolute;
+  left: 41vh;
+  top: 50vh;
+}

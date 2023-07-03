@@ -7,6 +7,7 @@ interface Main {
   category: string;
 }
 const Main: React.FC<Main> = ({ isLoading, data, category }) => {
+  console.log("Переданная дата", data);
   return (
     <section className={styles.titleCategory}>
       <h2 className={styles.titleCategoryTitle}>{category}</h2>

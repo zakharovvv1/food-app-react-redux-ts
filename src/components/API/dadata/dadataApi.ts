@@ -19,7 +19,7 @@ export const fetchAdress = async (query: string) => {
     const response = await fetch(url, options);
     return (response as any).text();
   } catch (err) {
-    console.log(err);
+    err;
   }
 };
 

@@ -6,11 +6,11 @@ import { IProps } from "../Interfaces/IProps";
 import { IStateBuy } from "../Interfaces/IStateBuy";
 import { useNavigate } from "react-router-dom";
 import back from "./img/back.svg";
-const Product: React.FC<{ food: IProps }> = ({ food }) => {
+const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const buy = useSelector((state) => (state as IStateBuy).reducerBuy);
-  console.log("В корзине", buy);
+
   return (
     <>
       <div className={styles.back}>
@@ -36,8 +36,14 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
               <div className={styles["price-block"]}>
                 <div className={styles.weight}>Вес: {food.weight} г</div>
 
-                {buy.length !== 0 ? (
-                  buy.includes(food) ? (
+                {buy ? (
+                  Object.values(buy).find((f) => {
+                    if (f.some((food2) => food2.id === food.id)) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  }) ? (
                     <div className={styles["price-block-flex"]}>
                       <button
                         onClick={() =>
@@ -45,12 +51,18 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                         }
                         className={styles.btnToBuy}
                       >
-                        <div>Уже в корзине</div>
-                        <div>
-                          <img className={styles.imgBuy} src={buyImg} alt="" />
-                        </div>
+                        +
                       </button>
                       <div className={styles.price}>{food.price + " ₽"}</div>
+
+                      <button
+                        onClick={() =>
+                          dispatch(buySlice.actions.removeFromBuy(food))
+                        }
+                        className={styles.btnToBuy}
+                      >
+                        -
+                      </button>
                     </div>
                   ) : (
                     <div className={styles["price-block-flex"]}>
@@ -58,7 +70,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                         onClick={() =>
                           dispatch(buySlice.actions.addToBuy(food))
                         }
-                        className={styles.btnToBuy}
+                        className={styles.btn}
                       >
                         <div>В корзину</div>
                         <div>
@@ -105,4 +117,4 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
   );
 };
 
-export default Product;
+export default ProductCard;

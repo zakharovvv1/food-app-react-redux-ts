@@ -1,20 +1,23 @@
+import { IProps } from "./../../components/Interfaces/IProps";
 import { createSlice } from "@reduxjs/toolkit";
+
+import { IShoppingBasket } from "../../components/Interfaces/IShoppingBasket";
+import { addToBuy, removeFromBuy } from "./Actions";
 
 // Состояние корзины
 export const buySlice = createSlice({
   name: "buySlice",
-  initialState: [] as any[],
+  initialState: {
+    coldAppetizers: [] as IProps[],
+    hotAppetizers: [] as IProps[],
+    meat: [] as IProps[],
+  } as IShoppingBasket,
   reducers: {
     addToBuy: (state, action) => {
-      debugger;
-      if (state.some((f) => f.id === action.payload.id)) {
-        const index = state.findIndex((item) => item.id === action.payload.id);
-        if (index !== -1) {
-          state.splice(index, 1);
-        }
-      } else {
-        state.push(action.payload);
-      }
+      addToBuy(state, action.payload);
+    },
+    removeFromBuy: (state, action) => {
+      removeFromBuy(state, action.payload);
     },
   },
 });
