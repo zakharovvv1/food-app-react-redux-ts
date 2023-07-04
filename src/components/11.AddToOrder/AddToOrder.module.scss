@@ -1,0 +1,82 @@
+.addTo {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  color: #fff;
+  font-size: 25px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-left: 172px;
+  padding-right: 172px;
+}
+
+.divItem {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-left: 35px;
+  padding-right: 30px;
+  justify-content: center;
+  align-items: center;
+  &:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+.items:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.items {
+  display: flex;
+  background: linear-gradient(90deg, #494544 0%, #504b4a 100%);
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.title {
+  margin-bottom: 30px;
+}
+
+.orderCheck {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 89px;
+  padding-top: 50px;
+}
+
+.divBack {
+  border-radius: 10px;
+  background: linear-gradient(90deg, #494544 0%, #504b4a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-bottom: 10px;
+}
+
+.buyBtnOrder {
+  color: #fff;
+  font-size: 24px;
+  font-family: Gilroy;
+  font-weight: 600;
+  border-radius: 10px;
+  border-radius: 10px;
+  background-color: #618967;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 13px 22px 13px 22px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 12px;
+
+  height: 44px;
+  transition: all 0.3s ease-out;
+  margin-right: 27px;
+}

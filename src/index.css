@@ -14,7 +14,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   color: white;
-  background-color: #403c3b;
+  background: linear-gradient(0deg, #211f20 0%, #44403f 100%);
   font-family: "Gilroy";
 }
 

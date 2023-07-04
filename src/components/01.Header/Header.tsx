@@ -77,6 +77,8 @@ const Header: React.FC = () => {
               0
             ) {
               setModalWindow(true);
+            } else {
+              navigate("/shoppingCart");
             }
           }}
           className={styles.cart}
