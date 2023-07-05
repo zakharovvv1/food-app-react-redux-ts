@@ -23,6 +23,7 @@
   &:not(:last-child) {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
   }
+  padding-bottom: 13px;
 }
 
 .items:not(:last-child) {
@@ -44,6 +45,8 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 89px;
   padding-top: 50px;
+  padding-left: 167px;
+  padding-right: 167px;
 }
 
 .divBack {
@@ -62,9 +65,15 @@
 
 .buyBtnOrder {
   color: #fff;
-  font-size: 24px;
+  font-size: 14px;
+
+  font-style: normal;
+
+  line-height: normal;
+  color: #fff;
+
   font-family: Gilroy;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 10px;
   border-radius: 10px;
   background-color: #618967;
@@ -79,4 +88,78 @@
   height: 44px;
   transition: all 0.3s ease-out;
   margin-right: 27px;
+}
+
+.buyBtnOrder:hover {
+  background-color: linear-gradient(114.93deg, #618967 5.11%, #72a479 94%);
+  box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
+}
+
+.btnAddToOrder {
+  color: #c6ced1;
+  font-size: 12px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: transparent;
+}
+
+.divAddToOrder {
+  display: flex;
+  column-gap: 8px;
+  margin-top: 11px;
+  margin-bottom: 12px;
+}
+.price {
+  color: #fff;
+  font-size: 20px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.name {
+  margin-top: 10px;
+}
+.total {
+  color: #a6a7ab;
+  font-size: 18px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 5px;
+
+  span {
+    color: #fff;
+    font-size: 25px;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
+.notYet {
+  color: #fff;
+
+  font-size: 12px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 11px;
+  span {
+    color: #618967;
+  }
+}
+
+.minSumOrder {
+  color: #fff;
+  font-size: 12px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
