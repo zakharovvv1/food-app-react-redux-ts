@@ -24,7 +24,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
     //     }
     //   }
     // }
-    console.log("Object.values(buy)", Object.values(buy));
+    // console.log("Object.values(buy)", Object.values(buy));
     // Object.values(buy).find((f) => {
     //   return f.find((food2) => {
     //     if (food2.id === food.id) {

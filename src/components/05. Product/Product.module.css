@@ -8,7 +8,7 @@
   transition: box-shadow 0.3s ease-out;
   min-width: 325px;
   border-radius: 10px 10px 0px 0px;
-  min-height: 391px;
+
   position: relative;
 }
 
@@ -79,14 +79,15 @@ img {
 }
 
 .description {
-  padding: 14px 16px 0 20px;
+  padding: 14px 16px 20px 20px;
   /* 18 */
 }
 
 .title-block {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  min-height: 54px;
 }
 
 .title {
@@ -108,13 +109,18 @@ img {
   font-size: 12px;
   line-height: 17px;
   color: #cfcfcf;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .price-block-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px 0 20px;
+  padding: 0 16px 20px 20px;
 }
 
 .price-block {

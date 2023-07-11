@@ -68,7 +68,12 @@ const ShoppingCartScreen = () => {
                           <img src={plus} />
                         </div>
                         <div className={styles.price}>{food.price} ₽</div>
-                        <div className={styles.imgDelete}>
+                        <div
+                          onClick={() =>
+                            dispatch(buySlice.actions.deleteFromBuy(food))
+                          }
+                          className={styles.imgDelete}
+                        >
                           <img src={imgDelete} />
                         </div>
                       </div>

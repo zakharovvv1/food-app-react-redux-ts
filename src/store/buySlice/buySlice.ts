@@ -2,7 +2,7 @@ import { IProps } from "./../../components/Interfaces/IProps";
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IShoppingBasket } from "../../components/Interfaces/IShoppingBasket";
-import { addToBuy, removeFromBuy } from "./Actions";
+import { addToBuy, deleteFromBuy, removeFromBuy } from "./Actions";
 
 // Состояние корзины
 export const buySlice = createSlice({
@@ -18,6 +18,9 @@ export const buySlice = createSlice({
     },
     removeFromBuy: (state, action) => {
       removeFromBuy(state, action.payload);
+    },
+    deleteFromBuy: (state, action) => {
+      deleteFromBuy(state, action.payload);
     },
   },
 });

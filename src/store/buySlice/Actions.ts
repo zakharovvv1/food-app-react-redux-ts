@@ -1,6 +1,6 @@
 import { IProps } from "../../components/Interfaces/IProps";
 import { IShoppingBasket } from "../../components/Interfaces/IShoppingBasket";
-
+import { current } from "@reduxjs/toolkit";
 export const addToBuy = (state: IShoppingBasket, action: IProps) => {
   if (action.category === "Горячик закуски") {
     const isExists = state.hotAppetizers.some((f) => f.id === action.id);
@@ -53,4 +53,16 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
       }
     });
   }
+};
+
+export const deleteFromBuy = (state: IShoppingBasket, action: IProps) => {
+  // debugger;
+  // console.log(current(state));
+  // Object.values(current(state)).map((elArr) => {
+  //   elArr.map((foodObj : IProps) => {
+  //     if (foodObj.id === action.id) {
+  //       state.foodObj splice(elArr.indexOf(foodObj), 1);
+  //     }
+  //   });
+  // });
 };
