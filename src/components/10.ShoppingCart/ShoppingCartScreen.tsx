@@ -58,15 +58,15 @@ const ShoppingCartScreen = () => {
                           <img src={minus} />
                         </button>
 
-                        <div>{food.count}</div>
-                        <div
+                        <div className={styles.countNumber}>{food.count}</div>
+                        <button
                           onClick={() =>
                             dispatch(buySlice.actions.addToBuy(food))
                           }
                           className={styles.imgPlus}
                         >
                           <img src={plus} />
-                        </div>
+                        </button>
                         <div className={styles.price}>{food.price} ₽</div>
                         <div
                           onClick={() =>

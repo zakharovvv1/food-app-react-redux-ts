@@ -6,7 +6,7 @@ import add from "./addToOrder.svg";
 const AddToOrderItem: React.FC = () => {
   let { isLoading, data } = useGetFoodQuery();
   if (data) {
-    data = [...data, data[0], data[1]];
+    data = data.slice(0, 4);
     return data.map((el: IProps) => {
       return (
         <div className={styles.divItem}>

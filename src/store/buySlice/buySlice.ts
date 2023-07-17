@@ -10,7 +10,7 @@ export const buySlice = createSlice({
   initialState: {
     coldAppetizers: [] as IProps[],
     hotAppetizers: [] as IProps[],
-    meat: [] as IProps[],
+    desserts: [] as IProps[],
   } as IShoppingBasket,
   reducers: {
     addToBuy: (state, action) => {

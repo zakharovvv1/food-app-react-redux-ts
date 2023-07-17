@@ -73,7 +73,7 @@ const Header: React.FC = () => {
             if (
               buy.coldAppetizers.length +
                 buy.hotAppetizers.length +
-                buy.meat.length ===
+                buy.desserts.length ===
               0
             ) {
               setModalWindow(true);
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
           <span className={styles["cart-count"]}>
             {buy.coldAppetizers.length +
               buy.hotAppetizers.length +
-              buy.meat.length}
+              buy.desserts.length}
           </span>
         </button>
         {modalWindow && (

@@ -36,11 +36,7 @@ const AllMain: React.FC = () => {
         data={newData?.hotAppetizers}
         category="Горячие закуски"
       />
-      <Main
-        isLoading={isLoading}
-        data={newData?.dessert}
-        category="Мясные блюда"
-      />
+      <Main isLoading={isLoading} data={newData?.dessert} category="Десерты" />
     </>
   );
 };
