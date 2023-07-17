@@ -11,6 +11,9 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
   const dispatch = useDispatch();
   const buy: IShoppingBasket = useSelector((state: any) => state.reducerBuy);
   let count;
+  console.log("Состояние текущее", buy);
+  console.log("Object values buy", Object.values(buy));
+
   if (buy) {
     // Реализация через обычный цикл
     // let test = Object.values(buy);
@@ -79,15 +82,13 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                     </button>
                     {/* <div className={styles.count}>{count}</div> */}
                     <div className={styles.count}>
-                      {
-                        Object.values(buy).find((f) => {
-                          return f.find((food2) => {
-                            if (food2.id === food.id) {
-                              return food2;
-                            }
-                          });
-                        })[0].count
-                      }
+                      {Object.values(buy).map((f) => {
+                        return f.map((food2: IProps) => {
+                          if (food2.id === food.id) {
+                            return food2.count;
+                          }
+                        });
+                      })}
                     </div>
 
                     <div className={styles.priceInBuy}>{food.price + " ₽"}</div>
