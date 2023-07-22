@@ -11,6 +11,9 @@ export const buySlice = createSlice({
     coldAppetizers: [] as IProps[],
     hotAppetizers: [] as IProps[],
     desserts: [] as IProps[],
+    beverages: [] as IProps[],
+    soups: [] as IProps[],
+    specialties: [] as IProps[],
   } as IShoppingBasket,
   reducers: {
     addToBuy: (state, action) => {

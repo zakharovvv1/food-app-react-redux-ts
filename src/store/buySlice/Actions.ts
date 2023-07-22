@@ -39,6 +39,42 @@ export const addToBuy = (state: IShoppingBasket, action: IProps) => {
       state.desserts.push(action);
     }
   }
+  if (action.category === "Напитки") {
+    const isExists = state.beverages.some((f) => f.id === action.id);
+    if (isExists) {
+      state.beverages.forEach((f) => {
+        if (f.id === action.id) {
+          f.count += 1;
+        }
+      });
+    } else {
+      state.beverages.push(action);
+    }
+  }
+  if (action.category === "Супы") {
+    const isExists = state.soups.some((f) => f.id === action.id);
+    if (isExists) {
+      state.soups.forEach((f) => {
+        if (f.id === action.id) {
+          f.count += 1;
+        }
+      });
+    } else {
+      state.soups.push(action);
+    }
+  }
+  if (action.category === "Фирменные блюда") {
+    const isExists = state.specialties.some((f) => f.id === action.id);
+    if (isExists) {
+      state.specialties.forEach((f) => {
+        if (f.id === action.id) {
+          f.count += 1;
+        }
+      });
+    } else {
+      state.specialties.push(action);
+    }
+  }
 };
 
 export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
@@ -78,6 +114,42 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
       }
     });
   }
+  if (action.category === "Напитки") {
+    state.beverages.find((f) => {
+      if (f.id === action.id) {
+        debugger;
+        if (f.count > 1) {
+          f.count -= 1;
+        } else {
+          state.beverages.splice(state.beverages.indexOf(f), 1);
+        }
+      }
+    });
+  }
+  if (action.category === "Супы") {
+    state.soups.find((f) => {
+      if (f.id === action.id) {
+        debugger;
+        if (f.count > 1) {
+          f.count -= 1;
+        } else {
+          state.soups.splice(state.soups.indexOf(f), 1);
+        }
+      }
+    });
+  }
+  if (action.category === "Фирменные блюда") {
+    state.specialties.find((f) => {
+      if (f.id === action.id) {
+        debugger;
+        if (f.count > 1) {
+          f.count -= 1;
+        } else {
+          state.specialties.splice(state.specialties.indexOf(f), 1);
+        }
+      }
+    });
+  }
 };
 
 export const deleteFromBuy = (state: IShoppingBasket, action: IProps) => {
@@ -96,6 +168,9 @@ export const deleteFromBuy = (state: IShoppingBasket, action: IProps) => {
   state.coldAppetizers = filterState[0];
   state.hotAppetizers = filterState[1];
   state.desserts = filterState[2];
+  state.beverages = filterState[3];
+  state.soups = filterState[4];
+  state.specialties = filterState[5];
   console.log("newState", filterState);
   // console.log("state", state);
 };

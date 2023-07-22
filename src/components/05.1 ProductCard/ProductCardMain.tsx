@@ -18,7 +18,6 @@ const ProductCardMain = () => {
   let food;
   let newData;
   if (data) {
-    data = [...data, data[0], data[1], data[0], data[1]];
     newData = data.map((item: any) => Object.assign({}, item, { count: 1 }));
     food = newData.find((e: IProps) => e.id === params.id);
   }

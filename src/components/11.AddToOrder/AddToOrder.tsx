@@ -11,7 +11,7 @@ const AddToOrder: React.FC = () => {
     <div className={styles.addTo}>
       <div className={styles.title}>ДОБАВИТЬ К ЗАКАЗУ</div>
       <div className={styles.items}>
-        <AddToOrderItem />
+        <AddToOrderItem filterShoppingCart={filterShoppingCart} />
       </div>
       <div className={styles.orderCheck}>
         <div className={styles.divBack}>

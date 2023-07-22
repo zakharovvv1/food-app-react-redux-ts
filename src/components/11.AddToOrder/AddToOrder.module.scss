@@ -18,10 +18,14 @@
   padding-top: 20px;
   padding-left: 35px;
   padding-right: 30px;
-  justify-content: center;
+
   align-items: center;
   &:not(:last-child) {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .imgItem {
+    width: 210px;
+    height: 120px;
   }
   padding-bottom: 13px;
 }
@@ -97,12 +101,17 @@
 
 .btnAddToOrder {
   color: #c6ced1;
-  font-size: 12px;
+  font-size: 14px;
   font-family: Gilroy;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   background-color: transparent;
+  box-shadow: 0 5px 10px rgba(142, 185, 169, 0.7);
+  transition: box-shadow 0.3s ease-out;
+  & :hover {
+    box-shadow: 0 5px 10px rgba(2, 30, 6, 0.7);
+  }
 }
 
 .divAddToOrder {
@@ -122,6 +131,13 @@
 
 .name {
   margin-top: 10px;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  min-height: 66px;
 }
 .total {
   color: #a6a7ab;

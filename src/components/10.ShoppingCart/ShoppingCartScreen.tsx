@@ -7,10 +7,14 @@ import minus from "./minus.svg";
 import plus from "./plus.svg";
 import AddToOrder from "../11.AddToOrder/AddToOrder";
 import { buySlice } from "../../store/buySlice/buySlice";
+import { useNavigate } from "react-router";
 const ShoppingCartScreen = () => {
   const buy = useSelector((state) => (state as any).reducerBuy);
-
+  console.log("buy", buy);
+  const filterShoppingCartStart = Object.values(buy);
   const filterShoppingCart = Object.values(buy).filter((el) => el.length !== 0);
+  console.log("filterShoppingCart", filterShoppingCart);
+  const navigate = useNavigate();
   let shoppingCartLength = filterShoppingCart.map((el) => {
     if (el.length === 0) {
       return false;
@@ -41,6 +45,7 @@ const ShoppingCartScreen = () => {
                         className={styles.foodImg}
                         src={food.imgUrlSmall}
                         alt=""
+                        onClick={() => navigate(`/${food.id}`)}
                       />
                       <div className={styles.desc}>
                         <div className={styles.foodName}>{food.name}</div>
