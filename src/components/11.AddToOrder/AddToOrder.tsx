@@ -6,7 +6,7 @@ import { IProps } from "../Interfaces/IProps";
 const AddToOrder: React.FC = () => {
   const buy = useSelector((state) => (state as any).reducerBuy);
   const filterShoppingCart = Object.values(buy).filter((el) => el.length !== 0);
-  console.log("filterShoppingCart", filterShoppingCart);
+
   return (
     <div className={styles.addTo}>
       <div className={styles.title}>ДОБАВИТЬ К ЗАКАЗУ</div>

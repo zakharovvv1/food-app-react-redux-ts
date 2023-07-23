@@ -11,16 +11,30 @@ import Main from "../04.Main/Main";
 import About from "../07.About/About";
 import Contacts from "../08.Contacts/Contacts";
 import Footer from "../09.Footer/Footer";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { IStateBuy } from "../Interfaces/IStateBuy";
 
 const ProductCardMain = () => {
-  const params = useParams();
+  // const params = useParams();
   let { isLoading, data } = useGetFoodQuery();
-  let food;
+  const food = useSelector((state) => state as IStateBuy).currentFoodReducer
+    .currentFoodItem;
+  console.log("foodCurrent", food);
   let newData;
+  useEffect(() => {}, food);
   if (data) {
-    newData = data.map((item: any) => Object.assign({}, item, { count: 1 }));
-    food = newData.find((e: IProps) => e.id === params.id);
+    data = data.map((item: any) => Object.assign({}, item, { count: 1 }));
+
+    newData = data.reduce((accum, item) => {
+      if (item.id !== food.id) {
+        accum.push(item);
+      }
+
+      return accum;
+    }, []);
   }
+  console.log("newData", newData);
   return (
     <>
       {isLoading ? (

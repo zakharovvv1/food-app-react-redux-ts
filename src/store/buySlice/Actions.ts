@@ -13,7 +13,6 @@ export const addToBuy = (state: IShoppingBasket, action: IProps) => {
     } else {
       state.hotAppetizers.push(action);
     }
-    console.log("Тек состояние", state.hotAppetizers);
   }
   if (action.category === "Холодные закуски") {
     const isExists = state.coldAppetizers.some((f) => f.id === action.id);
@@ -171,6 +170,6 @@ export const deleteFromBuy = (state: IShoppingBasket, action: IProps) => {
   state.beverages = filterState[3];
   state.soups = filterState[4];
   state.specialties = filterState[5];
-  console.log("newState", filterState);
+
   // console.log("state", state);
 };

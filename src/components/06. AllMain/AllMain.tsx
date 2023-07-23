@@ -3,7 +3,7 @@ import { useGetFoodQuery } from "../API/dadata/dadataApi";
 import { IProps } from "../Interfaces/IProps";
 const AllMain: React.FC = () => {
   let { isLoading, data } = useGetFoodQuery();
-  console.log("data", data);
+
   let newData;
   if (data) {
     let data2 = data.map((item: any) => Object.assign({}, item, { count: 1 }));
@@ -22,7 +22,6 @@ const AllMain: React.FC = () => {
       ),
     };
   }
-  console.log("Дата с категориями", newData);
 
   return (
     <>

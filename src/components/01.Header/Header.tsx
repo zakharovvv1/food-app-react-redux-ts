@@ -22,12 +22,10 @@ const Header: React.FC = () => {
   );
   const [modalWindow, setModalWindow] = useState(false);
   const navigate = useNavigate();
-  console.log(modalWindow);
-  console.log(setModalWindow);
 
-  useEffect(() => {
-    fetchAdress(adress).then((data) => console.log(setPromt(JSON.parse(data))));
-  }, [adress]);
+  // useEffect(() => {
+  //   fetchAdress(adress).then((data) => );
+  // }, [adress]);
 
   return (
     <header className={styles["header-block"]}>

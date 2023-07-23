@@ -10,10 +10,10 @@ import { buySlice } from "../../store/buySlice/buySlice";
 import { useNavigate } from "react-router";
 const ShoppingCartScreen = () => {
   const buy = useSelector((state) => (state as any).reducerBuy);
-  console.log("buy", buy);
+
   const filterShoppingCartStart = Object.values(buy);
   const filterShoppingCart = Object.values(buy).filter((el) => el.length !== 0);
-  console.log("filterShoppingCart", filterShoppingCart);
+
   const navigate = useNavigate();
   let shoppingCartLength = filterShoppingCart.map((el) => {
     if (el.length === 0) {
@@ -22,9 +22,7 @@ const ShoppingCartScreen = () => {
       return true;
     }
   });
-  console.log("Длина шопинга", shoppingCartLength);
-  console.log("Отфильтрованный", filterShoppingCart);
-  console.log(buy);
+
   const dispatch = useDispatch();
   return (
     <>

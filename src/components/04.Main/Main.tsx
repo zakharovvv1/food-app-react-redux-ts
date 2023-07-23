@@ -7,7 +7,7 @@ interface Main {
   category: string;
 }
 const Main: React.FC<Main> = ({ isLoading, data, category }) => {
-  console.log("Переданная дата", data);
+  console.log("Новая дата в main", data);
   return (
     <section className={styles.titleCategory}>
       <h2 className={styles.titleCategoryTitle}>{category}</h2>
@@ -15,7 +15,7 @@ const Main: React.FC<Main> = ({ isLoading, data, category }) => {
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
-          data.map((food: any) => <Product key={Date.now()} food={food} />)
+          data.map((food: any) => <Product key={food.id} food={food} />)
         )}
       </div>
     </section>

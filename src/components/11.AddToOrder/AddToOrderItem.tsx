@@ -10,7 +10,7 @@ const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
   const dispatch = useDispatch();
   if (data) {
     let data2 = data.map((item: any) => Object.assign({}, item, { count: 1 }));
-    console.log("data2", data2);
+
     const filterShoppingCartArr = filterShoppingCart.flat();
     let newData = data2.reduce((accum, item) => {
       if (!filterShoppingCartArr.find((el) => el.id === item.id)) {
@@ -19,8 +19,6 @@ const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
 
       return accum;
     }, []);
-
-    console.log("NewData", newData);
 
     newData = newData.slice(0, 4);
     return newData.map((el: IProps) => {

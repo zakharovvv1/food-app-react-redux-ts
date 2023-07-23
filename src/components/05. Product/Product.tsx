@@ -6,13 +6,11 @@ import { IProps } from "../Interfaces/IProps";
 
 import { useNavigate } from "react-router-dom";
 import { IShoppingBasket } from "../Interfaces/IShoppingBasket";
+import { currentFoodSlice } from "../../store/currentFoodSlice/currentFoodSlice";
 const Product: React.FC<{ food: IProps }> = ({ food }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const buy: IShoppingBasket = useSelector((state: any) => state.reducerBuy);
-  let count;
-  console.log("Состояние текущее", buy);
-  console.log("Object values buy", Object.values(buy));
 
   if (buy) {
     // Реализация через обычный цикл
@@ -51,7 +49,10 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
 
               <img
                 className={styles.productImage}
-                onClick={() => navigate(`/${food.id}`)}
+                onClick={() => {
+                  navigate(`/${food.id}`);
+                  dispatch(currentFoodSlice.actions.setCurrentFoodItem(food));
+                }}
                 src={food.imgUrlSmall}
               />
             </div>
