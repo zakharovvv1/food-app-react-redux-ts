@@ -4,12 +4,22 @@ import { IProps } from "../Interfaces/IProps";
 import styles from "./AddToOrder.module.scss";
 import add from "./addToOrder.svg";
 import { buySlice } from "../../store/buySlice/buySlice";
+import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
+import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
 
 const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
   let { isLoading, data } = useGetFoodQuery();
   const dispatch = useDispatch();
   if (data) {
-    let data2 = data.map((item: any) => Object.assign({}, item, { count: 1 }));
+    let data2 = data.map((item: any) =>
+      Object.assign(
+        {},
+        item,
+        { count: 1 },
+        { imgUrlHigh: imageHighForAll },
+        { imgUrlSmall: imageSmallForAll }
+      )
+    );
 
     const filterShoppingCartArr = filterShoppingCart.flat();
     let newData = data2.reduce((accum, item) => {

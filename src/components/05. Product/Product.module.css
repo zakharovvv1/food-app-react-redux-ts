@@ -134,6 +134,7 @@ img {
   font-weight: 600;
   line-height: 24px;
   color: #ffffff;
+  white-space: nowrap;
 }
 
 .button {
@@ -233,4 +234,8 @@ img {
   z-index: 10;
   height: 44px;
   transition: all 0.3s ease-out;
+}
+
+.inBag {
+  white-space: nowrap;
 }

@@ -7,10 +7,10 @@ import { IStateBuy } from "../Interfaces/IStateBuy";
 import { useNavigate } from "react-router-dom";
 import back from "./img/back.svg";
 const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
+  console.log("food!!!!!!!!", food);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const buy = useSelector((state) => (state as IStateBuy).reducerBuy);
-
   return (
     <>
       <div className={styles.back}>
@@ -27,6 +27,11 @@ const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
                 onClick={() => navigate(`/${food.id}`)}
                 src={food.imgUrlHigh}
               />
+              {food.count >= 2 ? (
+                <p className={styles.mainFoodCount}>{food.count}</p>
+              ) : (
+                ""
+              )}
             </div>
             <div className={styles.description}>
               <div className={styles["title-block"]}>
@@ -72,7 +77,7 @@ const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
                         }
                         className={styles.btn}
                       >
-                        <div>В корзину</div>
+                        <div className={styles.inBag}>В корзину</div>
                         <div>
                           <img className={styles.imgBuy} src={buyImg} alt="" />
                         </div>

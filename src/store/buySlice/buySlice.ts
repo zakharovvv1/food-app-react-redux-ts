@@ -25,6 +25,9 @@ export const buySlice = createSlice({
     deleteFromBuy: (state, action) => {
       deleteFromBuy(state, action.payload);
     },
+    // currentFood: (state, action) => {
+
+    // }
   },
 });
 

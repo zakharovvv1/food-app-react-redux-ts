@@ -109,7 +109,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                       onClick={() => dispatch(buySlice.actions.addToBuy(food))}
                       className={styles.btnToBuy}
                     >
-                      <div>В корзину</div>
+                      <div className={styles.inBag}>В корзину</div>
                       <div>
                         <img className={styles.imgBuy} src={buyImg} alt="" />
                       </div>
@@ -123,7 +123,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                     onClick={() => dispatch(buySlice.actions.addToBuy(food))}
                     className={styles.btnToBuy}
                   >
-                    <div>В корзину</div>
+                    <div className={styles.inBag}>В корзину</div>
                     <div>
                       <img className={styles.imgBuy} src={buyImg} alt="" />
                     </div>

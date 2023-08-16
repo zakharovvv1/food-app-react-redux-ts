@@ -14,17 +14,39 @@ import Footer from "../09.Footer/Footer";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IStateBuy } from "../Interfaces/IStateBuy";
+import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
+import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
 
 const ProductCardMain = () => {
-  // const params = useParams();
+  const params = useParams();
+  console.log("params", params);
+  const foods = useSelector((state) => (state as IStateBuy).reducerBuy);
+
+  const currentFood = Object.values(foods)
+    .filter((arr) => arr.length !== 0)
+    .flat()
+    .find((food) => {
+      return food.id === params.id;
+    });
+  console.log("currentFood", currentFood);
+
   let { isLoading, data } = useGetFoodQuery();
+
   const food = useSelector((state) => state as IStateBuy).currentFoodReducer
     .currentFoodItem;
-  console.log("foodCurrent", food);
+  console.log("foodCurrent!!!!!!!!!!!!!!!!!", food);
+
   let newData;
-  useEffect(() => {}, food);
   if (data) {
-    data = data.map((item: any) => Object.assign({}, item, { count: 1 }));
+    data = data.map((item: any) =>
+      Object.assign(
+        {},
+        item,
+        { count: 1 },
+        { imgUrlHigh: imageHighForAll },
+        { imgUrlSmall: imageSmallForAll }
+      )
+    );
 
     newData = data.reduce((accum, item) => {
       if (item.id !== food.id) {
@@ -43,7 +65,12 @@ const ProductCardMain = () => {
         <>
           <Header />
           <Navbar />
-          <ProductCard food={food} />
+          {currentFood ? (
+            <ProductCard food={currentFood} />
+          ) : (
+            <ProductCard food={food} />
+          )}
+
           <Main
             isLoading={isLoading}
             data={newData}

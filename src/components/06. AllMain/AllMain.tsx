@@ -1,12 +1,23 @@
 import Main from "../04.Main/Main";
 import { useGetFoodQuery } from "../API/dadata/dadataApi";
 import { IProps } from "../Interfaces/IProps";
+import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
+import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
+
 const AllMain: React.FC = () => {
   let { isLoading, data } = useGetFoodQuery();
 
   let newData;
   if (data) {
-    let data2 = data.map((item: any) => Object.assign({}, item, { count: 1 }));
+    let data2 = data.map((item: any) =>
+      Object.assign(
+        {},
+        item,
+        { count: 1 },
+        { imgUrlHigh: imageHighForAll },
+        { imgUrlSmall: imageSmallForAll }
+      )
+    );
     newData = {
       coldAppetizers: data2.filter(
         (el: IProps) => el.category === "Холодные закуски"

@@ -34,7 +34,12 @@ const Header: React.FC = () => {
           <img src={burgerMenu} alt="menu" />
         </button>
         <a href="#">
-          <img onClick={() => navigate("/")} src={logo} alt="logo" />
+          <img
+            className={styles.logo}
+            onClick={() => navigate("/")}
+            src={logo}
+            alt="logo"
+          />
         </a>
         <input
           className={styles.search}

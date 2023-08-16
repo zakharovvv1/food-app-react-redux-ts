@@ -15,6 +15,7 @@
 
 .ImgDiv {
   min-width: 600px;
+  position: relative;
 }
 
 .mainDiv {
@@ -129,7 +130,6 @@ img {
   color: #cfcfcf;
   font-size: 14px;
   font-family: Gilroy;
-  max-width: 80%;
 }
 
 .price-block-flex {
@@ -145,6 +145,7 @@ img {
   line-height: 24px;
   color: #ffffff;
   margin-right: 50px;
+  white-space: nowrap;
 }
 
 .button {
@@ -180,13 +181,9 @@ img {
 }
 
 .mainDivCategory {
-  display: flex;
-  flex-wrap: nowrap;
-
-  justify-content: center;
   padding-top: 27px;
   padding-left: 116px;
-  padding-right: 112px;
+  padding-right: 88px;
   padding-bottom: 50px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -204,6 +201,7 @@ img {
   margin-bottom: 5px;
   margin-right: -16px;
   padding-right: 16px;
+  column-gap: 50px;
   li {
     color: #fff;
     font-size: 12px;
@@ -219,6 +217,14 @@ img {
   border-bottom: none;
   margin-bottom: 0px;
   padding-bottom: 0px;
+  li:nth-child(4) {
+    position: relative;
+    transform: translateX(19px);
+  }
+  li:nth-child(5) {
+    position: relative;
+    transform: translateX(12px);
+  }
 }
 
 .back {
@@ -240,4 +246,27 @@ img {
 .backImg {
   width: 26px;
   height: 26px;
+}
+
+.inBag {
+  white-space: nowrap;
+}
+
+.mainFoodCount {
+  top: -15px;
+  right: -15px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #618967;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
