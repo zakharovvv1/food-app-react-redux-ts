@@ -3,11 +3,14 @@ import { useGetFoodQuery } from "../API/dadata/dadataApi";
 import { IProps } from "../Interfaces/IProps";
 import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
-
+import { useSelector } from "react-redux";
+import { filterCategories } from "./filterOfCategories";
 const AllMain: React.FC = () => {
+  const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   let { isLoading, data } = useGetFoodQuery();
 
   let newData;
+  let arrObjOfAllFoods;
   if (data) {
     let data2 = data.map((item: any) =>
       Object.assign(
@@ -32,14 +35,26 @@ const AllMain: React.FC = () => {
         (el: IProps) => el.category === "Фирменные блюда"
       ),
     };
+    arrObjOfAllFoods = Object.values(newData).flat();
+
+    console.log("Все блюда", newData);
   }
+
+  const toogleCategory = toogleCat.category;
+
+  const filteredCat = filterCategories(
+    newData,
+    toogleCategory,
+    arrObjOfAllFoods
+  );
+  console.log("filteredCat1111111111111111", filteredCat);
 
   return (
     <>
       <Main
         isLoading={isLoading}
-        data={newData?.coldAppetizers}
-        category="Холодные закуски"
+        data={filteredCat ? filteredCat?.filteredCat : newData?.hotAppetizers}
+        category={filteredCat ? toogleCategory : "Холодные закуски"}
       />
       <Main
         isLoading={isLoading}

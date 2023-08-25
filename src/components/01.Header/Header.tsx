@@ -28,7 +28,7 @@ const Header: React.FC = () => {
   // }, [adress]);
 
   return (
-    <header className={styles["header-block"]}>
+    <header id="header" className={styles["header-block"]}>
       <div className={styles.header}>
         <button className={styles["burger-menu"]}>
           <img src={burgerMenu} alt="menu" />

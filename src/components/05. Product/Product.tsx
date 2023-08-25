@@ -40,7 +40,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
       <div>
         <div className={styles.mainDivCategory}>
           <div className={styles.product}>
-            <div className={styles.productLink}>
+            <a href="#header" className={styles.productLink}>
               {/* {props.count ? (
                             <div className={styles.count}>
                                 <div className={styles['count-text']}>{props.count}</div>
@@ -55,7 +55,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                 }}
                 src={food.imgUrlSmall}
               />
-            </div>
+            </a>
             <div className={styles.description}>
               <div className={styles["title-block"]}>
                 <span className={styles.title}>{food.name}</span>
