@@ -10,19 +10,39 @@ import search from "./assets/Search.png";
 import { fetchAdress } from "../API/dadata/dadataApi.js";
 import { useEffect } from "react";
 import { IPromtDaData } from "../Interfaces/IHeaders.js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IShoppingBasket } from "../Interfaces/IShoppingBasket.js";
 import Modal from "../00.Modal/Modal.js";
+import { toogleCategories } from "../../store/toogleCategories/toogleCategories";
+import logInImg from "./img/Log in.svg";
+import LogInModal from "../001.LogInModal/LogInModal.js";
+import { CSSTransition } from "react-transition-group";
+import SuccesSignUp from "../001.LogInModal/SuccesSignUp/SuccesSignUp.js";
+import UserSlice from "../../store/user/UserSlice.js";
+
 const Header: React.FC = () => {
+  const root = document.getElementById("root");
+
+  const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
+  const toogleCategory = toogleCat.category;
+  const dispatch = useDispatch();
+  const userSlice = useSelector((state) => state.UserSlice);
+
   const [adress, setAdress] = useState("");
   const [promt, setPromt] = useState();
   const buy: IShoppingBasket = useSelector(
     (state) => (state as any).reducerBuy
   );
+  console.log("buy!", buy);
   const [modalWindow, setModalWindow] = useState(false);
+  const [logInWindow, setlogInWindow] = useState(false);
   const navigate = useNavigate();
-
+  if (modalWindow || logInWindow) {
+    root?.classList.add(styles.root);
+  } else {
+    root?.classList.remove(styles.root);
+  }
   // useEffect(() => {
   //   fetchAdress(adress).then((data) => );
   // }, [adress]);
@@ -66,22 +86,54 @@ const Header: React.FC = () => {
           <div className={styles["caller-block"]}>
             <img className={styles.caller} src={caller} />
           </div>
-          <div>
+          <div className={styles.phoneNum}>
             <div className={styles["contact-text"]}>Контакты:</div>
             <div className={styles["contact-number"]}>+7 (917) 510-57-59</div>
           </div>
+          {userSlice.id ? (
+            <a
+              className={styles.logIn}
+              onClick={() => {
+                navigate("/userProfile");
+              }}
+            >
+              <img src={logInImg} className={styles.logInImg}></img>
+              {userSlice.email}
+            </a>
+          ) : (
+            <a
+              className={styles.logIn}
+              onClick={() => {
+                setlogInWindow(true);
+              }}
+            >
+              <img src={logInImg} className={styles.logInImg}></img>
+              Войти
+            </a>
+          )}
+
+          {logInWindow && (
+            <LogInModal
+              logInWindow={logInWindow}
+              setlogInWindow={setlogInWindow}
+            />
+          )}
         </div>
         <button
           onClick={() => {
             if (
               buy.coldAppetizers.length +
                 buy.hotAppetizers.length +
-                buy.desserts.length ===
+                buy.desserts.length +
+                buy.beverages.length +
+                buy.soups.length +
+                buy.specialties.length ===
               0
             ) {
               setModalWindow(true);
             } else {
               navigate("/shoppingCart");
+              dispatch(toogleCategories.actions.toggleCategories(null));
             }
           }}
           className={styles.cart}
@@ -91,12 +143,24 @@ const Header: React.FC = () => {
           <span className={styles["cart-count"]}>
             {buy.coldAppetizers.length +
               buy.hotAppetizers.length +
-              buy.desserts.length}
+              buy.desserts.length +
+              buy.beverages.length +
+              buy.soups.length +
+              buy.specialties.length}
           </span>
         </button>
+
         {modalWindow && (
-          <Modal setModalWindow={setModalWindow} modalWindow={modalWindow} />
+          <CSSTransition
+            in={modalWindow}
+            classNames="alert"
+            timeout={300}
+            unmountOnExit
+          >
+            <Modal setModalWindow={setModalWindow} modalWindow={modalWindow} />
+          </CSSTransition>
         )}
+
         <div className={styles.cart2}>
           <img src={buyIcon} alt="buyIcon" />
           <img src={gStick} alt="" />

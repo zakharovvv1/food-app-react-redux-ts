@@ -6,16 +6,33 @@ import { IProps } from "../Interfaces/IProps";
 import { IStateBuy } from "../Interfaces/IStateBuy";
 import { useNavigate } from "react-router-dom";
 import back from "./img/back.svg";
+import { motion } from "framer-motion";
+import { Link, scroller } from "react-scroll";
+import * as Scroll from "react-scroll";
+
 const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
   console.log("food!!!!!!!!", food);
+  const scroll = Scroll.animateScroll;
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const buy = useSelector((state) => (state as IStateBuy).reducerBuy);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className={styles.back}>
         <img className={styles.backImg} src={back} alt="" />
-        <button onClick={() => navigate("/")}>Вернуться назад</button>
+        <button
+          onClick={() => {
+            navigate("/");
+            scroll.scrollToTop();
+          }}
+        >
+          Вернуться назад
+        </button>
       </div>
 
       <div className={styles.mainDivCategory}>
@@ -28,7 +45,14 @@ const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
                 src={food.imgUrlHigh}
               />
               {food.count >= 2 ? (
-                <p className={styles.mainFoodCount}>{food.count}</p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className={styles.mainFoodCount}
+                >
+                  {food.count}
+                </motion.p>
               ) : (
                 ""
               )}
@@ -118,7 +142,7 @@ const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
           </div>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 };
 

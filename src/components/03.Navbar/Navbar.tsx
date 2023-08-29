@@ -5,6 +5,7 @@ import { toogleCategories } from "../../store/toogleCategories/toogleCategories"
 import { useNavigate, useParams } from "react-router";
 import { Link, scroller } from "react-scroll";
 import * as Scroll from "react-scroll";
+import { useGetFoodQuery } from "../API/dadata/dadataApi";
 let scroll = Scroll.animateScroll;
 
 const Navbar: React.FC = () => {
@@ -14,13 +15,17 @@ const Navbar: React.FC = () => {
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   const toogleCategory = toogleCat.category;
 
-  console.log("currentUrl", currentUrl);
+  console.log("toogleCategory", toogleCategory);
   useEffect(() => {
-    scroller.scrollTo(toogleCategory, {
-      duration: 500,
-      delay: 50,
-      smooth: true,
-    });
+    if (currentUrl === "/") {
+      scroller.scrollTo(toogleCategory, {
+        duration: 500,
+        delay: 50,
+        smooth: true,
+      });
+    } else {
+      scroll.scrollToTop();
+    }
   }, [currentUrl, toogleCategory]);
   const navigateToCat = (category: string) => {
     dispatch(toogleCategories.actions.toggleCategories(category));

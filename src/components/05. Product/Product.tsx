@@ -3,10 +3,12 @@ import buyImg from "./assets/Buy.svg";
 import { buySlice } from "../../store/buySlice/buySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { IProps } from "../Interfaces/IProps";
+import { CSSTransition } from "react-transition-group";
 
 import { useNavigate } from "react-router-dom";
 import { IShoppingBasket } from "../Interfaces/IShoppingBasket";
 import { currentFoodSlice } from "../../store/currentFoodSlice/currentFoodSlice";
+import { toogleCategories } from "../../store/toogleCategories/toogleCategories";
 const Product: React.FC<{ food: IProps }> = ({ food }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -52,6 +54,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                 onClick={() => {
                   navigate(`/${food.id}`);
                   dispatch(currentFoodSlice.actions.setCurrentFoodItem(food));
+                  dispatch(toogleCategories.actions.toggleCategories(null));
                 }}
                 src={food.imgUrlSmall}
               />

@@ -1,0 +1,63 @@
+.logInForm {
+  position: fixed;
+  left: 75vh;
+  top: 50vh;
+  background: linear-gradient(90deg, #494544 0%, #504b4a 100%);
+  padding: 20px;
+  min-width: 460px;
+  z-index: 100;
+}
+
+.logInTitle {
+  font-size: 26px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+input {
+  min-height: 30px;
+  border-radius: 5px;
+  border: none;
+}
+input::placeholder {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+input:focus-visible {
+  border: 0px solid transparent;
+}
+
+.logInBtn {
+  color: #fff;
+  font-size: 14px;
+  font-family: Gilroy;
+  font-weight: 600;
+  border-radius: 10px;
+  border-radius: 10px;
+  background-color: #618967;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 10px 18px 10px 19px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.logInBtn:hover {
+  background-color: linear-gradient(114.93deg, #618967 5.11%, #72a479 94%);
+  box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
+}
+
+.exitImg {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  top: 25px;
+  right: 5%;
+  cursor: pointer;
+}

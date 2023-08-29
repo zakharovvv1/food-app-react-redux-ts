@@ -7,10 +7,12 @@ import { api } from "../components/API/dadata/dadataApi";
 import reducerBuy from "./buySlice/buySlice";
 import currentFoodReducer from "./currentFoodSlice/currentFoodSlice";
 import toogleCategoriesReducer from "./toogleCategories/toogleCategories";
+import UserSlice from "./user/UserSlice";
 const rootReducer = combineReducers({
   reducerBuy,
   currentFoodReducer,
   toogleCategoriesReducer,
+  UserSlice,
   [api.reducerPath]: api.reducer,
 });
 export const store = () => {
