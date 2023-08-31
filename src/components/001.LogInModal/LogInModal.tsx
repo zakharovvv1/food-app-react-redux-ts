@@ -22,6 +22,9 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
       console.log("userInfooooooooooooooooooo", user);
+      setlogInWindow(false);
+      console.log("auth.currentUser", auth.currentUser);
+      dispatch(UserSlice.actions.setUser(user));
     });
   };
 

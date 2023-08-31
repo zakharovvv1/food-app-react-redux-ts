@@ -3,6 +3,7 @@ const initialState = {
   email: null,
   token: null,
   id: null,
+  name: null,
 };
 // Состояние корзины
 export const UserSlice = createSlice({
@@ -13,6 +14,7 @@ export const UserSlice = createSlice({
       state.email = action.payload.email;
       state.token = action.payload.accessToken;
       state.id = action.payload.uid;
+      state.name = action.payload.displayName;
     },
     removeUser: (state, action) => {
       state.email = null;
