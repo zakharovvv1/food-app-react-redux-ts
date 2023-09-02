@@ -21,12 +21,16 @@ const Navbar: React.FC = () => {
       setTimeout(() => {
         scroller.scrollTo(toogleCategory, {
           duration: 500,
-          delay: 10,
+          delay: 0,
           smooth: true,
         });
-      }, 350);
+      }, 10);
     } else {
-      scroll.scrollToTop();
+      scroll.scrollToTop({
+        duration: 500,
+        delay: 0,
+        smooth: true,
+      });
     }
   }, [toogleCategory]);
   const navigateToCat = (category: string) => {

@@ -15,13 +15,7 @@ const Main: React.FC<Main> = ({ isLoading, data, category }) => {
   debugger;
   return (
     <Element name={category} className={category}>
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        id={category}
-        className={styles.titleCategory}
-      >
+      <motion.section id={category} className={styles.titleCategory}>
         <h2 className={styles.titleCategoryTitle}>{category}</h2>
         <div className={styles.main}>
           {isLoading ? (

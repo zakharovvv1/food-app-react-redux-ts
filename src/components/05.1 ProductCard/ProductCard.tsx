@@ -18,11 +18,7 @@ const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
   const dispatch = useDispatch();
   const buy = useSelector((state) => (state as IStateBuy).reducerBuy);
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div>
       <div className={styles.back}>
         <img className={styles.backImg} src={back} alt="" />
         <button
