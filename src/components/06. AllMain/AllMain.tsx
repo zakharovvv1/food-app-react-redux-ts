@@ -41,6 +41,9 @@ const AllMain: React.FC = () => {
 
     console.log("Все блюда", newData);
   }
+  useMemo(() => {
+    newData;
+  }, []);
 
   const toogleCategory = toogleCat.category;
 
