@@ -29,7 +29,7 @@ const ShoppingCartScreen = () => {
       <div className={styles.topMainDiv}>
         <div className={styles.topDiv}>
           <img className={styles.arrow} src={arrow} alt="" />
-          <p>к выборю блюда</p>
+          <button>к выборю блюда</button>
         </div>
         <div className={styles.textBag}>Корзина</div>
         <div className={styles.mainScreen}>

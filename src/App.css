@@ -50,3 +50,13 @@ button {
   border: none;
   cursor: pointer;
 }
+
+body::-webkit-scrollbar {
+  background: linear-gradient(0deg, #211f20 0%, #44403f 100%);
+}
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(0deg, #618967 0%, #1f5b25 100%);
+}
+body::-webkit-scrollbar-thumb:hover {
+  box-shadow: 5px 55px 105px rgba(114, 163, 121, 0.7);
+}

@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import SuccesSignUp from "./SuccesSignUp/SuccesSignUp";
+import firebase from "firebase/compat/app";
 const LogInModal = ({ logInWindow, setlogInWindow }) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -32,9 +33,11 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
       setlogInWindow(false);
+      console.log("info", user.uid);
 
-      dispatch(UserSlice.actions.setUser(user));
-      console.log("userooooooooooooooooooooooooooo", user);
+      return user;
+
+      // dispatch(UserSlice.actions.setUser(user));
     });
   };
   return (

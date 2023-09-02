@@ -5,6 +5,7 @@ import ProductCardMain from "../05.1 ProductCard/ProductCardMain";
 import ShoppingCartMain from "../10.ShoppingCart/ShoppingCartMain";
 import { AnimatePresence } from "framer-motion";
 import UserProfile from "../12. UserProfile/12. UserProfile";
+import Ordering from "../13.Ordering/13.Ordering";
 const AnimatedRoutes = () => {
   const location = useLocation();
   return (
@@ -14,6 +15,7 @@ const AnimatedRoutes = () => {
         <Route path="/:id" element={<ProductCardMain />} />
         <Route path="/shoppingCart" element={<ShoppingCartMain />} />
         <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/ordering" element={<Ordering />} />
       </Routes>
     </AnimatePresence>
   );

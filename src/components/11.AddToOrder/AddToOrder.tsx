@@ -2,11 +2,12 @@ import { useSelector } from "react-redux";
 import styles from "./AddToOrder.module.scss";
 import AddToOrderItem from "./AddToOrderItem";
 import { IProps } from "../Interfaces/IProps";
+import { useNavigate } from "react-router";
 
 const AddToOrder: React.FC = () => {
   const buy = useSelector((state) => (state as any).reducerBuy);
   const filterShoppingCart = Object.values(buy).filter((el) => el.length !== 0);
-
+  const navigate = useNavigate();
   return (
     <div className={styles.addTo}>
       <div className={styles.title}>ДОБАВИТЬ К ЗАКАЗУ</div>
@@ -37,7 +38,14 @@ const AddToOrder: React.FC = () => {
               Минимальная сума заказа 1500 ₽
             </div>
           </div>
-          <button className={styles.buyBtnOrder}>Оформить заказ</button>
+          <button
+            onClick={() => {
+              navigate("/ordering");
+            }}
+            className={styles.buyBtnOrder}
+          >
+            Оформить заказ
+          </button>
         </div>
       </div>
     </div>

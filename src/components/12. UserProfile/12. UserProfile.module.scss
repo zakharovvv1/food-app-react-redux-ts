@@ -1,6 +1,96 @@
 .main {
+  width: 60%;
   display: flex;
-  width: 100%;
+  align-items: flex-start;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 30px;
+  padding-bottom: 100px;
+  p {
+    font-size: 20px;
+    margin-right: 20px;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  input:disabled {
+    background-color: #3c6242;
+    cursor: not-allowed;
+  }
+
+  input {
+    color: aliceblue;
+    padding: 5px;
+    font-size: 20px;
+    background-color: #618967;
+    width: 300px;
+  }
+
+  select {
+    background-color: #3c6242;
+    color: aliceblue;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+}
+
+.h2 {
+  font-size: 30px;
+  padding: 30px 0px 30px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  align-self: flex-end;
+
+  button {
+    background-color: #618967;
+    color: white;
+    height: 100%;
+    padding: 9px 20px 9px 20px;
+    transition: all 0.3s ease-out;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: linear-gradient(114.93deg, #618967 5.11%, #72a479 94%);
+      box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
+    }
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+.name {
+  display: flex;
+  align-items: flex-start;
+}
+
+.birthBtn {
+  background-color: #618967;
+  color: white;
+  height: 100%;
+  padding: 9px 20px 9px 20px;
+  transition: all 0.3s ease-out;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: linear-gradient(114.93deg, #618967 5.11%, #72a479 94%);
+    box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
+  }
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.history {
+  margin-top: 30px;
+  width: 100%;
+  p {
+    white-space: nowrap;
+  }
 }

@@ -5,6 +5,7 @@ import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
 import { useSelector } from "react-redux";
 import { filterCategories } from "./filterOfCategories";
+import { useMemo } from "react";
 const AllMain: React.FC = () => {
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   let { isLoading, data } = useGetFoodQuery();
@@ -35,6 +36,7 @@ const AllMain: React.FC = () => {
         (el: IProps) => el.category === "Фирменные блюда"
       ),
     };
+
     arrObjOfAllFoods = Object.values(newData).flat();
 
     console.log("Все блюда", newData);
