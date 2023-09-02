@@ -18,18 +18,21 @@ const Navbar: React.FC = () => {
   console.log("toogleCategory", toogleCategory);
   useEffect(() => {
     if (currentUrl === "/") {
-      scroller.scrollTo(toogleCategory, {
-        duration: 500,
-        delay: 50,
-        smooth: true,
-      });
+      setTimeout(() => {
+        scroller.scrollTo(toogleCategory, {
+          duration: 500,
+          delay: 10,
+          smooth: true,
+        });
+      }, 350);
     } else {
       scroll.scrollToTop();
     }
-  }, [currentUrl, toogleCategory]);
+  }, [toogleCategory]);
   const navigateToCat = (category: string) => {
-    dispatch(toogleCategories.actions.toggleCategories(category));
     navigate("/");
+    dispatch(toogleCategories.actions.toggleCategories(category));
+
     console.log("category", category);
   };
 
@@ -90,7 +93,7 @@ const Navbar: React.FC = () => {
       </li>
       <li>
         <a
-          className={toogleCat.category === "Гриль меню" ? styles.active : ""}
+          className={toogleCat.category === "Десерты" ? styles.active : ""}
           onClick={() => navigateToCat("Десерты")}
         >
           Десерты
