@@ -5,12 +5,20 @@ import arrow from "../10.ShoppingCart/Arrow 8.svg";
 import { useState } from "react";
 import clock from "./img/clock 1.svg";
 import Footer from "../09.Footer/Footer";
-import { motion } from "framer-motion";
+import validator from "validator";
 const Ordering = () => {
   const [activeBtn, setActiveBtn] = useState("Доставка");
   const [payMethod, setpayMethod] = useState("Оплата онлайн");
   const [deliveryTime, setddeliveryTime] = useState("В ближайшее время");
   const [numberOfPersons, setnumberOfPersons] = useState(1);
+  const [checkBox, setcheckBox] = useState(false);
+  const [restaurant, setRestaurant] = useState("");
+  const [nameAndPhone, setNameAndPhone] = useState({ name: "", phone: "" });
+  const [validateNumber, setValidateNumber] = useState(
+    validator.isMobilePhone(nameAndPhone.phone, ["ru-RU"])
+  );
+  console.log("validateNumber", validateNumber);
+  console.log("nameAndPhone", nameAndPhone);
   return (
     <>
       <Header />
@@ -26,8 +34,53 @@ const Ordering = () => {
         <div className={styles.contactInfo}>
           <p>1. Контактная информация</p>
           <div className={styles.inputs}>
-            <input type="text" name="" id="" placeholder="Имя*" />
-            <input type="text" name="" id="" placeholder="Телефон*" />
+            <input
+              value={nameAndPhone.name}
+              onChange={(e) => {
+                setNameAndPhone((prev) => {
+                  return {
+                    ...prev,
+                    name: e.target.value,
+                  };
+                });
+              }}
+              type="text"
+              name=""
+              id=""
+              placeholder="Имя*"
+            />
+            <input
+              onChange={(e) => {
+                setNameAndPhone((prev) => {
+                  return {
+                    ...prev,
+                    phone: e.target.value,
+                  };
+                });
+                setValidateNumber(
+                  validator.isMobilePhone(e.target.value, ["ru-RU"])
+                );
+              }}
+              value={nameAndPhone.phone}
+              type="text"
+              name=""
+              id=""
+              placeholder="Телефон*"
+            />
+          </div>
+          <div className={styles.warnings}>
+            {!nameAndPhone.name && (
+              <p className={styles.phoneCheck}>Имя - обязательное поле</p>
+            )}
+            {!validateNumber && (
+              <p
+                className={
+                  nameAndPhone.name ? styles.phoneCheckTrue : styles.phoneCheck
+                }
+              >
+                Телефон - обязательное поле
+              </p>
+            )}
           </div>
         </div>
         <div className={styles.contactInfo}>
@@ -61,50 +114,74 @@ const Ordering = () => {
             </div>
           </div>
           <div className={styles.adressDiv}>
-            <p className={styles.adressText}>Адрес доставки</p>
+            {activeBtn === "Доставка" && (
+              <p className={styles.adressText}>Адрес доставки</p>
+            )}
+            {activeBtn === "Самовывоз" && (
+              <p className={styles.adressText}>Выберите ресторан</p>
+            )}
             <div className={styles.adressInputs}>
-              <input
-                className={styles.adressInput}
-                placeholder="Укажите улицу*"
-                type="text"
-                name=""
-                id=""
-              />
-              <input
-                className={styles.adressInput}
-                placeholder="Номер дома*"
-                type="text"
-                name=""
-                id=""
-              />
-              <input
-                className={styles.adressInput}
-                placeholder="№ квартиры/офиса*"
-                type="text"
-                name=""
-                id=""
-              />
-              <input
-                className={styles.adressInput}
-                placeholder="Подъезд*"
-                type="text"
-                name=""
-                id=""
-              />
-              <input
-                className={styles.adressInput}
-                placeholder="Этаж*"
-                type="text"
-                name=""
-                id=""
-              />
-              <input
-                className={styles.adressInput}
-                placeholder="Комментарий*"
-                type="text"
-                name=""
-                id=""
-              />
+              {activeBtn === "Доставка" && (
+                <>
+                  <input
+                    className={styles.adressInput}
+                    placeholder="Укажите улицу*"
+                    type="text"
+                    name=""
+                    id=""
+                  />
+                  <input
+                    className={styles.adressInput}
+                    placeholder="Номер дома*"
+                    type="text"
+                    name=""
+                    id=""
+                  />
+                  <input
+                    className={styles.adressInput}
+                    placeholder="№ квартиры/офиса*"
+                    type="text"
+                    name=""
+                    id=""
+                  />
+                  <input
+                    className={styles.adressInput}
+                    placeholder="Подъезд*"
+                    type="text"
+                    name=""
+                    id=""
+                  />
+                  <input
+                    className={styles.adressInput}
+                    placeholder="Этаж*"
+                    type="text"
+                    name=""
+                    id=""
+                  />
+                  <input
+                    className={styles.adressInput}
+                    placeholder="Комментарий*"
+                    type="text"
+                    name=""
+                    id=""
+                  />
+                </>
+              )}
+              {activeBtn === "Самовывоз" && (
+                <select
+                  onChange={(e) => {
+                    setRestaurant(e.target.value);
+                  }}
+                  className={styles.adressInput}
+                  name=""
+                  id=""
+                >
+                  <option value={restaurant}>Ресторан 1</option>
+                  <option value={restaurant}>Ресторан 2</option>
+                  <option value={restaurant}>Ресторан 3</option>
+                  <option value={restaurant}>Ресторан 4</option>
+                </select>
+              )}
             </div>
           </div>
         </div>
@@ -136,24 +213,28 @@ const Ordering = () => {
               >
                 Курьеру картой
               </button>
-              <button
-                onClick={() => {
-                  setpayMethod("Наличными");
-                }}
-                className={
-                  payMethod === "Наличными" ? styles.active : styles.noActive
-                }
-              >
-                Наличными
-              </button>
+              {
+                <button
+                  onClick={() => {
+                    setpayMethod("Наличными");
+                  }}
+                  className={
+                    payMethod === "Наличными" ? styles.active : styles.noActive
+                  }
+                >
+                  Наличными
+                </button>
+              }
             </div>
-            <input
-              className={styles.adressInput}
-              placeholder="Сдача с "
-              type="text"
-              name=""
-              id=""
-            />
+            {payMethod === "Наличными" && (
+              <input
+                className={styles.adressInput}
+                placeholder="Сдача с "
+                type="text"
+                name=""
+                id=""
+              />
+            )}
           </div>
         </div>
         <div className={styles.deliveryTime}>
@@ -228,24 +309,28 @@ const Ordering = () => {
             <label htmlFor="Не перезванивать">Не перезванивать</label>
           </div>
           <div className={styles.callRadio}>
-            <input
-              name="call"
-              id="Потребуется звонок оператора"
-              type="radio"
-              checked
-            />
+            <input name="call" id="Потребуется звонок оператора" type="radio" />
             <label htmlFor="Потребуется звонок оператора">
               Потребуется звонок оператора
             </label>
           </div>
         </div>
         <div className={styles.agree}>
-          <input type="checkbox" name="" id="" />
+          <input
+            onChange={() => {
+              setcheckBox(!checkBox);
+            }}
+            type="checkbox"
+            name=""
+            id=""
+          />
           <p>
             Я согласен на обработку моих перс. данных в соответствии с{" "}
             <span>Условиями</span>
           </p>
-          <button className={styles.checkout}>Оформить заказ</button>
+          <button disabled={checkBox === false} className={styles.checkout}>
+            Оформить заказ
+          </button>
         </div>
       </div>
       <Footer />

@@ -403,4 +403,61 @@
     background-color: darkgreen;
     box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
   }
+  &:disabled {
+    background-color: #504b4a;
+    cursor: not-allowed;
+    box-shadow: none;
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+    }
+  }
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 60px;
+  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  padding-left: 20px;
+  min-width: 373px;
+  font-size: 16px;
+  background-image: url("./img//Polygon\ 3.svg");
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+  background-size: 0.85em auto;
+}
+
+option {
+  background-color: #44403f;
+  border: none;
+  height: 60px;
+}
+
+.warnings {
+  display: flex;
+
+  column-gap: 200px;
+
+  .phoneCheck {
+    color: red;
+    margin-bottom: 0px;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 15px;
+    position: relative;
+  }
+
+  .phoneCheckTrue {
+    @extend .phoneCheck;
+    padding-left: 389px;
+  }
 }
