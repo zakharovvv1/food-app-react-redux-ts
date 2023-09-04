@@ -6,19 +6,44 @@ import { useState } from "react";
 import clock from "./img/clock 1.svg";
 import Footer from "../09.Footer/Footer";
 import validator from "validator";
+import { checkoutOrder } from "./Checkout";
+import { IShoppingBasket } from "../Interfaces/IShoppingBasket";
+import { useSelector } from "react-redux";
 const Ordering = () => {
-  const [activeBtn, setActiveBtn] = useState("Доставка");
-  const [payMethod, setpayMethod] = useState("Оплата онлайн");
-  const [deliveryTime, setddeliveryTime] = useState("В ближайшее время");
-  const [numberOfPersons, setnumberOfPersons] = useState(1);
   const [checkBox, setcheckBox] = useState(false);
-  const [restaurant, setRestaurant] = useState("");
-  const [nameAndPhone, setNameAndPhone] = useState({ name: "", phone: "" });
+  const shoppingBag: IShoppingBasket = useSelector(
+    (state) => (state as any).reducerBuy
+  );
+  const [deliverInfo, setDeliveryInfo] = useState({
+    name: "",
+    phone: "",
+    deliveryMethod: {
+      pickup: true,
+      restaurant: "",
+      delivery: false,
+      deliveryInfo: {
+        street: "",
+        numOfHome: "",
+        apartmentNum: null,
+        entrance: null,
+        floor: null,
+        comment: "",
+      },
+    },
+    paymentMethod: "Оплата онлайн",
+    deliveryTime: {
+      inTheNearFuture: true,
+      inTime: "",
+    },
+    numberOfPersons: 1,
+    isCalling: false,
+  });
+  console.log("deliverInfo", deliverInfo);
   const [validateNumber, setValidateNumber] = useState(
-    validator.isMobilePhone(nameAndPhone.phone, ["ru-RU"])
+    validator.isMobilePhone(deliverInfo.phone, ["ru-RU"])
   );
   console.log("validateNumber", validateNumber);
-  console.log("nameAndPhone", nameAndPhone);
+
   return (
     <>
       <Header />
@@ -35,13 +60,10 @@ const Ordering = () => {
           <p>1. Контактная информация</p>
           <div className={styles.inputs}>
             <input
-              value={nameAndPhone.name}
+              value={deliverInfo.name}
               onChange={(e) => {
-                setNameAndPhone((prev) => {
-                  return {
-                    ...prev,
-                    name: e.target.value,
-                  };
+                setDeliveryInfo((prev) => {
+                  return { ...prev, name: e.target.value };
                 });
               }}
               type="text"
@@ -51,7 +73,7 @@ const Ordering = () => {
             />
             <input
               onChange={(e) => {
-                setNameAndPhone((prev) => {
+                setDeliveryInfo((prev) => {
                   return {
                     ...prev,
                     phone: e.target.value,
@@ -61,7 +83,7 @@ const Ordering = () => {
                   validator.isMobilePhone(e.target.value, ["ru-RU"])
                 );
               }}
-              value={nameAndPhone.phone}
+              value={deliverInfo.phone}
               type="text"
               name=""
               id=""
@@ -69,13 +91,13 @@ const Ordering = () => {
             />
           </div>
           <div className={styles.warnings}>
-            {!nameAndPhone.name && (
+            {!deliverInfo.name && (
               <p className={styles.phoneCheck}>Имя - обязательное поле</p>
             )}
             {!validateNumber && (
               <p
                 className={
-                  nameAndPhone.name ? styles.phoneCheckTrue : styles.phoneCheck
+                  deliverInfo.name ? styles.phoneCheckTrue : styles.phoneCheck
                 }
               >
                 Телефон - обязательное поле
@@ -89,20 +111,42 @@ const Ordering = () => {
             <div className={styles.buttons}>
               <button
                 onClick={() => {
-                  setActiveBtn("Доставка");
+                  setDeliveryInfo((prev) => {
+                    return {
+                      ...prev,
+                      deliveryMethod: {
+                        ...prev.deliveryMethod,
+                        delivery: true,
+                        pickup: false,
+                      },
+                    };
+                  });
                 }}
                 className={
-                  activeBtn === "Доставка" ? styles.active : styles.noActive
+                  deliverInfo.deliveryMethod.delivery === true
+                    ? styles.active
+                    : styles.noActive
                 }
               >
                 Доставка
               </button>
               <button
                 onClick={() => {
-                  setActiveBtn("Самовывоз");
+                  setDeliveryInfo((prev) => {
+                    return {
+                      ...prev,
+                      deliveryMethod: {
+                        ...prev.deliveryMethod,
+                        delivery: false,
+                        pickup: true,
+                      },
+                    };
+                  });
                 }}
                 className={
-                  activeBtn === "Самовывоз" ? styles.active : styles.noActive
+                  deliverInfo.deliveryMethod.pickup === true
+                    ? styles.active
+                    : styles.noActive
                 }
               >
                 Самовывоз
@@ -114,14 +158,14 @@ const Ordering = () => {
             </div>
           </div>
           <div className={styles.adressDiv}>
-            {activeBtn === "Доставка" && (
+            {deliverInfo.deliveryMethod.delivery === true && (
               <p className={styles.adressText}>Адрес доставки</p>
             )}
-            {activeBtn === "Самовывоз" && (
+            {deliverInfo.deliveryMethod.pickup === true && (
               <p className={styles.adressText}>Выберите ресторан</p>
             )}
             <div className={styles.adressInputs}>
-              {activeBtn === "Доставка" && (
+              {deliverInfo.deliveryMethod.delivery === true && (
                 <>
                   <input
                     className={styles.adressInput}
@@ -167,19 +211,30 @@ const Ordering = () => {
                   />
                 </>
               )}
-              {activeBtn === "Самовывоз" && (
+              {deliverInfo.deliveryMethod.pickup === true && (
                 <select
                   onChange={(e) => {
-                    setRestaurant(e.target.value);
+                    setDeliveryInfo((prev) => {
+                      console.log("e.target", e.target.value);
+                      debugger;
+                      return {
+                        ...prev,
+                        deliveryMethod: {
+                          ...prev.deliveryMethod,
+                          pickup: true,
+                          restaurant: e.target.value,
+                        },
+                      };
+                    });
                   }}
                   className={styles.adressInput}
                   name=""
                   id=""
                 >
-                  <option value={restaurant}>Ресторан 1</option>
-                  <option value={restaurant}>Ресторан 2</option>
-                  <option value={restaurant}>Ресторан 3</option>
-                  <option value={restaurant}>Ресторан 4</option>
+                  <option value="Ресторан 1">Ресторан 1</option>
+                  <option value="Ресторан 2">Ресторан 2</option>
+                  <option value="Ресторан 3">Ресторан 3</option>
+                  <option value="Ресторан 4">Ресторан 4</option>
                 </select>
               )}
             </div>
@@ -191,10 +246,15 @@ const Ordering = () => {
             <div className={styles.buttonsPay}>
               <button
                 onClick={() => {
-                  setpayMethod("Оплата онлайн");
+                  setDeliveryInfo((prev) => {
+                    return {
+                      ...prev,
+                      paymentMethod: "Оплата онлайн",
+                    };
+                  });
                 }}
                 className={
-                  payMethod === "Оплата онлайн"
+                  deliverInfo.paymentMethod === "Оплата онлайн"
                     ? styles.active
                     : styles.noActive
                 }
@@ -203,10 +263,15 @@ const Ordering = () => {
               </button>
               <button
                 onClick={() => {
-                  setpayMethod("Курьеру картой");
+                  setDeliveryInfo((prev) => {
+                    return {
+                      ...prev,
+                      paymentMethod: "Курьеру картой",
+                    };
+                  });
                 }}
                 className={
-                  payMethod === "Курьеру картой"
+                  deliverInfo.paymentMethod === "Курьеру картой"
                     ? styles.active
                     : styles.noActive
                 }
@@ -216,17 +281,24 @@ const Ordering = () => {
               {
                 <button
                   onClick={() => {
-                    setpayMethod("Наличными");
+                    setDeliveryInfo((prev) => {
+                      return {
+                        ...prev,
+                        paymentMethod: "Наличными",
+                      };
+                    });
                   }}
                   className={
-                    payMethod === "Наличными" ? styles.active : styles.noActive
+                    deliverInfo.paymentMethod === "Наличными"
+                      ? styles.active
+                      : styles.noActive
                   }
                 >
                   Наличными
                 </button>
               }
             </div>
-            {payMethod === "Наличными" && (
+            {deliverInfo.paymentMethod === "Наличными" && (
               <input
                 className={styles.adressInput}
                 placeholder="Сдача с "
@@ -244,10 +316,18 @@ const Ordering = () => {
               <div className={styles.leftDivDelivery}>
                 <button
                   onClick={() => {
-                    setddeliveryTime("В ближайшее время");
+                    setDeliveryInfo((prev) => {
+                      return {
+                        ...prev,
+                        deliveryTime: {
+                          ...prev.deliveryTime,
+                          inTheNearFuture: true,
+                        },
+                      };
+                    });
                   }}
                   className={
-                    deliveryTime === "В ближайшее время"
+                    deliverInfo.deliveryTime.inTheNearFuture === true
                       ? styles.active
                       : styles.noActive
                   }
@@ -256,10 +336,18 @@ const Ordering = () => {
                 </button>
                 <button
                   onClick={() => {
-                    setddeliveryTime("Ко времени");
+                    setDeliveryInfo((prev) => {
+                      return {
+                        ...prev,
+                        deliveryTime: {
+                          ...prev.deliveryTime,
+                          inTheNearFuture: false,
+                        },
+                      };
+                    });
                   }}
                   className={
-                    deliveryTime === "Ко времени"
+                    deliverInfo.deliveryTime.inTheNearFuture === false
                       ? styles.active
                       : styles.noActive
                   }
@@ -268,8 +356,12 @@ const Ordering = () => {
                 </button>
               </div>
 
-              {deliveryTime === "Ко времени" ? (
-                <input placeholder="Укажите время" type="text" />
+              {deliverInfo.deliveryTime.inTheNearFuture === false ? (
+                <input
+                  value={deliverInfo.deliveryTime.inTime}
+                  placeholder="Укажите время"
+                  type="text"
+                />
               ) : (
                 ""
               )}
@@ -278,11 +370,14 @@ const Ordering = () => {
               <div className={styles.countText}>Кол-во персон</div>
               <button
                 onClick={() => {
-                  setnumberOfPersons((prev) => {
-                    if (prev === 1) {
-                      return 1;
+                  setDeliveryInfo((prev: any) => {
+                    if (prev.numberOfPersons === 1) {
+                      return { ...prev, numberOfPersons: 1 };
                     } else {
-                      return prev - 1;
+                      return {
+                        ...prev,
+                        numberOfPersons: prev.numberOfPersons - 1,
+                      };
                     }
                   });
                 }}
@@ -290,10 +385,15 @@ const Ordering = () => {
               >
                 -
               </button>
-              <p>{numberOfPersons}</p>
+              <p>{deliverInfo.numberOfPersons}</p>
               <button
                 onClick={() => {
-                  setnumberOfPersons((prev) => prev + 1);
+                  setDeliveryInfo((prev: any) => {
+                    return {
+                      ...prev,
+                      numberOfPersons: prev.numberOfPersons + 1,
+                    };
+                  });
                 }}
                 className={styles.counter}
               >
@@ -328,7 +428,15 @@ const Ordering = () => {
             Я согласен на обработку моих перс. данных в соответствии с{" "}
             <span>Условиями</span>
           </p>
-          <button disabled={checkBox === false} className={styles.checkout}>
+          <button
+            onClick={checkoutOrder.bind(shoppingBag, deliverInfo)}
+            disabled={
+              checkBox === false ||
+              deliverInfo.name === "" ||
+              validateNumber === false
+            }
+            className={styles.checkout}
+          >
             Оформить заказ
           </button>
         </div>
