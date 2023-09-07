@@ -13,6 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import SuccesSignUp from "./SuccesSignUp/SuccesSignUp";
 import firebase from "firebase/compat/app";
 const LogInModal = ({ logInWindow, setlogInWindow }) => {
+  const [error, setError] = useState({
+    errorSignUp: false,
+    errorSignIn: false,
+  });
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const dispatch = useDispatch();
@@ -21,24 +25,33 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
   console.log("userSlice", userSlice);
   const handleLogin = (email, password) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      console.log("userInfooooooooooooooooooo", user);
-      setlogInWindow(false);
-      console.log("auth.currentUser", auth.currentUser);
-      dispatch(UserSlice.actions.setUser(user));
-    });
+    (async () => {
+      try {
+        const res = await signInWithEmailAndPassword(auth, email, password);
+
+        setlogInWindow(false);
+        dispatch(UserSlice.actions.setUser(res.user));
+      } catch (e) {
+        setError({ errorSignIn: true, errorSignUp: false });
+        console.error("Ошибка" + e);
+      }
+    })();
   };
 
   const signUp = (email, password) => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      setlogInWindow(false);
-      console.log("info", user.uid);
+    (async () => {
+      try {
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        setlogInWindow(false);
+        dispatch(UserSlice.actions.setUser(res.user));
+      } catch (e) {
+        setError({ errorSignIn: false, errorSignUp: true });
 
-      return user;
-
-      // dispatch(UserSlice.actions.setUser(user));
-    });
+        debugger;
+        console.error("Ошибка при регистрации" + e);
+      }
+    })();
   };
   return (
     <motion.div
@@ -60,7 +73,7 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Имя пользователя"
+          placeholder="Электронная почта"
           type="text"
         />
         <input
@@ -69,6 +82,26 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
           placeholder="Пароль"
           type="password"
         />
+        {error.errorSignUp && (
+          <motion.p
+            initial={{ x: -200 }}
+            animate={{ x: 0 }}
+            exit={{ x: 0 }}
+            className={styles.errorMessage}
+          >
+            Пользователь с таким email уже существует
+          </motion.p>
+        )}
+        {error.errorSignIn && (
+          <motion.p
+            initial={{ x: -200 }}
+            animate={{ x: 0 }}
+            exit={{ x: 0 }}
+            className={styles.errorMessage}
+          >
+            Неверное имя пользователя или пароль
+          </motion.p>
+        )}
         <button
           onClick={(e) => {
             e.preventDefault();

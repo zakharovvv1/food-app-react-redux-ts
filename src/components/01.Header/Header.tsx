@@ -7,8 +7,6 @@ import burgerMenu from "./assets/burger.png";
 import buyIcon from "./assets/Buy2.png";
 import gStick from "./assets/gLine.png";
 import search from "./assets/Search.png";
-import { fetchAdress } from "../API/dadata/dadataApi.js";
-import { useEffect } from "react";
 import { IPromtDaData } from "../Interfaces/IHeaders.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +16,6 @@ import { toogleCategories } from "../../store/toogleCategories/toogleCategories"
 import logInImg from "./img/Log in.svg";
 import LogInModal from "../001.LogInModal/LogInModal.js";
 import { CSSTransition } from "react-transition-group";
-import SuccesSignUp from "../001.LogInModal/SuccesSignUp/SuccesSignUp.js";
-import UserSlice from "../../store/user/UserSlice.js";
 
 const Header: React.FC = () => {
   const root = document.getElementById("root");

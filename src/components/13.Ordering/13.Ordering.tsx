@@ -2,18 +2,40 @@ import Header from "../01.Header/Header";
 import Navbar from "../03.Navbar/Navbar";
 import styles from "./Ordering.module.scss";
 import arrow from "../10.ShoppingCart/Arrow 8.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clock from "./img/clock 1.svg";
 import Footer from "../09.Footer/Footer";
 import validator from "validator";
-import { checkoutOrder } from "./Checkout";
+import { checkoutOrder } from "./checkoutOrder";
 import { IShoppingBasket } from "../Interfaces/IShoppingBasket";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import ModalSucces from "../00.02 ModalSucces/ModalSucces";
+import { buySlice } from "../../store/buySlice/buySlice";
+import { IProps } from "../Interfaces/IProps";
 const Ordering = () => {
+  const buy = useSelector((state) => (state as any).reducerBuy);
+  console.log("Корзина", buy);
+  const [orderSucceeded, setOrderSucceeded] = useState("Не выполняется");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    debugger;
+    if (orderSucceeded === "Не выполняется") {
+      return;
+    } else if (orderSucceeded === "Выполняется") {
+      checkoutOrder(shoppingBag, deliverInfo).then((res: any) => {
+        setOrderSucceeded(res);
+        debugger;
+        dispatch(buySlice.actions.reset("true"));
+      });
+    }
+  }, [orderSucceeded]);
   const [checkBox, setcheckBox] = useState(false);
   const shoppingBag: IShoppingBasket = useSelector(
     (state) => (state as any).reducerBuy
   );
+  console.log("shoppingBag", shoppingBag);
+  console.log("orderSucceeded", orderSucceeded);
+
   const [deliverInfo, setDeliveryInfo] = useState({
     name: "",
     phone: "",
@@ -36,7 +58,7 @@ const Ordering = () => {
       inTime: "",
     },
     numberOfPersons: 1,
-    isCalling: false,
+    isCalling: "yes",
   });
   console.log("deliverInfo", deliverInfo);
   const [validateNumber, setValidateNumber] = useState(
@@ -358,6 +380,18 @@ const Ordering = () => {
 
               {deliverInfo.deliveryTime.inTheNearFuture === false ? (
                 <input
+                  onChange={(e) => {
+                    setDeliveryInfo((prev) => {
+                      return {
+                        ...prev,
+                        deliveryTime: {
+                          ...prev.deliveryTime,
+                          inTheNearFuture: false,
+                          inTime: e.target.value,
+                        },
+                      };
+                    });
+                  }}
                   value={deliverInfo.deliveryTime.inTime}
                   placeholder="Укажите время"
                   type="text"
@@ -405,11 +439,37 @@ const Ordering = () => {
         <div className={styles.callDiv}>
           <p>Хотите мы позвоним?</p>
           <div className={styles.callRadio}>
-            <input name="call" id="Не перезванивать" type="radio" />
+            <input
+              onChange={() => {
+                setDeliveryInfo((prev) => {
+                  return {
+                    ...prev,
+                    isCalling: "no",
+                  };
+                });
+              }}
+              value={deliverInfo.isCalling}
+              name="call"
+              id="Не перезванивать"
+              type="radio"
+            />
             <label htmlFor="Не перезванивать">Не перезванивать</label>
           </div>
           <div className={styles.callRadio}>
-            <input name="call" id="Потребуется звонок оператора" type="radio" />
+            <input
+              onChange={() => {
+                setDeliveryInfo((prev) => {
+                  return {
+                    ...prev,
+                    isCalling: "yes",
+                  };
+                });
+              }}
+              value={deliverInfo.isCalling}
+              name="call"
+              id="Потребуется звонок оператора"
+              type="radio"
+            />
             <label htmlFor="Потребуется звонок оператора">
               Потребуется звонок оператора
             </label>
@@ -429,7 +489,9 @@ const Ordering = () => {
             <span>Условиями</span>
           </p>
           <button
-            onClick={checkoutOrder.bind(shoppingBag, deliverInfo)}
+            onClick={() => {
+              setOrderSucceeded("Выполняется");
+            }}
             disabled={
               checkBox === false ||
               deliverInfo.name === "" ||
@@ -439,6 +501,12 @@ const Ordering = () => {
           >
             Оформить заказ
           </button>
+          {orderSucceeded === "Выполнено" && (
+            <ModalSucces
+              setModalWindow={setOrderSucceeded}
+              modalWindow={orderSucceeded}
+            />
+          )}
         </div>
       </div>
       <Footer />

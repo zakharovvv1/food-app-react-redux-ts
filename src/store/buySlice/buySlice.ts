@@ -25,6 +25,14 @@ export const buySlice = createSlice({
     deleteFromBuy: (state, action) => {
       deleteFromBuy(state, action.payload);
     },
+    reset: (state, action) => {
+      state.coldAppetizers = [];
+      state.hotAppetizers = [];
+      state.desserts = [];
+      state.beverages = [];
+      state.soups = [];
+      state.specialties = [];
+    },
     // currentFood: (state, action) => {
 
     // }

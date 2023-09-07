@@ -4,6 +4,7 @@ const initialState = {
   token: null,
   id: null,
   name: null,
+  order: {},
 };
 // Состояние корзины
 export const UserSlice = createSlice({
@@ -20,6 +21,9 @@ export const UserSlice = createSlice({
       state.email = null;
       state.token = null;
       state.id = null;
+    },
+    setOrder: (state, action) => {
+      state.order = { ...action };
     },
   },
 });
