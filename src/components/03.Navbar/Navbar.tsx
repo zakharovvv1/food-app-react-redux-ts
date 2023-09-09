@@ -6,12 +6,17 @@ import { useNavigate, useParams } from "react-router";
 import { Link, scroller } from "react-scroll";
 import * as Scroll from "react-scroll";
 import { useGetFoodQuery } from "../API/dadata/dadataApi";
+import { UserSlice } from "../../store/user/UserSlice";
+import { getHistoryOfOrders } from "../12. UserProfile/getHistoryOfOrders";
+import { getAuth } from "firebase/auth";
 let scroll = Scroll.animateScroll;
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUrl = window.location.pathname;
+  const auth: any = getAuth();
+
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   const toogleCategory = toogleCat.category;
 

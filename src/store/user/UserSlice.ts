@@ -23,6 +23,7 @@ export const UserSlice = createSlice({
       state.id = null;
     },
     setOrder: (state, action) => {
+      console.log("Вызов слайса");
       state.order.push(action.payload);
     },
   },

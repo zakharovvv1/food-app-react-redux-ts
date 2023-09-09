@@ -1,7 +1,7 @@
 import { getAuth } from "firebase/auth";
 import { getDatabase, set, ref } from "firebase/database";
 
-export const checkoutOrder = (deliverInfo) => {
+export const setOrder = (userSlice) => {
   try {
     const auth: any = getAuth();
     console.log("auth.currentUser", auth.currentUser);
@@ -10,7 +10,7 @@ export const checkoutOrder = (deliverInfo) => {
     const db = getDatabase();
     debugger;
     set(ref(db, "users/" + userId), {
-      deliverInfo: deliverInfo,
+      userInfo: userSlice.order,
     });
   } catch (err) {
     console.log("Ошибка");

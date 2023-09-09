@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import clock from "./img/clock 1.svg";
 import Footer from "../09.Footer/Footer";
 import validator from "validator";
-import { checkoutOrder } from "./checkoutOrder";
+import { setOrder } from "./checkoutOrder";
 import { IShoppingBasket } from "../Interfaces/IShoppingBasket";
 import { useDispatch, useSelector } from "react-redux";
 import ModalSucces from "../00.02 ModalSucces/ModalSucces";
@@ -20,24 +20,34 @@ const Ordering = () => {
   const [orderSucceeded, setOrderSucceeded] = useState("Не выполняется");
   const dispatch = useDispatch();
   const auth: any = getAuth();
+  const userSlice = useSelector((state) => state.UserSlice);
+  console.log(
+    "🚀 ~ file: 13.Ordering.tsx:24 ~ Ordering ~ userSlice:",
+    userSlice
+  );
 
   const userId = auth.currentUser.uid;
-
+  const shoppingBag: IShoppingBasket = useSelector(
+    (state) => (state as any).reducerBuy
+  );
   useEffect(() => {
     debugger;
     if (orderSucceeded === "Не выполняется") {
       return;
     } else if (orderSucceeded === "Выполняется") {
-      checkoutOrder(deliverInfo);
+      debugger;
+      setOrder(userSlice);
+      if (userId) {
+        debugger;
+        console.log("ызов функции");
+      }
       setOrderSucceeded("Выполнено");
 
       dispatch(buySlice.actions.reset());
     }
-  }, [orderSucceeded]);
+  }, [orderSucceeded, userSlice]);
   const [checkBox, setcheckBox] = useState(false);
-  const shoppingBag: IShoppingBasket = useSelector(
-    (state) => (state as any).reducerBuy
-  );
+
   console.log("shoppingBag", shoppingBag);
   console.log("orderSucceeded", orderSucceeded);
 
@@ -65,7 +75,7 @@ const Ordering = () => {
     numberOfPersons: 1,
     isCalling: "yes",
     shoppingBag: Object.values(shoppingBag).flat(),
-    time: new Date(new Date().getTime()),
+    time: new Date().toLocaleString(),
   });
   console.log("deliverInfo", deliverInfo);
   const [validateNumber, setValidateNumber] = useState(
@@ -497,11 +507,9 @@ const Ordering = () => {
           </p>
           <button
             onClick={() => {
-              setOrderSucceeded("Выполняется");
+              dispatch(UserSlice.actions.setOrder(deliverInfo));
 
-              if (userId) {
-                dispatch(UserSlice.actions.setOrder(deliverInfo));
-              }
+              setOrderSucceeded("Выполняется");
             }}
             disabled={
               checkBox === false ||

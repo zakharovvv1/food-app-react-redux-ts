@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./12. UserProfile.module.scss";
 import { getAuth, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,18 +50,41 @@ const UserProfile = () => {
   const auth: any = getAuth();
   const [name, setName] = useState(auth.currentUser.displayName);
   const userSlice = useSelector((state) => state.UserSlice);
+  console.log(
+    "🚀 ~ file: 12. UserProfile.tsx:53 ~ UserProfile ~ userSlice:",
+    userSlice
+  );
+  debugger;
+  const effect = useRef(false);
+  let orders;
+  useEffect(() => {
+    (async () => {
+      if (!effect.current && userSlice.order.length === 0) {
+        const { userInfo } = await getHistoryOfOrders(auth.currentUser.uid);
+        console.log(
+          "🚀 ~ file: 12. UserProfile.tsx:63 ~ deliverInfo:",
+          userInfo
+        );
+        console.log("Вызов функции");
+        dispatch(UserSlice.actions.setOrder(userInfo));
 
+        debugger;
+      }
+    })();
+    return () => {
+      effect.current = true;
+    };
+  }, []);
   const dispatch = useDispatch();
   const [select, setSelect] = useState({ day: "День", month: "Месяц" });
 
   dispatch(toogleCategories.actions.toggleCategories(""));
   console.log("select", select);
   debugger;
-  useEffect(() => {
-    const res = getHistoryOfOrders(auth.currentUser.uid);
-    console.log("res" + res);
-  }, []);
-
+  if (userSlice.order.length !== 0) {
+    orders = userSlice.order.flat();
+    console.log("🚀 ~ file: 12. UserProfile.tsx:71 ~ orders:", orders);
+  }
   return (
     <>
       <Header />
@@ -158,28 +181,29 @@ const UserProfile = () => {
         <div className={styles.history}>
           <p className={styles.historyText}>История заказов</p>
           {userSlice.order.length !== 0 ? (
-            userSlice.order.map((el, index) => {
+            orders.map((order, index) => {
               return (
                 <div>
                   <div>
-                    <p className={styles.orderText}>Заказ {index + 1}</p>
+                    <p className={styles.orderText}>
+                      Заказ {index + 1} от {order.time}
+                    </p>
                     <div className={styles.orderItem}>
-                      {el.shoppingBag.map((el) => {
+                      {order.shoppingBag.map((shoppingBag) => {
                         return (
                           <p>
-                            {el.name}, {el.count} шт.
+                            {shoppingBag.name}, {shoppingBag.count} шт.
                           </p>
                         );
                       })}
                       <p className={styles.totalPrice}>
                         На сумму{" "}
-                        {el.shoppingBag.reduce((acc, el) => {
-                          return (acc += el.price);
+                        {order.shoppingBag.reduce((acc, el) => {
+                          return (acc += el.price * el.count);
                         }, 0)}
                       </p>
                     </div>
                   </div>
-                  <p></p>
                 </div>
               );
             })
