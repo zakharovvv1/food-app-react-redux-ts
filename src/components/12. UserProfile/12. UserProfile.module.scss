@@ -4,7 +4,7 @@
   align-items: flex-start;
   flex-direction: column;
   row-gap: 30px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   p {
     font-size: 20px;
     margin-right: 20px;
@@ -92,5 +92,23 @@
   width: 100%;
   p {
     white-space: nowrap;
+  }
+  .historyText {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  .orderItem {
+    margin-bottom: 35px;
+  }
+
+  .orderText {
+    font-size: 25px;
+  }
+
+  .totalPrice {
+    font-weight: 700;
+    color: #72a479;
   }
 }

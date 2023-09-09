@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./12. UserProfile.module.scss";
 import { getAuth, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { getDatabase, onValue, ref, set } from "firebase/database";
 import { toogleCategories } from "../../store/toogleCategories/toogleCategories";
 import Footer from "../09.Footer/Footer";
+import { UserSlice } from "../../store/user/UserSlice";
+import { getHistoryOfOrders } from "./getHistoryOfOrders";
 const daysOfMoth = [
   "День",
   1,
@@ -48,11 +50,18 @@ const UserProfile = () => {
   const auth: any = getAuth();
   const [name, setName] = useState(auth.currentUser.displayName);
   const userSlice = useSelector((state) => state.UserSlice);
+
   const dispatch = useDispatch();
   const [select, setSelect] = useState({ day: "День", month: "Месяц" });
 
   dispatch(toogleCategories.actions.toggleCategories(""));
   console.log("select", select);
+  debugger;
+  useEffect(() => {
+    const res = getHistoryOfOrders(auth.currentUser.uid);
+    console.log("res" + res);
+  }, []);
+
   return (
     <>
       <Header />
@@ -147,33 +156,37 @@ const UserProfile = () => {
         </div>
 
         <div className={styles.history}>
-          <p>История заказов</p>
-          <p>Последние 90 дней заказов не было</p>
+          <p className={styles.historyText}>История заказов</p>
+          {userSlice.order.length !== 0 ? (
+            userSlice.order.map((el, index) => {
+              return (
+                <div>
+                  <div>
+                    <p className={styles.orderText}>Заказ {index + 1}</p>
+                    <div className={styles.orderItem}>
+                      {el.shoppingBag.map((el) => {
+                        return (
+                          <p>
+                            {el.name}, {el.count} шт.
+                          </p>
+                        );
+                      })}
+                      <p className={styles.totalPrice}>
+                        На сумму{" "}
+                        {el.shoppingBag.reduce((acc, el) => {
+                          return (acc += el.price);
+                        }, 0)}
+                      </p>
+                    </div>
+                  </div>
+                  <p></p>
+                </div>
+              );
+            })
+          ) : (
+            <p>Последние 90 дней заказов не было</p>
+          )}
         </div>
-        <button
-          onClick={() => {
-            const db = getDatabase();
-            set(ref(db, "users/" + 12345), {
-              username: "Oleg",
-              email: "123@mail.ru",
-              profile_picture: "wefwefwe",
-            });
-          }}
-        >
-          Записать в базу
-        </button>
-        <button
-          onClick={() => {
-            const db = getDatabase();
-            const starCountRef = ref(db, "users/" + 12345);
-            onValue(starCountRef, (snapshot) => {
-              const data = snapshot.val();
-              console.log("data из базы данных", data);
-            });
-          }}
-        >
-          Извлечь из базы
-        </button>
       </div>
       <Footer />
     </>

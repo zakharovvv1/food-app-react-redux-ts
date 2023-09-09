@@ -15,6 +15,8 @@ const firebaseConfig = {
   messagingSenderId: "542271928019",
   appId: "1:542271928019:web:a0badd0f1180e7b5f90626",
   measurementId: "G-HY169EYFQC",
+  databaseURL:
+    "https://react-food-app-41d37-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 // Initialize Firebase

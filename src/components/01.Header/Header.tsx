@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import logo from "./assets/LOGOS.png";
 import caller from "./assets/Calling.png";
@@ -16,6 +16,8 @@ import { toogleCategories } from "../../store/toogleCategories/toogleCategories"
 import logInImg from "./img/Log in.svg";
 import LogInModal from "../001.LogInModal/LogInModal.js";
 import { CSSTransition } from "react-transition-group";
+import { getHistoryOfOrders } from "../12. UserProfile/getHistoryOfOrders.js";
+import { getAuth } from "firebase/auth/cordova";
 
 const Header: React.FC = () => {
   const root = document.getElementById("root");
@@ -94,7 +96,7 @@ const Header: React.FC = () => {
               }}
             >
               <img src={logInImg} className={styles.logInImg}></img>
-              {userSlice.email}
+              {userSlice.name}
             </a>
           ) : (
             <a

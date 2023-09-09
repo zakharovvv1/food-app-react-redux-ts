@@ -41,9 +41,6 @@ const AllMain: React.FC = () => {
 
     console.log("Все блюда", newData);
   }
-  useMemo(() => {
-    newData;
-  }, []);
 
   const toogleCategory = toogleCat.category;
 
@@ -52,7 +49,6 @@ const AllMain: React.FC = () => {
     toogleCategory,
     arrObjOfAllFoods
   );
-  console.log("filteredCat1111111111111111", filteredCat);
 
   return (
     <>
@@ -63,7 +59,7 @@ const AllMain: React.FC = () => {
       />
       <Main
         isLoading={isLoading}
-        data={newData?.hotAppetizers}
+        data={newData?.coldAppetizers}
         category="Горячие закуски"
       />
       <Main isLoading={isLoading} data={newData?.dessert} category="Десерты" />

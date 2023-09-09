@@ -12,21 +12,26 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalSucces from "../00.02 ModalSucces/ModalSucces";
 import { buySlice } from "../../store/buySlice/buySlice";
 import { IProps } from "../Interfaces/IProps";
+import { UserSlice } from "../../store/user/UserSlice";
+import { getAuth } from "firebase/auth";
 const Ordering = () => {
   const buy = useSelector((state) => (state as any).reducerBuy);
   console.log("Корзина", buy);
   const [orderSucceeded, setOrderSucceeded] = useState("Не выполняется");
   const dispatch = useDispatch();
+  const auth: any = getAuth();
+
+  const userId = auth.currentUser.uid;
+
   useEffect(() => {
     debugger;
     if (orderSucceeded === "Не выполняется") {
       return;
     } else if (orderSucceeded === "Выполняется") {
-      checkoutOrder(shoppingBag, deliverInfo).then((res: any) => {
-        setOrderSucceeded(res);
-        debugger;
-        dispatch(buySlice.actions.reset("true"));
-      });
+      checkoutOrder(deliverInfo);
+      setOrderSucceeded("Выполнено");
+
+      dispatch(buySlice.actions.reset());
     }
   }, [orderSucceeded]);
   const [checkBox, setcheckBox] = useState(false);
@@ -59,6 +64,8 @@ const Ordering = () => {
     },
     numberOfPersons: 1,
     isCalling: "yes",
+    shoppingBag: Object.values(shoppingBag).flat(),
+    time: new Date(new Date().getTime()),
   });
   console.log("deliverInfo", deliverInfo);
   const [validateNumber, setValidateNumber] = useState(
@@ -491,6 +498,10 @@ const Ordering = () => {
           <button
             onClick={() => {
               setOrderSucceeded("Выполняется");
+
+              if (userId) {
+                dispatch(UserSlice.actions.setOrder(deliverInfo));
+              }
             }}
             disabled={
               checkBox === false ||
