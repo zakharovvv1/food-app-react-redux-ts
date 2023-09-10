@@ -26,6 +26,7 @@ const Header: React.FC = () => {
   const toogleCategory = toogleCat.category;
   const dispatch = useDispatch();
   const userSlice = useSelector((state) => state.UserSlice);
+  console.log("🚀 ~ file: Header.tsx:29 ~ userSlice:", userSlice);
 
   const [adress, setAdress] = useState("");
   const [promt, setPromt] = useState();

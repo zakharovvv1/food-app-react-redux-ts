@@ -22,6 +22,12 @@ export const UserSlice = createSlice({
       state.token = null;
       state.id = null;
     },
+    updateUser: (state, action) => {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+    },
     setOrder: (state, action) => {
       console.log("Вызов слайса");
       state.order.push(action.payload);

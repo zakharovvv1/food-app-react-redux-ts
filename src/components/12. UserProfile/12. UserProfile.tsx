@@ -54,6 +54,7 @@ const UserProfile = () => {
     "🚀 ~ file: 12. UserProfile.tsx:53 ~ UserProfile ~ userSlice:",
     userSlice
   );
+  console.log("logSlice", { ...userSlice, name: name });
   debugger;
   const effect = useRef(false);
   let orders;
@@ -66,7 +67,7 @@ const UserProfile = () => {
           userInfo
         );
         console.log("Вызов функции");
-        dispatch(UserSlice.actions.setOrder(userInfo));
+        dispatch(UserSlice.actions.setOrder(userInfo.flat()));
 
         debugger;
       }
@@ -104,15 +105,25 @@ const UserProfile = () => {
           </div>
 
           <div className={styles.buttons}>
-            <button onClick={() => setIsChangedName(true)}>Изменить</button>
+            <button
+              onClick={() => {
+                setIsChangedName(true);
+              }}
+            >
+              Изменить
+            </button>
             {isChangeName && (
               <button
                 onClick={() => {
                   setIsChangedName(false);
                   auth.currentUser.displayName = name;
+
                   updateProfile(auth.currentUser!, {
                     displayName: name,
-                  }).then((user) => dispatch(userSlice.actions.setUser(user)));
+                  });
+                  dispatch(
+                    UserSlice.actions.updateUser({ ...userSlice, name: name })
+                  );
                 }}
               >
                 Сохранить

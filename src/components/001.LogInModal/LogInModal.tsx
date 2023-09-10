@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./LogInModal.module.scss";
 import exitImg from "./img/exit.svg";
 import { motion } from "framer-motion";
-import { initializeApp } from "firebase/app";
 import { UserSlice } from "../../store/user/UserSlice";
 import {
   getAuth,
@@ -10,8 +9,6 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import SuccesSignUp from "./SuccesSignUp/SuccesSignUp";
-import firebase from "firebase/compat/app";
 const LogInModal = ({ logInWindow, setlogInWindow }) => {
   const [error, setError] = useState({
     errorSignUp: false,
