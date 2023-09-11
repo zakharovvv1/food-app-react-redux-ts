@@ -9,6 +9,7 @@ import { useMemo } from "react";
 const AllMain: React.FC = () => {
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   let { isLoading, data } = useGetFoodQuery();
+  console.log("data useGetFood", data);
   let newData;
   let arrObjOfAllFoods;
   if (data) {

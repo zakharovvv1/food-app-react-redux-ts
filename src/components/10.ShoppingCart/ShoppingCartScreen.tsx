@@ -13,6 +13,10 @@ const ShoppingCartScreen = () => {
 
   const filterShoppingCartStart = Object.values(buy);
   const filterShoppingCart = Object.values(buy).filter((el) => el.length !== 0);
+  console.log(
+    "🚀 ~ file: ShoppingCartScreen.tsx:16 ~ ShoppingCartScreen ~ filterShoppingCart:",
+    filterShoppingCart
+  );
 
   const navigate = useNavigate();
   let shoppingCartLength = filterShoppingCart.map((el) => {

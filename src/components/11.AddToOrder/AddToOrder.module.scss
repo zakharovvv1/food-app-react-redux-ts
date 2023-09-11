@@ -18,8 +18,9 @@
   padding-top: 20px;
   padding-left: 35px;
   padding-right: 30px;
-
+  cursor: pointer;
   align-items: center;
+  transition: all 0.5s ease-out;
   &:not(:last-child) {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
   }
@@ -28,6 +29,10 @@
     height: 120px;
   }
   padding-bottom: 13px;
+  &:hover {
+    box-shadow: 0px 30px 45px rgba(43, 40, 40, 0.6);
+    border-radius: 10px;
+  }
 }
 
 .items:not(:last-child) {
@@ -107,11 +112,8 @@
   font-weight: 400;
   line-height: normal;
   background-color: transparent;
-  box-shadow: 0 5px 10px rgba(142, 185, 169, 0.7);
   transition: box-shadow 0.3s ease-out;
-  & :hover {
-    box-shadow: 0 5px 10px rgba(2, 30, 6, 0.7);
-  }
+  transition: all 0.5s ease-out;
 }
 
 .divAddToOrder {
@@ -119,6 +121,18 @@
   column-gap: 8px;
   margin-top: 11px;
   margin-bottom: 12px;
+  background-color: transparent;
+  align-items: center;
+  &:hover {
+    .btnAddToOrder {
+      color: #618967;
+    }
+    .addImg {
+      &::after {
+        box-shadow: 0px 0px 20px rgba(114, 163, 121, 0.7);
+      }
+    }
+  }
 }
 .price {
   color: #fff;
@@ -179,4 +193,20 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.addImg {
+  background-color: transparent;
+}
+.addImg::after {
+  content: "";
+  position: absolute;
+  transform: translateX(-18px);
+
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #618967;
+  transition: all 0.5s ease-out;
 }

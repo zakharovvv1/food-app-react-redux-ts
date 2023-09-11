@@ -1,9 +1,8 @@
 .topMainDiv {
   button {
-    background-color: transparent;
     color: #fff;
     font-family: Gilroy;
-    font-size: 16px;
+
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -75,7 +74,7 @@
 
   button {
     color: #fff;
-    font-size: 20px;
+
     font-family: Gilroy;
     font-weight: 600;
     border-radius: 50%;
@@ -85,7 +84,6 @@
     align-items: center;
     column-gap: 12px;
 
-    height: 44px;
     transition: all 0.3s ease-out;
   }
 }
@@ -102,7 +100,8 @@
 .count {
   display: flex;
   align-items: center;
-
+  position: relative;
+  z-index: 10;
   color: #fff;
   font-size: 20px;
 
@@ -144,13 +143,49 @@
   display: flex;
   align-items: center;
   background-color: transparent;
-
+  font-size: 50px;
   box-shadow: 0px;
   padding: 0px;
   cursor: pointer;
+  font-weight: normal;
+  position: relative;
+  z-index: 2;
+  padding: -10px 10px;
   img {
     height: 48px;
     width: 48px;
+  }
+}
+
+.imgMinus::after {
+  content: "";
+  position: absolute;
+  transform: translateX(11px);
+  z-index: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #618967;
+  transition: all 0.5s ease-out;
+}
+.imgDelete::after {
+  content: "";
+  position: absolute;
+  transform: translateX(0px);
+  z-index: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #618967;
+  transition: all 0.5s ease-out;
+}
+
+.imgMinus:hover,
+.imgDelete:hover {
+  &::after {
+    box-shadow: 0px 0px 20px rgba(114, 163, 121, 0.7);
   }
 }
 

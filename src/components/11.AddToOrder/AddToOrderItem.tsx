@@ -6,10 +6,13 @@ import add from "./addToOrder.svg";
 import { buySlice } from "../../store/buySlice/buySlice";
 import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
+import { useNavigate } from "react-router";
+import { currentFoodSlice } from "../../store/currentFoodSlice/currentFoodSlice";
 
 const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
   let { isLoading, data } = useGetFoodQuery();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   if (data) {
     let data2 = data.map((item: any) =>
       Object.assign(
@@ -29,20 +32,37 @@ const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
 
       return accum;
     }, []);
+    console.log(
+      "🚀 ~ file: AddToOrderItem.tsx:34 ~ newData ~ newData:",
+      newData
+    );
+
+    console.log(
+      "🚀 ~ file: AddToOrderItem.tsx:34 ~ newData ~ newData:",
+      newData
+    );
 
     newData = newData.slice(0, 4);
     return newData.map((el: IProps) => {
       return (
-        <div className={styles.divItem}>
+        <div
+          onClick={() => {
+            dispatch(currentFoodSlice.actions.setCurrentFoodItem(el));
+            navigate(`/${el.id}`);
+          }}
+          className={styles.divItem}
+        >
           <img className={styles.imgItem} src={el.imgUrlSmall} alt="" />
           <div className={styles.name}>{el.name}</div>
-          <div
+          <button
             onClick={() => dispatch(buySlice.actions.addToBuy(el))}
             className={styles.divAddToOrder}
           >
-            <button className={styles.btnAddToOrder}>Добавить</button>
-            <img src={add} alt="" />
-          </div>
+            <div className={styles.btnAddToOrder}>Добавить</div>
+            <button className={styles.addImg}>
+              <img src={add} alt="" />
+            </button>
+          </button>
           <div className={styles.price}>{el.price} ₽</div>
         </div>
       );
