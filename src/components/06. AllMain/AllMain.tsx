@@ -3,10 +3,12 @@ import { useGetFoodQuery } from "../API/dadata/dadataApi";
 import { IProps } from "../Interfaces/IProps";
 import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterCategories } from "./filterOfCategories";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { UserSlice } from "../../store/user/UserSlice";
 const AllMain: React.FC = () => {
+  const dispatch = useDispatch();
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   let { isLoading, data } = useGetFoodQuery();
   console.log("data useGetFood", data);
@@ -49,6 +51,18 @@ const AllMain: React.FC = () => {
     toogleCategory,
     arrObjOfAllFoods
   );
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("user")) !== null) {
+      console.log(
+        'localStorage.getItem("user")',
+        JSON.parse(localStorage.getItem("user")).user
+      );
+      dispatch(
+        UserSlice.actions.setUser(JSON.parse(localStorage.getItem("user")))
+      );
+    }
+  }, []);
 
   return (
     <>

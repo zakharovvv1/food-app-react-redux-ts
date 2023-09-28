@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./LogInModal.module.scss";
 import exitImg from "./img/exit.svg";
 import { motion } from "framer-motion";
@@ -20,6 +20,7 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
   console.log("UserSlice", UserSlice.actions);
   const userSlice = useSelector((state) => state.UserSlice);
   console.log("userSlice", userSlice);
+
   const handleLogin = (email, password) => {
     const auth = getAuth();
     (async () => {
@@ -28,6 +29,8 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
 
         setlogInWindow(false);
         dispatch(UserSlice.actions.setUser(res.user));
+        //Записываю пользователя в локал стораже
+        localStorage.setItem("user", JSON.stringify(res.user));
       } catch (e) {
         setError({ errorSignIn: true, errorSignUp: false });
         console.error("Ошибка" + e);
@@ -42,6 +45,7 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         setlogInWindow(false);
         dispatch(UserSlice.actions.setUser(res.user));
+        localStorage.setItem("user", JSON.stringify(res.user));
       } catch (e) {
         setError({ errorSignIn: false, errorSignUp: true });
 

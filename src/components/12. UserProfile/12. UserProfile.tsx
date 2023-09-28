@@ -10,6 +10,9 @@ import { toogleCategories } from "../../store/toogleCategories/toogleCategories"
 import Footer from "../09.Footer/Footer";
 import { UserSlice } from "../../store/user/UserSlice";
 import { getHistoryOfOrders } from "./getHistoryOfOrders";
+import { useNavigate } from "react-router";
+import * as Scroll from "react-scroll";
+
 const daysOfMoth = [
   "День",
   1,
@@ -46,8 +49,13 @@ const daysOfMoth = [
 ];
 const moths = ["Месяц", "Января", "Февраля", "Марта", "Апреля"];
 const UserProfile = () => {
+  let scroll = Scroll.animateScroll;
+
   const [isChangeName, setIsChangedName] = useState(false);
   const auth: any = getAuth();
+  const user = JSON.parse(localStorage.getItem("user")) as any;
+  console.log("user", user);
+  const navigate = useNavigate();
   const [name, setName] = useState(auth.currentUser.displayName);
   const userSlice = useSelector((state) => state.UserSlice);
   console.log(
@@ -124,6 +132,10 @@ const UserProfile = () => {
                   dispatch(
                     UserSlice.actions.updateUser({ ...userSlice, name: name })
                   );
+                  localStorage.setItem(
+                    "user",
+                    JSON.stringify({ ...user, displayName: name })
+                  );
                 }}
               >
                 Сохранить
@@ -188,7 +200,24 @@ const UserProfile = () => {
             ""
           )}
         </div>
-
+        <button
+          onClick={() => {
+            dispatch(
+              UserSlice.actions.setUser({
+                email: "",
+                accessToken: "",
+                uid: "",
+                displayName: "",
+              })
+            );
+            localStorage.setItem("user", "null");
+            navigate("/");
+            scroll.scrollToTop();
+          }}
+          className={styles.btnExit}
+        >
+          Выйти
+        </button>
         <div className={styles.history}>
           <p className={styles.historyText}>История заказов</p>
           {userSlice.order.length !== 0 ? (
