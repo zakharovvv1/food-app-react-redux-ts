@@ -6,11 +6,11 @@
 
 #root {
   margin: 0 auto;
-  max-width: 1440px;
+  max-width: 1470px;
+  padding: 15px;
 }
 
 body {
-  max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
   color: white;

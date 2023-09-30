@@ -25,3 +25,10 @@
 .main::-webkit-scrollbar {
   display: none;
 }
+
+@media (max-width: 426px) {
+  .titleCategoryTitle {
+    margin-left: 40px;
+    font-size: 26px;
+  }
+}

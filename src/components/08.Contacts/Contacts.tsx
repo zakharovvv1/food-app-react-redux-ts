@@ -5,14 +5,15 @@ import youtube from "./assets/youtube.png";
 import instagram from "./assets/instagram.png";
 import locIcon from "./assets/Loc.png";
 import messageIcon from "./assets/Message.png";
-
+import mobileMap from "./mobile/map.svg";
+import pointMap from "./mobile/point map.svg";
 const Contacts = () => {
   return (
     <section className={styles.contacts}>
       <div className={styles["contacts-block"]}>
         <h2 className={styles.title}>КОНТАКТЫ</h2>
         <div className={styles["adress-block"]}>
-          <div>
+          <div className={styles.imgBlock}>
             <img src={locIcon} />
           </div>
           <div className={styles.adress}>
@@ -24,7 +25,7 @@ const Contacts = () => {
           </div>
         </div>
         <div className={styles["post-block"]}>
-          <div>
+          <div className={styles.imgBlock}>
             <img src={messageIcon} />
           </div>
           <div className={styles.post}>
@@ -36,6 +37,7 @@ const Contacts = () => {
         </div>
         <div className={styles["contacts-section"]}>
           <button className={styles.button}>ЗАБРОНИРОВАТЬ СТОЛ</button>
+          <button className={styles.button}>Проложить маршрут</button>
           <div>
             <div className={styles.number}>+7 (917) 510-57-59</div>
             <div className={styles["number-text"]}>
@@ -59,6 +61,8 @@ const Contacts = () => {
           </a>
         </div>
       </div>
+      <img className={styles.mobileMap} src={mobileMap} alt="" />
+      <img className={styles.pointMap} src={pointMap} alt="" />
     </section>
   );
 };

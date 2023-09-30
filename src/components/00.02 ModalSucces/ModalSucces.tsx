@@ -19,6 +19,7 @@ const ModalSucces = ({ setModalWindow, modalWindow }) => {
       className={styles.main}
     >
       <div className={styles.modal}>
+        B
         <p>
           Заказ успешно создан! <br></br>Скоро с вами свяжется оператор
         </p>

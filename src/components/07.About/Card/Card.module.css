@@ -68,3 +68,30 @@
 .text {
   margin-top: 55px;
 }
+
+@media (max-width: 1240px) {
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+  }
+
+  .card3,
+  .card4 {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 1000px) {
+  .cards {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .card1,
+  .card2,
+  .card3,
+  .card4 {
+    background-position-x: center;
+    margin-right: 0;
+  }
+}

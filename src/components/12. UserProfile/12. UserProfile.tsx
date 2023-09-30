@@ -70,11 +70,6 @@ const UserProfile = () => {
     (async () => {
       if (!effect.current && userSlice.order.length === 0) {
         const { userInfo } = await getHistoryOfOrders(auth.currentUser.uid);
-        console.log(
-          "🚀 ~ file: 12. UserProfile.tsx:63 ~ deliverInfo:",
-          userInfo
-        );
-        console.log("Вызов функции");
         dispatch(UserSlice.actions.setOrder(userInfo.flat()));
 
         debugger;

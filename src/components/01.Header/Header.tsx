@@ -3,7 +3,6 @@ import styles from "./Header.module.css";
 import logo from "./assets/LOGOS.png";
 import caller from "./assets/Calling.png";
 import stick from "./assets/Stick.png";
-import burgerMenu from "./assets/burger.png";
 import buyIcon from "./assets/Buy2.png";
 import gStick from "./assets/gLine.png";
 import search from "./assets/Search.png";
@@ -16,7 +15,8 @@ import { toogleCategories } from "../../store/toogleCategories/toogleCategories"
 import logInImg from "./img/Log in.svg";
 import LogInModal from "../001.LogInModal/LogInModal.js";
 import { CSSTransition } from "react-transition-group";
-
+import shoppingCartImg from "./img/ShoppingCartImg.svg";
+import burger from "./img/burger/burger.svg";
 const Header: React.FC = () => {
   const root = document.getElementById("root");
 
@@ -48,8 +48,10 @@ const Header: React.FC = () => {
     <header id="header" className={styles["header-block"]}>
       <div className={styles.header}>
         <button className={styles["burger-menu"]}>
-          <img src={burgerMenu} alt="menu" />
+          <img src={burger} alt="menu" />
+          <p className={styles.textMenu}>МЕНЮ</p>
         </button>
+
         <a href="#">
           <img
             className={styles.logo}
@@ -136,6 +138,11 @@ const Header: React.FC = () => {
           className={styles.cart}
         >
           <span className={styles["cart-text"]}>Корзина</span>
+          <img
+            className={styles.shoppingCartImg}
+            src={shoppingCartImg}
+            alt=""
+          />
           <img src={stick} alt="" />
           <span className={styles["cart-count"]}>
             {buy.coldAppetizers.length +
@@ -164,11 +171,6 @@ const Header: React.FC = () => {
           <span>корзина</span>
         </div>
       </div>
-      <input
-        className={styles["search-mobil"]}
-        type="text"
-        placeholder="Введите адрес доставки"
-      />
     </header>
   );
 };

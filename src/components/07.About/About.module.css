@@ -49,7 +49,7 @@
   margin: 70px 99px 0 0;
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .about {
     padding: 40px 40px;
     height: auto;
@@ -88,6 +88,31 @@
 
 @media (max-width: 375px) {
   .about {
+    display: none;
+  }
+} */
+
+@media (max-width: 1000px) {
+  .about {
+    height: auto;
+    display: none;
+  }
+  .text {
+    margin: 0 0 40px 0px;
+    padding-right: 15px;
+    width: auto;
+  }
+
+  .title {
+    margin: 100px 0 26px 0px;
+  }
+
+  .about {
+    flex-direction: column;
+    margin: 0px;
+  }
+
+  .cards {
     display: none;
   }
 }

@@ -75,12 +75,17 @@
 }
 
 @media (max-width: 1024px) {
-  .icon-link-block {
+  .links-block {
+    padding-right: 15px;
+  }
+}
+@media (max-width: 700px) {
+  .links-block {
     display: none;
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .footer {
     flex-direction: column-reverse;
     padding: 40px;
@@ -150,4 +155,4 @@
     width: 189px;
     text-align: center;
   }
-}
+} */
