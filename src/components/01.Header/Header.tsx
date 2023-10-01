@@ -17,6 +17,8 @@ import LogInModal from "../001.LogInModal/LogInModal.js";
 import { CSSTransition } from "react-transition-group";
 import shoppingCartImg from "./img/ShoppingCartImg.svg";
 import burger from "./img/burger/burger.svg";
+import BurgerMenu from "./burgerMenu/BurgerMenu.js";
+import { useCycle } from "framer-motion";
 const Header: React.FC = () => {
   const root = document.getElementById("root");
 
@@ -34,6 +36,7 @@ const Header: React.FC = () => {
   console.log("buy!", buy);
   const [modalWindow, setModalWindow] = useState(false);
   const [logInWindow, setlogInWindow] = useState(false);
+  const [burgerScreen, setburgerScreen] = useCycle(false, true);
   const navigate = useNavigate();
   if (modalWindow || logInWindow) {
     root?.classList.add(styles.root);
@@ -47,7 +50,12 @@ const Header: React.FC = () => {
   return (
     <header id="header" className={styles["header-block"]}>
       <div className={styles.header}>
-        <button className={styles["burger-menu"]}>
+        <button
+          onClick={() => {
+            setburgerScreen(true);
+          }}
+          className={styles["burger-menu"]}
+        >
           <img src={burger} alt="menu" />
           <p className={styles.textMenu}>МЕНЮ</p>
         </button>
@@ -170,6 +178,13 @@ const Header: React.FC = () => {
           <img src={gStick} alt="" />
           <span>корзина</span>
         </div>
+
+        {burgerScreen && (
+          <BurgerMenu
+            burgerScreen={burgerScreen}
+            setburgerScreen={setburgerScreen}
+          />
+        )}
       </div>
     </header>
   );

@@ -1,0 +1,46 @@
+.burgerScreen {
+  display: flex;
+  left: -30px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  width: 110vw;
+  height: 100vh;
+  opacity: 0.97;
+  bottom: -55vh;
+  z-index: 50;
+  background-color: #403c3b;
+  border: 1px solid #618967;
+  box-shadow: 0 1px 10px rgba(114, 163, 121, 0.7);
+
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.burgerScreen h3 {
+  font-size: 30px;
+}
+
+.exitScreenImg {
+  width: 40px;
+  height: 40px;
+}
+
+.divBurgerScreen {
+  position: relative;
+  left: -30vw;
+}
+
+.ulList {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+
+  li {
+    list-style: none;
+    font-size: 20px;
+  }
+}

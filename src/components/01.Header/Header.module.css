@@ -295,6 +295,10 @@
   }
 }
 
+.burgerScreen {
+  display: none;
+}
+
 @media (max-width: 700px) {
   .header {
     flex-wrap: wrap;
@@ -360,6 +364,22 @@
 
   .logo {
     margin-left: 15vw;
+  }
+}
+
+@media (max-width: 321px) {
+  .header {
+    justify-content: space-between;
+  }
+  .logo {
+    margin-left: 0;
+    position: relative;
+    transform: translateX(5vw);
+  }
+
+  .search::placeholder {
+    font-size: 15px;
+    padding-left: 25px;
   }
 }
 

@@ -29,13 +29,6 @@ const ModalSucces = ({ setModalWindow, modalWindow }) => {
             root?.classList.remove(styles.root);
             navigate("/");
             scroll.scrollToTop();
-
-            // scroller.scrollTo(toogleCategory, {
-            //   duration: 500,
-            //   delay: 50,
-            //   smooth: true,
-
-            // });
           }}
         >
           Хорошо!
