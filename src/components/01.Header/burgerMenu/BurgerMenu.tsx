@@ -1,7 +1,9 @@
 import styles from "./BurgerMenu.module.scss";
 import exitScreen from "../burgerscreen/exit.svg";
 import { motion, AnimatePresence } from "framer-motion";
-const BurgerMenu = ({ burgerScreen, setburgerScreen }) => {
+import { useNavigate } from "react-router-dom";
+const BurgerMenu = ({ burgerScreen, setburgerScreen, name }) => {
+  const navigate = useNavigate();
   return (
     <AnimatePresence>
       {burgerScreen && (
@@ -25,19 +27,28 @@ const BurgerMenu = ({ burgerScreen, setburgerScreen }) => {
 
           <ul className={styles.ulList}>
             <li>
-              <a href="">Контакты</a>
+              <a>Контакты</a>
             </li>
             <li>
-              <a href="">О ресторане</a>
+              <a>О ресторане</a>
             </li>
             <li>
-              <a href="">Условия доставки</a>
+              <a>Условия доставки</a>
             </li>
             <li>
-              <a href="">Возврат товара</a>
+              <a>Возврат товара</a>
             </li>
             <li>
-              <a href="">Акции</a>
+              <a>Акции</a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  navigate("/userProfile");
+                }}
+              >
+                {name}
+              </a>
             </li>
           </ul>
         </motion.div>

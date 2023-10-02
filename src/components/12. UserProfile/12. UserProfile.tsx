@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./12. UserProfile.module.scss";
 import { getAuth, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../01.Header/Header";
 import Navbar from "../03.Navbar/Navbar";
 import { motion } from "framer-motion";
-import { getDatabase, onValue, ref, set } from "firebase/database";
 import { toogleCategories } from "../../store/toogleCategories/toogleCategories";
 import Footer from "../09.Footer/Footer";
 import { UserSlice } from "../../store/user/UserSlice";
@@ -47,16 +46,20 @@ const daysOfMoth = [
   30,
   31,
 ];
+
 const moths = ["Месяц", "Января", "Февраля", "Марта", "Апреля"];
 const UserProfile = () => {
+  const auth = getAuth();
   let scroll = Scroll.animateScroll;
-
   const [isChangeName, setIsChangedName] = useState(false);
-  const auth: any = getAuth();
+
+  const [select, setSelect] = useState({ day: "День", month: "Месяц" });
   const user = JSON.parse(localStorage.getItem("user")) as any;
+
+  console.log("AUTH", auth);
   console.log("user", user);
   const navigate = useNavigate();
-  const [name, setName] = useState(auth.currentUser.displayName);
+  const [name, setName] = useState(auth.currentUser?.displayName);
   const userSlice = useSelector((state) => state.UserSlice);
   console.log(
     "🚀 ~ file: 12. UserProfile.tsx:53 ~ UserProfile ~ userSlice:",
@@ -71,8 +74,6 @@ const UserProfile = () => {
       if (!effect.current && userSlice.order.length === 0) {
         const { userInfo } = await getHistoryOfOrders(auth.currentUser.uid);
         dispatch(UserSlice.actions.setOrder(userInfo.flat()));
-
-        debugger;
       }
     })();
     return () => {
@@ -80,11 +81,10 @@ const UserProfile = () => {
     };
   }, []);
   const dispatch = useDispatch();
-  const [select, setSelect] = useState({ day: "День", month: "Месяц" });
 
   dispatch(toogleCategories.actions.toggleCategories(""));
   console.log("select", select);
-  debugger;
+
   if (userSlice.order.length !== 0) {
     orders = userSlice.order.flat();
     console.log("🚀 ~ file: 12. UserProfile.tsx:71 ~ orders:", orders);
@@ -98,13 +98,15 @@ const UserProfile = () => {
         <div className={styles.name}>
           <div className={styles.item}>
             <p>Имя</p>
-            <input
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              placeholder="Имя"
-              value={isChangeName ? name : auth.currentUser.displayName}
-              disabled={isChangeName ? false : true}
-            />
+            {auth.currentUser && (
+              <input
+                onChange={(e) => setName(e.target.value)}
+                type="text"
+                placeholder="Имя"
+                value={isChangeName ? name : auth.currentUser.displayName}
+                disabled={isChangeName ? false : true}
+              />
+            )}
           </div>
 
           <div className={styles.buttons}>
@@ -140,13 +142,15 @@ const UserProfile = () => {
         </div>
         <div className={styles.email}>
           <p>Эл. почта</p>
-          <input
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Имя"
-            value={auth.currentUser.email}
-            disabled={true}
-          />
+          {auth.currentUser && (
+            <input
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              placeholder="Имя"
+              value={auth.currentUser.email}
+              disabled={true}
+            />
+          )}
         </div>
         <div className={styles.dayOfBirth}>
           <p>День рождения</p>

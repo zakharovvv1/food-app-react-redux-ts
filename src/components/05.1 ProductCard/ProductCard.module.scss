@@ -20,6 +20,7 @@
 
 .mainDiv {
   display: flex;
+  width: 100%;
 }
 
 .descImg {
@@ -307,6 +308,8 @@ img {
   .mainDivCategory {
     justify-content: center;
     display: flex;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .product {
@@ -322,10 +325,73 @@ img {
   }
   .price-block {
     text-align: center;
+    margin-top: 10px;
   }
 
   .price-block-flex {
     justify-content: center;
     padding: 0;
+  }
+
+  .text {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .bzuNumbers {
+    li:nth-child(4) {
+      position: relative;
+      transform: translateX(12px);
+    }
+  }
+  .bzuNumbers {
+    li:nth-child(5) {
+      position: relative;
+      transform: translateX(12px);
+    }
+  }
+
+  .bzu {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .description {
+    padding: 23px 45px 20px 45px;
+  }
+
+  .btnToBuy:last-child {
+    margin-right: 0;
+  }
+
+  .back {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 376px) {
+  .description {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .price {
+    margin-right: 30px;
+  }
+
+  .product {
+    min-width: auto;
+  }
+
+  .btnToBuy {
+    margin-right: 30px;
+  }
+  .btn {
+    margin-right: 20px;
   }
 }

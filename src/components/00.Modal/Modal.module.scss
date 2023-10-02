@@ -77,3 +77,41 @@
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
 }
+
+@media (max-width: 1025px) {
+  .main {
+    left: 30vw;
+  }
+}
+@media (max-width: 769px) {
+  .main {
+    left: 20vw;
+  }
+}
+@media (max-width: 426px) {
+  .main {
+    left: 8vw;
+  }
+
+  .modal {
+    width: 358px;
+  }
+}
+@media (max-width: 376px) {
+  .main {
+    left: 2vw;
+  }
+
+  .modal {
+    width: 358px;
+  }
+}
+@media (max-width: 321px) {
+  .main {
+    left: 3.5vw;
+  }
+
+  .modal {
+    width: 300px;
+  }
+}

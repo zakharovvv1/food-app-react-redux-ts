@@ -19,6 +19,7 @@ import shoppingCartImg from "./img/ShoppingCartImg.svg";
 import burger from "./img/burger/burger.svg";
 import BurgerMenu from "./burgerMenu/BurgerMenu.js";
 import { useCycle } from "framer-motion";
+import { getAuth } from "firebase/auth";
 const Header: React.FC = () => {
   const root = document.getElementById("root");
 
@@ -183,6 +184,7 @@ const Header: React.FC = () => {
           <BurgerMenu
             burgerScreen={burgerScreen}
             setburgerScreen={setburgerScreen}
+            name={userSlice.name}
           />
         )}
       </div>
