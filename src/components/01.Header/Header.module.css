@@ -1,7 +1,7 @@
 .header {
   display: flex;
   align-items: center;
-  margin: 0 0 0 98px;
+  margin: 0 0 0 83px;
   height: 99px;
   box-sizing: border-box;
   position: relative;
@@ -30,13 +30,14 @@
   padding: 15px 0 16px 18px;
   border: none;
   border-radius: 10px;
-  width: 555px;
+
   height: 52px;
   box-sizing: border-box;
   background-color: #504b4a;
   margin-left: 72px;
-  margin-right: 20px;
+  margin-right: 0px;
   color: aliceblue;
+  width: 36vw;
 }
 
 .search-mobil {
@@ -65,7 +66,7 @@
 .contacts {
   display: flex;
   align-items: center;
-  margin-right: 120px;
+  margin-right: 50px;
 }
 
 .caller-block {

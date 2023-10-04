@@ -33,7 +33,13 @@ const ShoppingCartScreen = () => {
       <div className={styles.topMainDiv}>
         <div className={styles.topDiv}>
           <img className={styles.arrow} src={arrow} alt="" />
-          <button>к выборю блюда</button>
+          <button
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            к выборю блюда
+          </button>
         </div>
         <div className={styles.textBag}>Корзина</div>
         <div className={styles.mainScreen}>
@@ -43,45 +49,50 @@ const ShoppingCartScreen = () => {
                 return el.map((food: IProps) => {
                   return (
                     <div className={styles.item}>
-                      <img
-                        className={styles.foodImg}
-                        src={food.imgUrlSmall}
-                        alt=""
-                        onClick={() => navigate(`/${food.id}`)}
-                      />
-                      <div className={styles.desc}>
-                        <div className={styles.foodName}>{food.name}</div>
-                        <div className={styles.foodComposition}>
-                          {food.composition}
-                        </div>
+                      <div>
+                        <img
+                          className={styles.foodImg}
+                          src={food.imgUrlSmall}
+                          alt=""
+                          onClick={() => navigate(`/${food.id}`)}
+                        />
                       </div>
-                      <div className={styles.count}>
-                        <button
-                          onClick={() =>
-                            dispatch(buySlice.actions.removeFromBuy(food))
-                          }
-                          className={styles.imgMinus}
-                        >
-                          <img src={minus} />
-                        </button>
 
-                        <div className={styles.countNumber}>{food.count}</div>
-                        <button
-                          onClick={() =>
-                            dispatch(buySlice.actions.addToBuy(food))
-                          }
-                          className={styles.imgPlus}
-                        >
-                          <img src={plus} />
-                        </button>
-                        <div className={styles.price}>{food.price} ₽</div>
-                        <div
-                          onClick={() =>
-                            dispatch(buySlice.actions.deleteFromBuy(food))
-                          }
-                          className={styles.imgDelete}
-                        >
-                          <img src={imgDelete} />
+                      <div className={styles.descAndCount}>
+                        <div className={styles.desc}>
+                          <div className={styles.foodName}>{food.name}</div>
+                          <div className={styles.foodComposition}>
+                            {food.composition}
+                          </div>
+                        </div>
+                        <div className={styles.count}>
+                          <button
+                            onClick={() =>
+                              dispatch(buySlice.actions.removeFromBuy(food))
+                            }
+                            className={styles.imgMinus}
+                          >
+                            <img src={minus} />
+                          </button>
+
+                          <div className={styles.countNumber}>{food.count}</div>
+                          <button
+                            onClick={() =>
+                              dispatch(buySlice.actions.addToBuy(food))
+                            }
+                            className={styles.imgPlus}
+                          >
+                            <img src={plus} />
+                          </button>
+                          <div className={styles.price}>{food.price} ₽</div>
+                          <button
+                            onClick={() =>
+                              dispatch(buySlice.actions.deleteFromBuy(food))
+                            }
+                            className={styles.imgDelete}
+                          >
+                            <img src={imgDelete} />
+                          </button>
                         </div>
                       </div>
                     </div>

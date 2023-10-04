@@ -45,25 +45,32 @@ const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
     newData = newData.slice(0, 4);
     return newData.map((el: IProps) => {
       return (
-        <div
-          onClick={() => {
-            dispatch(currentFoodSlice.actions.setCurrentFoodItem(el));
-            navigate(`/${el.id}`);
-          }}
-          className={styles.divItem}
-        >
-          <img className={styles.imgItem} src={el.imgUrlSmall} alt="" />
-          <div className={styles.name}>{el.name}</div>
-          <button
-            onClick={() => dispatch(buySlice.actions.addToBuy(el))}
-            className={styles.divAddToOrder}
-          >
-            <div className={styles.btnAddToOrder}>Добавить</div>
-            <button className={styles.addImg}>
-              <img src={add} alt="" />
-            </button>
-          </button>
-          <div className={styles.price}>{el.price} ₽</div>
+        <div className={styles.divItem}>
+          <img
+            className={styles.imgItem}
+            onClick={() => {
+              dispatch(currentFoodSlice.actions.setCurrentFoodItem(el));
+              navigate(`/${el.id}`);
+            }}
+            src={el.imgUrlSmall}
+            alt=""
+          />
+          <div className={styles.itemInfo}>
+            <div className={styles.name}>{el.name}</div>
+            <div className={styles.btnAddPrice}>
+              <button
+                onClick={() => dispatch(buySlice.actions.addToBuy(el))}
+                className={styles.divAddToOrder}
+              >
+                <div className={styles.btnAddToOrder}>Добавить</div>
+                <button className={styles.addImg}>
+                  <img src={add} alt="" />
+                </button>
+              </button>
+
+              <div className={styles.price}>{el.price} ₽</div>
+            </div>
+          </div>
         </div>
       );
     });

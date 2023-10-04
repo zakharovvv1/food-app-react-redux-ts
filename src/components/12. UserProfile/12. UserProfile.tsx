@@ -154,38 +154,41 @@ const UserProfile = () => {
         </div>
         <div className={styles.dayOfBirth}>
           <p>День рождения</p>
-          <select
-            onChange={(e) => {
-              setSelect((prev) => {
-                return {
-                  ...prev,
-                  day: e.target.value,
-                };
-              });
-            }}
-            name=""
-            id=""
-          >
-            {daysOfMoth.map((day) => (
-              <option value={day}>{day}</option>
-            ))}
-          </select>
-          <select
-            onChange={(e) => {
-              setSelect((prev) => {
-                return {
-                  ...prev,
-                  month: e.target.value,
-                };
-              });
-            }}
-            name=""
-            id=""
-          >
-            {moths.map((moth) => (
-              <option value={moth}>{moth}</option>
-            ))}
-          </select>
+          <div className={styles.selects}>
+            <select
+              onChange={(e) => {
+                setSelect((prev) => {
+                  return {
+                    ...prev,
+                    day: e.target.value,
+                  };
+                });
+              }}
+              name=""
+              id=""
+            >
+              {daysOfMoth.map((day) => (
+                <option value={day}>{day}</option>
+              ))}
+            </select>
+            <select
+              onChange={(e) => {
+                setSelect((prev) => {
+                  return {
+                    ...prev,
+                    month: e.target.value,
+                  };
+                });
+              }}
+              name=""
+              id=""
+            >
+              {moths.map((moth) => (
+                <option value={moth}>{moth}</option>
+              ))}
+            </select>
+          </div>
+
           {select.day !== daysOfMoth[0] && select.month !== moths[0] ? (
             <motion.button
               initial={{ opacity: 0 }}

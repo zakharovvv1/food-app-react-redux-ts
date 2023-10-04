@@ -103,14 +103,14 @@
     margin-bottom: 35px;
   }
 
-  .orderText {
-    font-size: 25px;
-  }
-
   .totalPrice {
     font-weight: 700;
     color: #72a479;
   }
+}
+
+.orderText {
+  font-size: 25px;
 }
 
 .btnExit {
@@ -123,5 +123,67 @@
   &:hover {
     background-color: linear-gradient(114.93deg, #618967 5.11%, #72a479 94%);
     box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
+  }
+}
+
+@media (max-width: 426px) {
+  .name {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    input {
+      margin-bottom: 20px;
+    }
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  .buttons {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+
+  .historyText {
+    width: 100%;
+  }
+
+  .orderText {
+    font-size: 16px;
+  }
+
+  .main {
+    width: 100%;
+    margin-right: 0px;
+    input {
+      width: 100%;
+    }
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  .dayOfBirth {
+    p {
+      width: auto;
+      margin-right: 0;
+    }
+  }
+
+  .selects {
+    display: flex;
+    justify-content: space-between;
+    select {
+      &:not(:last-child) {
+        margin-right: 0;
+        min-width: 40%;
+      }
+      &:last-child {
+        min-width: 50%;
+      }
+    }
   }
 }
