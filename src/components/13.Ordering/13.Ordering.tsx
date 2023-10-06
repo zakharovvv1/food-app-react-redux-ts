@@ -131,16 +131,16 @@ const Ordering = () => {
           </div>
           <div className={styles.warnings}>
             {!deliverInfo.name && (
-              <p className={styles.phoneCheck}>Имя - обязательное поле</p>
+              <div className={styles.phoneCheck}>Имя - обязательное поле</div>
             )}
             {!validateNumber && (
-              <p
+              <div
                 className={
                   deliverInfo.name ? styles.phoneCheckTrue : styles.phoneCheck
                 }
               >
                 Телефон - обязательное поле
-              </p>
+              </div>
             )}
           </div>
         </div>

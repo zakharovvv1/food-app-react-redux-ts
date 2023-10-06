@@ -11,7 +11,6 @@ import { useNavigate } from "react-router";
 const ShoppingCartScreen = () => {
   const buy = useSelector((state) => (state as any).reducerBuy);
 
-  const filterShoppingCartStart = Object.values(buy);
   const filterShoppingCart = Object.values(buy).filter((el) => el.length !== 0);
   console.log(
     "🚀 ~ file: ShoppingCartScreen.tsx:16 ~ ShoppingCartScreen ~ filterShoppingCart:",

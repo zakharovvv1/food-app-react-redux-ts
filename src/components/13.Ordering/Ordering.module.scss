@@ -1,9 +1,10 @@
 .mainDiv {
-  padding-top: 34px;
+  padding: 34px 20% 0 20%;
   display: flex;
-
+  width: 100%;
   column-gap: 6px;
-  padding-left: 318px;
+  margin: 0 auto;
+
   margin-bottom: 90px;
   flex-direction: column;
   button {
@@ -75,7 +76,7 @@
 
 .contactInfo {
   margin-top: 54px;
-  width: 800px;
+
   border-radius: 10px;
   background: linear-gradient(90deg, #494544 0%, #504b4a 100%);
   padding: 32px 30px 32px 30px;
@@ -89,7 +90,12 @@
     line-height: normal;
   }
 
-  input {
+  input,
+  .warnings {
+    &:first-child {
+      margin-right: 15px;
+    }
+    flex: 0 1 50%;
     min-height: 60px;
     background-color: transparent;
     border-radius: 10px;
@@ -114,19 +120,18 @@
   .inputs {
     display: flex;
     justify-content: space-between;
-
-    input {
-      min-width: 363px;
-    }
   }
 }
 
 .buttons {
+  flex: 0 1 45%;
+  display: flex;
   border-radius: 10px;
   border: 1px solid #72a479;
-  display: inline-block;
+
   margin-right: 20px;
   button {
+    width: 100%;
     &:last-child {
       border-radius: 0px 10px 10px 0px;
     }
@@ -181,6 +186,8 @@
 .btnsAndTime {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 15px;
 }
 
 .adressDiv {
@@ -386,7 +393,7 @@
   background: linear-gradient(90deg, #494544 0%, #504b4a 100%);
   display: flex;
   align-items: center;
-  width: 800px;
+  width: 100%;
   input {
     margin-right: 13px;
   }
@@ -397,6 +404,8 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-right: auto;
+    padding-right: 10px;
 
     span {
       color: #72a479;
@@ -410,6 +419,7 @@
 }
 
 .checkout {
+  text-wrap: nowrap;
   font-size: 14px;
   font-style: normal;
   line-height: normal;
@@ -422,7 +432,7 @@
   padding: 13px 50px 13px 50px;
   height: 44px;
   transition: all 0.3s ease-out;
-  margin-left: 60px;
+
   &:hover {
     background-color: darkgreen;
     box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
@@ -440,10 +450,10 @@
 
 .warnings {
   display: flex;
-
-  column-gap: 200px;
+  border: transparent !important;
 
   .phoneCheck {
+    flex: 0 1 50%;
     color: red;
     margin-bottom: 0px;
     font-family: Gilroy;
@@ -453,6 +463,10 @@
     line-height: normal;
     margin-top: 15px;
     position: relative;
+
+    &:last-child {
+      padding-left: 20px;
+    }
   }
 
   .phoneCheckTrue {
