@@ -30,7 +30,8 @@
 .policy-block {
   display: flex;
   flex-direction: column;
-  margin-right: 89px;
+  margin-right: auto;
+  padding-right: 15px;
   max-width: 208px;
 }
 
@@ -64,7 +65,8 @@
 .links-block {
   display: flex;
   justify-content: space-between;
-  width: 621px;
+  width: 100%;
+  column-gap: 15px;
 }
 
 .link {
@@ -72,6 +74,7 @@
   font-weight: 500;
   line-height: 24px;
   color: #fff;
+  text-align: center;
 }
 
 @media (max-width: 1024px) {
@@ -96,6 +99,7 @@
   .links-block {
     width: auto;
     flex-direction: column;
+    display: none;
   }
 
   .link {

@@ -21,7 +21,7 @@
     color: white;
     outline: none;
     padding-left: 20px;
-    min-width: 373px;
+    width: 100%;
     font-size: 16px;
     background-image: url("./img//Polygon\ 3.svg");
     background-repeat: no-repeat;
@@ -128,7 +128,7 @@
   display: flex;
   border-radius: 10px;
   border: 1px solid #72a479;
-
+  width: 100%;
   margin-right: 20px;
   button {
     width: 100%;
@@ -238,39 +238,40 @@
   display: inline-flex;
   flex-direction: column;
   row-gap: 15px;
-  .buttonsPay {
-    border-radius: 10px;
-    border: 1px solid #72a479;
-    display: inline;
-    .active {
-      color: #fff;
-      font-family: Gilroy;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-      padding: 20px 32px;
-      border-radius: 10px 0px 0px 10px;
-      background-color: #618967;
-      &:hover {
-        box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
-      }
-    }
-
-    .noActive {
-      @extend .active;
-      color: #fff;
-      font-family: Gilroy;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      background-color: transparent;
-    }
-  }
 
   input {
     width: 225px;
+  }
+}
+
+.buttonsPay {
+  border-radius: 10px;
+  border: 1px solid #72a479;
+  display: inline;
+  .active {
+    color: #fff;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 20px 32px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #618967;
+    &:hover {
+      box-shadow: 0 5px 10px rgba(114, 163, 121, 0.7);
+    }
+  }
+
+  .noActive {
+    @extend .active;
+    color: #fff;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background-color: transparent;
   }
 }
 
@@ -278,17 +279,24 @@
   @extend .contactInfo;
   background: transparent;
   padding-top: 0px;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .deliveryDiv {
   display: inline-flex;
   flex-direction: column;
   row-gap: 15px;
+  width: 100%;
 }
 
 .deliveryButtons {
   display: flex;
   border-radius: 10px;
+  input {
+    flex: 0 1 auto;
+    width: 100%;
+  }
   div {
     border-radius: 10px;
     border: 1px solid #72a479;
@@ -325,7 +333,11 @@
 }
 
 .leftDivDelivery {
+  display: flex;
+  flex: 0 1 auto;
+
   button {
+    text-wrap: nowrap;
     &:last-child {
       padding: 20px 47px;
     }
@@ -463,14 +475,161 @@
     line-height: normal;
     margin-top: 15px;
     position: relative;
+    text-wrap: nowrap;
+  }
+}
 
-    &:last-child {
-      padding-left: 20px;
+.phone {
+  padding-left: 10px;
+}
+
+.phoneCheckTrue {
+  @extend .phoneCheck;
+  padding-left: 53%;
+}
+
+@media (max-width: 996px) {
+  .mainDiv {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  .buttonsPay {
+    display: flex;
+    flex-wrap: wrap;
+
+    button {
+      &:not(:last-child) {
+        flex: 0 1 50%;
+      }
+      &:last-child {
+        flex: 0 1 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .mainDiv {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .leftDivDelivery {
+  }
+}
+
+@media (max-width: 700px) {
+  .deliveryButtons {
+    flex-wrap: wrap;
+    row-gap: 15px;
+    input {
+      margin-left: 0;
     }
   }
 
-  .phoneCheckTrue {
-    @extend .phoneCheck;
-    padding-left: 389px;
+  .adressInputs {
+    input {
+      &:first-child {
+        flex: 0 1 auto;
+      }
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5),
+      &:last-child {
+        flex: 0 1 auto;
+      }
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+      flex: 0 1 auto;
+      width: 100%;
+    }
+  }
+
+  .buttons {
+    margin-right: 0;
+    flex: 0 1 auto;
+    flex-direction: column;
+    button {
+      width: 100%;
+    }
+  }
+
+  .leftDivDelivery {
+    width: 100%;
+    flex-direction: column;
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 628px) {
+  .warnings {
+    min-height: auto !important;
+  }
+  .inputs {
+    flex-direction: column;
+    row-gap: 50px;
+    input {
+      &:first-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .phoneCheck {
+    text-wrap: nowrap;
+    &:first-child {
+      transform: translateY(-110px);
+    }
+    &:last-child {
+      transform: translateX(-210px);
+    }
+  }
+
+  .deliveryButtons {
+    flex-wrap: wrap;
+
+    input {
+      margin-left: 0;
+    }
+  }
+
+  .leftDivDelivery {
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .agree {
+    flex-direction: column;
+    row-gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 426px) {
+  .buttonsPay {
+    button:not(:last-child) {
+      flex: 0 1 100%;
+    }
+  }
+
+  .mainDiv {
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+
+  .contactInfo {
+    padding-left: 9%;
+    padding-right: 9%;
+  }
+
+  .mansCount {
+    width: 100%;
   }
 }

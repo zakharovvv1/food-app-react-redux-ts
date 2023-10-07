@@ -70,8 +70,7 @@
 }
 
 .caller-block {
-  margin-right: 10px;
-  width: 32px;
+  width: 42px;
   height: 32px;
   background-image: url("./assets/Ellipse.png");
   background-repeat: no-repeat;
@@ -177,6 +176,7 @@
 }
 
 .phoneNum {
+  padding-left: 10px;
   padding-right: 32px;
   border-right: 1px solid #635c5a;
 }

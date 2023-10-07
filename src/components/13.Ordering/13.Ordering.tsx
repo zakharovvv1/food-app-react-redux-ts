@@ -136,7 +136,9 @@ const Ordering = () => {
             {!validateNumber && (
               <div
                 className={
-                  deliverInfo.name ? styles.phoneCheckTrue : styles.phoneCheck
+                  deliverInfo.name
+                    ? styles.phoneCheckTrue
+                    : styles.phoneCheck + " " + styles.phone
                 }
               >
                 Телефон - обязательное поле
