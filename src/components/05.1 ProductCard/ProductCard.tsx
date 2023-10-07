@@ -23,7 +23,7 @@ const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
         <img className={styles.backImg} src={back} alt="" />
         <button
           onClick={() => {
-            navigate("/");
+            navigate(-1);
             scroll.scrollToTop();
           }}
         >

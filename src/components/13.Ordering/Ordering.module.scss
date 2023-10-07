@@ -212,6 +212,7 @@
   row-gap: 15px;
   flex-wrap: wrap;
   input {
+    font-size: 16px;
     min-width: none;
     &:first-child {
       flex: 0 1 60%;
@@ -547,6 +548,13 @@
     }
   }
 
+  .phoneCheckTrue {
+    &:last-child {
+      transform: translateX(0px);
+    }
+    padding-left: 0;
+  }
+
   .buttons {
     margin-right: 0;
     flex: 0 1 auto;
@@ -573,6 +581,7 @@
     flex-direction: column;
     row-gap: 50px;
     input {
+      font-size: 16px;
       &:first-child {
         margin-right: 0;
       }
@@ -585,7 +594,19 @@
       transform: translateY(-110px);
     }
     &:last-child {
-      transform: translateX(-210px);
+      transform: translateX(-200px);
+    }
+  }
+
+  .errorName {
+    &:last-child {
+      transform: translateY(-110px);
+    }
+  }
+
+  .phoneCheckTrue {
+    &:last-child {
+      transform: translateX(0px);
     }
   }
 

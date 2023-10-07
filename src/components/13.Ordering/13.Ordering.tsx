@@ -131,7 +131,9 @@ const Ordering = () => {
           </div>
           <div className={styles.warnings}>
             {!deliverInfo.name && (
-              <div className={styles.phoneCheck}>Имя - обязательное поле</div>
+              <div className={styles.phoneCheck + " " + styles.errorName}>
+                Имя - обязательное поле
+              </div>
             )}
             {!validateNumber && (
               <div
@@ -516,7 +518,12 @@ const Ordering = () => {
             disabled={
               checkBox === false ||
               deliverInfo.name === "" ||
-              validateNumber === false
+              validateNumber === false ||
+              deliverInfo.deliveryMethod.deliveryInfo.street === null ||
+              deliverInfo.deliveryMethod.deliveryInfo.numOfHome === null ||
+              deliverInfo.deliveryMethod.deliveryInfo.apartmentNum === null ||
+              deliverInfo.deliveryMethod.deliveryInfo.entrance === null ||
+              deliverInfo.deliveryMethod.deliveryInfo.floor === null
             }
             className={styles.checkout}
           >
