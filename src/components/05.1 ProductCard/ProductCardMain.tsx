@@ -18,9 +18,18 @@ import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
 
 const ProductCardMain = () => {
+  let { isLoading, data } = useGetFoodQuery();
+  console.log(
+    "🚀 ~ file: ProductCardMain.tsx:22 ~ ProductCardMain ~ data:",
+    data
+  );
   const params = useParams();
   console.log("params", params);
   const foods = useSelector((state) => (state as IStateBuy).reducerBuy);
+  console.log(
+    "🚀 ~ file: ProductCardMain.tsx:25 ~ ProductCardMain ~ foods:",
+    foods
+  );
 
   const currentFood = Object.values(foods)
     .filter((arr) => arr.length !== 0)
@@ -29,9 +38,7 @@ const ProductCardMain = () => {
       return food.id === params.id;
     });
   console.log("currentFood", currentFood);
-
-  let { isLoading, data } = useGetFoodQuery();
-
+  //*! Сделать сохранение активного блюда в локале
   const food = useSelector((state) => state as IStateBuy).currentFoodReducer
     .currentFoodItem;
   console.log("foodCurrent!!!!!!!!!!!!!!!!!", food);

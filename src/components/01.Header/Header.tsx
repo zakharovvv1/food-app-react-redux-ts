@@ -51,12 +51,7 @@ const Header: React.FC = () => {
   return (
     <header id="header" className={styles["header-block"]}>
       <div className={styles.header}>
-        <button
-          onClick={() => {
-            setburgerScreen(true);
-          }}
-          className={styles["burger-menu"]}
-        >
+        <button className={styles["burger-menu"]}>
           <img src={burger} alt="menu" />
           <p className={styles.textMenu}>МЕНЮ</p>
         </button>

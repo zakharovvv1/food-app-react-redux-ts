@@ -64,9 +64,8 @@
 
 .links-block {
   display: flex;
-  justify-content: space-between;
+  column-gap: 40px;
   width: 100%;
-  column-gap: 15px;
 }
 
 .link {
