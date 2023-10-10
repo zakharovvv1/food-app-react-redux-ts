@@ -12,7 +12,7 @@ interface Main {
 // export const ref = useRef(null);
 const Main: React.FC<Main> = ({ isLoading, data, category }) => {
   console.log("Новая дата в main", data);
-  debugger;
+
   return (
     <Element name={category} className={category}>
       <motion.section id={category} className={styles.titleCategory}>

@@ -11,13 +11,19 @@ import Main from "../04.Main/Main";
 import About from "../07.About/About";
 import Contacts from "../08.Contacts/Contacts";
 import Footer from "../09.Footer/Footer";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { IStateBuy } from "../Interfaces/IStateBuy";
 import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
-
+import { UseCurrentFood } from "./UseLocalCurrentFood";
+import { getActiveLink } from "react-scroll/modules/mixins/scroller";
+import { getAuth } from "firebase/auth";
+import { getHistoryOfOrders } from "../hooks/getHistoryOfOrders";
+import { UserSlice } from "../../store/user/UserSlice";
+import { useSignIn } from "../hooks/useSignIn";
 const ProductCardMain = () => {
+  useSignIn();
   let { isLoading, data } = useGetFoodQuery();
   console.log(
     "🚀 ~ file: ProductCardMain.tsx:22 ~ ProductCardMain ~ data:",
@@ -39,8 +45,7 @@ const ProductCardMain = () => {
     });
   console.log("currentFood", currentFood);
   //*! Сделать сохранение активного блюда в локале
-  const food = useSelector((state) => state as IStateBuy).currentFoodReducer
-    .currentFoodItem;
+  const food = UseCurrentFood();
   console.log("foodCurrent!!!!!!!!!!!!!!!!!", food);
 
   let newData;

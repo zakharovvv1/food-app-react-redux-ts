@@ -14,7 +14,11 @@ import { buySlice } from "../../store/buySlice/buySlice";
 import { IProps } from "../Interfaces/IProps";
 import { UserSlice } from "../../store/user/UserSlice";
 import { getAuth } from "firebase/auth";
+import { useSignIn } from "../hooks/useSignIn";
+import { useNavigate } from "react-router";
 const Ordering = () => {
+  useSignIn();
+  const navigate = useNavigate();
   const buy = useSelector((state) => (state as any).reducerBuy);
   console.log("Корзина", buy);
   const [orderSucceeded, setOrderSucceeded] = useState("Не выполняется");
@@ -26,19 +30,15 @@ const Ordering = () => {
     userSlice
   );
 
-  const userId = auth.currentUser.uid;
   const shoppingBag: IShoppingBasket = useSelector(
     (state) => (state as any).reducerBuy
   );
   useEffect(() => {
-    debugger;
     if (orderSucceeded === "Не выполняется") {
       return;
     } else if (orderSucceeded === "Выполняется") {
-      debugger;
       setOrder(userSlice);
       if (userId) {
-        debugger;
         console.log("ызов функции");
       }
       setOrderSucceeded("Выполнено");
@@ -91,7 +91,13 @@ const Ordering = () => {
         <div className={styles.backAndTitle}>
           <button className={styles.backBtn}>
             <img src={arrow} alt="" />
-            <button>в корзину</button>
+            <button
+              onClick={() => {
+                navigate("/shoppingCart");
+              }}
+            >
+              в корзину
+            </button>
           </button>
           <div className={styles.title}>Оформление заказа</div>
         </div>
@@ -259,7 +265,7 @@ const Ordering = () => {
                   onChange={(e) => {
                     setDeliveryInfo((prev) => {
                       console.log("e.target", e.target.value);
-                      debugger;
+
                       return {
                         ...prev,
                         deliveryMethod: {

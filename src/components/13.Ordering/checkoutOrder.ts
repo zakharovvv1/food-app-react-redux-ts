@@ -8,7 +8,7 @@ export const setOrder = (userSlice) => {
     const userId = auth.currentUser.uid;
 
     const db = getDatabase();
-    debugger;
+
     set(ref(db, "users/" + userId), {
       userInfo: userSlice.order,
     });

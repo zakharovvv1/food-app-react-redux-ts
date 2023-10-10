@@ -49,7 +49,6 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
       } catch (e) {
         setError({ errorSignIn: false, errorSignUp: true });
 
-        debugger;
         console.error("Ошибка при регистрации" + e);
       }
     })();

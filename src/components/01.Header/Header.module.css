@@ -27,10 +27,16 @@
 
 .search,
 .search-mobil {
-  padding: 15px 0 16px 18px;
+  text-overflow: ellipsis;
+  padding: 15px 80px 16px 48px;
   border: none;
   border-radius: 10px;
-
+  color: #fff;
+  font-family: Gilroy;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   height: 52px;
   box-sizing: border-box;
   background-color: #504b4a;
@@ -155,8 +161,10 @@
 }
 
 .promt {
+  width: 35vw;
+  padding-left: 48px;
   position: absolute;
-  top: 55px;
+  top: 80px;
   left: 170px;
   text-decoration: none;
   list-style: none;
@@ -164,14 +172,25 @@
   background-color: #403c3b;
   display: flex;
   flex-direction: column;
-
+  z-index: 200;
   padding: 0;
   font-size: 16px;
+  padding-left: 48px;
+  border-radius: 10px;
+  background: #504b4a;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
 }
 
 .promt li {
-  border: 1px solid #618967;
-  padding: 5px;
+  cursor: pointer;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  color: #fff;
+  font-family: Gilroy;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   border-radius: 5px;
 }
 

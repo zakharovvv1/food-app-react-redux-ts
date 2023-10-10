@@ -17,7 +17,7 @@ export const fetchAdress = async (query: string) => {
   };
   try {
     const response = await fetch(url, options);
-    return (response as any).text();
+    return response.text();
   } catch (err) {
     err;
   }

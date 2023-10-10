@@ -8,9 +8,10 @@ import { motion } from "framer-motion";
 import { toogleCategories } from "../../store/toogleCategories/toogleCategories";
 import Footer from "../09.Footer/Footer";
 import { UserSlice } from "../../store/user/UserSlice";
-import { getHistoryOfOrders } from "./getHistoryOfOrders";
+import { getHistoryOfOrders } from "../hooks/getHistoryOfOrders";
 import { useNavigate } from "react-router";
 import * as Scroll from "react-scroll";
+import { useSignIn } from "../hooks/useSignIn";
 
 const daysOfMoth = [
   "День",
@@ -49,6 +50,7 @@ const daysOfMoth = [
 
 const moths = ["Месяц", "Января", "Февраля", "Марта", "Апреля"];
 const UserProfile = () => {
+  useSignIn();
   const auth = getAuth();
   console.log("AUTH", auth);
   const currentUser = auth.currentUser;
@@ -61,9 +63,9 @@ const UserProfile = () => {
 
   const [select, setSelect] = useState({ day: "День", month: "Месяц" });
   const user = JSON.parse(localStorage.getItem("user")) as any;
+  console.log("🚀 ~ file: 12. UserProfile.tsx:64 ~ UserProfile ~ user:", user);
   const [name, setName] = useState(auth.currentUser?.displayName);
 
-  console.log("user", user);
   const navigate = useNavigate();
   const userSlice = useSelector((state) => state.UserSlice);
   console.log(
@@ -71,26 +73,8 @@ const UserProfile = () => {
     userSlice
   );
   console.log("logSlice", { ...userSlice, name: name });
-  debugger;
-  const effect = useRef(false);
+
   let orders;
-  useEffect(() => {
-    (() => {
-      if (!effect.current && userSlice.order.length === 0) {
-        auth.onAuthStateChanged(async (user) => {
-          const { userInfo } = await getHistoryOfOrders(user.uid);
-          console.log("userInfoinAwait", userInfo);
-          dispatch(UserSlice.actions.setOrder(userInfo.flat()));
-        });
-      }
-    })();
-    dispatch(
-      UserSlice.actions.setUser(JSON.parse(localStorage.getItem("user")))
-    );
-    return () => {
-      effect.current = true;
-    };
-  }, []);
   const dispatch = useDispatch();
 
   dispatch(toogleCategories.actions.toggleCategories(""));

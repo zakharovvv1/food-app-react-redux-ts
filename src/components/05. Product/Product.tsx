@@ -54,6 +54,7 @@ const Product: React.FC<{ food: IProps }> = ({ food }) => {
                 onClick={() => {
                   navigate(`/${food.id}`);
                   dispatch(currentFoodSlice.actions.setCurrentFoodItem(food));
+                  localStorage.setItem("currentFood", JSON.stringify(food));
                   dispatch(toogleCategories.actions.toggleCategories(null));
                 }}
                 src={food.imgUrlSmall}

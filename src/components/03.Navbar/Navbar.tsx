@@ -7,7 +7,7 @@ import { Link, scroller } from "react-scroll";
 import * as Scroll from "react-scroll";
 import { useGetFoodQuery } from "../API/dadata/dadataApi";
 import { UserSlice } from "../../store/user/UserSlice";
-import { getHistoryOfOrders } from "../12. UserProfile/getHistoryOfOrders";
+import { getHistoryOfOrders } from "../hooks/getHistoryOfOrders";
 import { getAuth } from "firebase/auth";
 let scroll = Scroll.animateScroll;
 

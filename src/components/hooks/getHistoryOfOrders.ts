@@ -14,7 +14,6 @@ export async function getHistoryOfOrders(userId) {
 
     const orders = snapshot.val();
 
-    debugger;
     return orders;
   } catch (err) {
     console.log("error", err);

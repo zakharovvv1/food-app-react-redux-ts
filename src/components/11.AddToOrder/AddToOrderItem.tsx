@@ -50,6 +50,7 @@ const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
             className={styles.imgItem}
             onClick={() => {
               dispatch(currentFoodSlice.actions.setCurrentFoodItem(el));
+              localStorage.setItem("currentFood", JSON.stringify(el));
               navigate(`/${el.id}`);
             }}
             src={el.imgUrlSmall}

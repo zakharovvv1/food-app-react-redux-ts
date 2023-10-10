@@ -18,8 +18,9 @@ import { CSSTransition } from "react-transition-group";
 import shoppingCartImg from "./img/ShoppingCartImg.svg";
 import burger from "./img/burger/burger.svg";
 import BurgerMenu from "./burgerMenu/BurgerMenu.js";
-import { useCycle } from "framer-motion";
+import { motion, useCycle } from "framer-motion";
 import { getAuth } from "firebase/auth";
+import { fetchAdress } from "../API/dadata/dadataApi.js";
 const Header: React.FC = () => {
   const root = document.getElementById("root");
 
@@ -31,6 +32,7 @@ const Header: React.FC = () => {
 
   const [adress, setAdress] = useState("");
   const [promt, setPromt] = useState();
+  console.log("🚀 ~ file: Header.tsx:35 ~ promt:", promt);
   const buy: IShoppingBasket = useSelector(
     (state) => (state as any).reducerBuy
   );
@@ -44,9 +46,11 @@ const Header: React.FC = () => {
   } else {
     root?.classList.remove(styles.root);
   }
-  // useEffect(() => {
-  //   fetchAdress(adress).then((data) => );
-  // }, [adress]);
+  useEffect(() => {
+    fetchAdress(adress).then((data) =>
+      console.log("data24", setPromt(JSON.parse(data)))
+    );
+  }, [adress]);
 
   return (
     <header id="header" className={styles["header-block"]}>
@@ -75,9 +79,15 @@ const Header: React.FC = () => {
           {promt
             ? (promt as any).suggestions.map((p: IPromtDaData, i: number) => {
                 return (
-                  <li key={i} onClick={() => setAdress(p.value)}>
+                  <motion.li
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    key={i}
+                    onClick={() => setAdress(p.value)}
+                  >
                     {p.value}
-                  </li>
+                  </motion.li>
                 );
               })
             : ""}

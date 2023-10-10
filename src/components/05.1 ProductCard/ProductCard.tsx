@@ -11,6 +11,7 @@ import { Link, scroller } from "react-scroll";
 import * as Scroll from "react-scroll";
 
 const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
+  localStorage.setItem("currentFood", JSON.stringify(food));
   console.log("food!!!!!!!!", food);
   const scroll = Scroll.animateScroll;
 
@@ -37,7 +38,9 @@ const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
             <div className={styles.ImgDiv}>
               <img
                 className={styles.descImg}
-                onClick={() => navigate(`/${food.id}`)}
+                onClick={() => {
+                  navigate(`/${food.id}`);
+                }}
                 src={food.imgUrlHigh}
               />
               {food.count >= 2 ? (

@@ -74,13 +74,13 @@ export const addToBuy = (state: IShoppingBasket, action: IProps) => {
       state.specialties.push(action);
     }
   }
+  localStorage.setItem("shoppingBasket", JSON.stringify(state));
 };
 
 export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
   if (action.category === "Горячие закуски") {
     state.hotAppetizers.find((f) => {
       if (f.id === action.id) {
-        debugger;
         if (f.count > 1) {
           f.count -= 1;
         } else {
@@ -92,7 +92,6 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
   if (action.category === "Холодные закуски") {
     state.coldAppetizers.find((f) => {
       if (f.id === action.id) {
-        debugger;
         if (f.count > 1) {
           f.count -= 1;
         } else {
@@ -104,7 +103,6 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
   if (action.category === "Десерты") {
     state.desserts.find((f) => {
       if (f.id === action.id) {
-        debugger;
         if (f.count > 1) {
           f.count -= 1;
         } else {
@@ -116,7 +114,6 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
   if (action.category === "Напитки") {
     state.beverages.find((f) => {
       if (f.id === action.id) {
-        debugger;
         if (f.count > 1) {
           f.count -= 1;
         } else {
@@ -128,7 +125,6 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
   if (action.category === "Супы") {
     state.soups.find((f) => {
       if (f.id === action.id) {
-        debugger;
         if (f.count > 1) {
           f.count -= 1;
         } else {
@@ -140,7 +136,6 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
   if (action.category === "Фирменные блюда") {
     state.specialties.find((f) => {
       if (f.id === action.id) {
-        debugger;
         if (f.count > 1) {
           f.count -= 1;
         } else {
@@ -149,10 +144,10 @@ export const removeFromBuy = (state: IShoppingBasket, action: IProps) => {
       }
     });
   }
+  localStorage.setItem("shoppingBasket", JSON.stringify(state));
 };
 
 export const deleteFromBuy = (state: IShoppingBasket, action: IProps) => {
-  debugger;
   let filterState = Object.values(current(state)).map((el: any[]) => {
     if (el.length === 0) {
       return el;
@@ -170,6 +165,7 @@ export const deleteFromBuy = (state: IShoppingBasket, action: IProps) => {
   state.beverages = filterState[3];
   state.soups = filterState[4];
   state.specialties = filterState[5];
+  localStorage.setItem("shoppingBasket", JSON.stringify(state));
 
   // console.log("state", state);
 };

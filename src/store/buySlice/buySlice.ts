@@ -33,6 +33,14 @@ export const buySlice = createSlice({
       state.soups = [];
       state.specialties = [];
     },
+    updateFromeLocalStorege: (state, action) => {
+      state.coldAppetizers = action.payload.coldAppetizers;
+      state.hotAppetizers = action.payload.hotAppetizers;
+      state.desserts = action.payload.desserts;
+      state.beverages = action.payload.beverages;
+      state.soups = action.payload.soups;
+      state.specialties = action.payload.specialties;
+    },
     // currentFood: (state, action) => {
 
     // }
