@@ -2,7 +2,12 @@ import styles from "./BurgerMenu.module.scss";
 import exitScreen from "../burgerscreen/exit.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-const BurgerMenu = ({ burgerScreen, setburgerScreen, name }) => {
+const BurgerMenu = ({
+  burgerScreen,
+  setburgerScreen,
+  name,
+  setLogInWindow,
+}) => {
   const navigate = useNavigate();
   return (
     <AnimatePresence>
@@ -41,6 +46,17 @@ const BurgerMenu = ({ burgerScreen, setburgerScreen, name }) => {
             <li>
               <a>Акции</a>
             </li>
+            {!name && (
+              <li
+                onClick={() => {
+                  setLogInWindow(true);
+                  setburgerScreen(false);
+                }}
+              >
+                <a>Войти</a>
+              </li>
+            )}
+
             <li>
               <a
                 onClick={() => {

@@ -161,7 +161,7 @@
 }
 
 .promt {
-  width: 35vw;
+  width: 36vw;
   padding-left: 48px;
   position: absolute;
   top: 80px;
@@ -276,6 +276,10 @@
   .header {
     margin-left: 30px;
   }
+
+  .promt {
+    left: 140px;
+  }
   .search::placeholder {
     color: transparent;
   }
@@ -298,6 +302,11 @@
     display: block;
     width: 24px;
     margin-right: 10px;
+  }
+
+  .promt {
+    width: 28vw;
+    left: 114px;
   }
 
   .cart-text {
@@ -337,6 +346,11 @@
     align-items: center;
   }
 
+  .promt {
+    left: 0;
+    top: 93%;
+    width: 100%;
+  }
   .burger-menu img {
     border-radius: 0px;
     width: 25px;

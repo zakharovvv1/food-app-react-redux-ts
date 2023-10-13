@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterCategories } from "./filterOfCategories";
 import { useEffect, useMemo } from "react";
 import { UserSlice } from "../../store/user/UserSlice";
+import { useSignIn } from "../hooks/useSignIn";
 const AllMain: React.FC = () => {
+  useSignIn();
   const dispatch = useDispatch();
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   let { isLoading, data } = useGetFoodQuery();
@@ -53,14 +55,17 @@ const AllMain: React.FC = () => {
   );
 
   useEffect(() => {
+    const userFromLocalStorage = localStorage.getItem("user");
     if (JSON.parse(localStorage.getItem("user")) !== null) {
       console.log(
         'localStorage.getItem("user")',
         JSON.parse(localStorage.getItem("user")).user
       );
-      dispatch(
-        UserSlice.actions.setUser(JSON.parse(localStorage.getItem("user")))
-      );
+      if (userFromLocalStorage !== null) {
+        dispatch(
+          UserSlice.actions.setUser(JSON.parse(localStorage.getItem("user")))
+        );
+      }
     }
   }, []);
 

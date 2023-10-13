@@ -18,19 +18,35 @@ import { CSSTransition } from "react-transition-group";
 import shoppingCartImg from "./img/ShoppingCartImg.svg";
 import burger from "./img/burger/burger.svg";
 import BurgerMenu from "./burgerMenu/BurgerMenu.js";
-import { motion, useCycle } from "framer-motion";
-import { getAuth } from "firebase/auth";
+import { motion } from "framer-motion";
 import { fetchAdress } from "../API/dadata/dadataApi.js";
+import { UserSlice } from "../../store/user/UserSlice.js";
 const Header: React.FC = () => {
+  const orderAdressFromLocalStorage = useSelector(
+    (state) => state.UserSlice.adressOrder
+  );
+  console.log(
+    "🚀 ~ file: Header.tsx:28 ~ orderAdressFromLocalStorage:",
+    orderAdressFromLocalStorage
+  );
+  const [adress, setAdress] = useState("");
+  console.log("🚀 ~ file: Header.tsx:33 ~ adress:", adress);
+
+  useEffect(() => {
+    fetchAdress(adress).then((data) =>
+      console.log("data24", setPromt(JSON.parse(data)))
+    );
+    setAdress(orderAdressFromLocalStorage);
+  }, [adress]);
   const root = document.getElementById("root");
 
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
-  const toogleCategory = toogleCat.category;
   const dispatch = useDispatch();
   const userSlice = useSelector((state) => state.UserSlice);
+  const [toggleAdress, setToogleAdress] = useState(false);
   console.log("🚀 ~ file: Header.tsx:29 ~ userSlice:", userSlice);
 
-  const [adress, setAdress] = useState("");
+  console.log("🚀 ~ file: Header.tsx:35 ~ adress:", adress);
   const [promt, setPromt] = useState();
   console.log("🚀 ~ file: Header.tsx:35 ~ promt:", promt);
   const buy: IShoppingBasket = useSelector(
@@ -39,23 +55,28 @@ const Header: React.FC = () => {
   console.log("buy!", buy);
   const [modalWindow, setModalWindow] = useState(false);
   const [logInWindow, setlogInWindow] = useState(false);
-  const [burgerScreen, setburgerScreen] = useCycle(false, true);
+  console.log("🚀 ~ file: Header.tsx:58 ~ logInWindow:", logInWindow);
+  const [burgerScreen, setburgerScreen] = useState(false);
+  console.log("🚀 ~ file: Header.tsx:43 ~ burgerScreen:", burgerScreen);
   const navigate = useNavigate();
   if (modalWindow || logInWindow) {
     root?.classList.add(styles.root);
   } else {
     root?.classList.remove(styles.root);
   }
-  useEffect(() => {
-    fetchAdress(adress).then((data) =>
-      console.log("data24", setPromt(JSON.parse(data)))
-    );
-  }, [adress]);
 
   return (
     <header id="header" className={styles["header-block"]}>
+      {logInWindow && (
+        <LogInModal logInWindow={logInWindow} setlogInWindow={setlogInWindow} />
+      )}
       <div className={styles.header}>
-        <button className={styles["burger-menu"]}>
+        <button
+          onClick={() => {
+            setburgerScreen(true);
+          }}
+          className={styles["burger-menu"]}
+        >
           <img src={burger} alt="menu" />
           <p className={styles.textMenu}>МЕНЮ</p>
         </button>
@@ -73,10 +94,13 @@ const Header: React.FC = () => {
           type="text"
           placeholder="Введите адрес доставки"
           value={adress}
-          onChange={(event) => setAdress(event.target.value)}
+          onChange={(event) => {
+            setAdress(event.target.value);
+            setToogleAdress(true);
+          }}
         />
         <ul className={styles.promt}>
-          {promt && promt.suggestions.length > 1
+          {promt && toggleAdress
             ? (promt as any).suggestions.map((p: IPromtDaData, i: number) => {
                 return (
                   <motion.li
@@ -84,7 +108,12 @@ const Header: React.FC = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     key={i}
-                    onClick={() => setAdress(p.value)}
+                    onClick={() => {
+                      setAdress(p.value);
+                      setToogleAdress(false);
+                      dispatch(UserSlice.actions.setOrderAdress(p.value));
+                      localStorage.setItem("orderAdress", p.value);
+                    }}
                   >
                     {p.value}
                   </motion.li>
@@ -123,13 +152,6 @@ const Header: React.FC = () => {
               <img src={logInImg} className={styles.logInImg}></img>
               Войти
             </a>
-          )}
-
-          {logInWindow && (
-            <LogInModal
-              logInWindow={logInWindow}
-              setlogInWindow={setlogInWindow}
-            />
           )}
         </div>
         <button
@@ -190,6 +212,7 @@ const Header: React.FC = () => {
             burgerScreen={burgerScreen}
             setburgerScreen={setburgerScreen}
             name={userSlice.name}
+            setLogInWindow={setlogInWindow}
           />
         )}
       </div>

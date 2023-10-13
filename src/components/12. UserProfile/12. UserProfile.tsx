@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./12. UserProfile.module.scss";
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth, updateProfile, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../01.Header/Header";
 import Navbar from "../03.Navbar/Navbar";
@@ -199,6 +199,9 @@ const UserProfile = () => {
         </div>
         <button
           onClick={() => {
+            signOut(auth).then(() => {
+              console.log("Успешный выход");
+            });
             dispatch(
               UserSlice.actions.setUser({
                 email: "",
@@ -207,7 +210,7 @@ const UserProfile = () => {
                 displayName: "",
               })
             );
-            localStorage.setItem("user", "null");
+            localStorage.clear();
             navigate("/");
             scroll.scrollToTop();
           }}

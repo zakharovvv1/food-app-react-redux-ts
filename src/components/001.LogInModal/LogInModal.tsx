@@ -26,6 +26,7 @@ const LogInModal = ({ logInWindow, setlogInWindow }) => {
     (async () => {
       try {
         const res = await signInWithEmailAndPassword(auth, email, password);
+        console.log("🚀 ~ file: LogInModal.tsx:29 ~ res:", res);
 
         setlogInWindow(false);
         dispatch(UserSlice.actions.setUser(res.user));

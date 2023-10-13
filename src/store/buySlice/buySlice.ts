@@ -34,6 +34,7 @@ export const buySlice = createSlice({
       state.specialties = [];
     },
     updateFromeLocalStorege: (state, action) => {
+      console.log("action payload", action.payload);
       state.coldAppetizers = action.payload.coldAppetizers;
       state.hotAppetizers = action.payload.hotAppetizers;
       state.desserts = action.payload.desserts;

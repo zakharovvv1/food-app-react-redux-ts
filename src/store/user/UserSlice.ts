@@ -5,6 +5,7 @@ const initialState = {
   id: null,
   name: null,
   order: [] as any[],
+  adressOrder: null,
 };
 // Состояние корзины
 export const UserSlice = createSlice({
@@ -29,8 +30,10 @@ export const UserSlice = createSlice({
       state.name = action.payload.name;
     },
     setOrder: (state, action) => {
-      console.log("Вызов слайса");
       state.order.push(action.payload);
+    },
+    setOrderAdress: (state, action) => {
+      state.adressOrder = action.payload;
     },
   },
 });

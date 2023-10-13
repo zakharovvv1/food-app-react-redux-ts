@@ -18,6 +18,27 @@ import { useSignIn } from "../hooks/useSignIn";
 import { useNavigate } from "react-router";
 const Ordering = () => {
   useSignIn();
+  const checkOrderInfo = () => {
+    const pickUp = deliverInfo.deliveryMethod.pickup;
+    const orderInfo =
+      deliverInfo.deliveryMethod.deliveryInfo.apartmentNum !== null &&
+      deliverInfo.deliveryMethod.deliveryInfo.comment !== "" &&
+      deliverInfo.deliveryMethod.deliveryInfo.entrance !== null &&
+      deliverInfo.deliveryMethod.deliveryInfo.floor !== null &&
+      deliverInfo.deliveryMethod.deliveryInfo.numOfHome !== "" &&
+      deliverInfo.deliveryMethod.deliveryInfo.street !== "";
+    console.log(
+      "🚀 ~ file: 13.Ordering.tsx:24 ~ checkOrderInfo ~ orderInfo:",
+      orderInfo
+    );
+    const namePhoneCheck =
+      checkBox === false || deliverInfo.name === "" || validateNumber === false;
+    if (pickUp) {
+      return namePhoneCheck;
+    } else {
+      return !namePhoneCheck && !orderInfo;
+    }
+  };
   const navigate = useNavigate();
   const buy = useSelector((state) => (state as any).reducerBuy);
   console.log("Корзина", buy);
@@ -38,9 +59,7 @@ const Ordering = () => {
       return;
     } else if (orderSucceeded === "Выполняется") {
       setOrder(userSlice);
-      if (userId) {
-        console.log("ызов функции");
-      }
+
       setOrderSucceeded("Выполнено");
 
       dispatch(buySlice.actions.reset());
@@ -521,16 +540,7 @@ const Ordering = () => {
 
               setOrderSucceeded("Выполняется");
             }}
-            disabled={
-              checkBox === false ||
-              deliverInfo.name === "" ||
-              validateNumber === false ||
-              deliverInfo.deliveryMethod.deliveryInfo.street === null ||
-              deliverInfo.deliveryMethod.deliveryInfo.numOfHome === null ||
-              deliverInfo.deliveryMethod.deliveryInfo.apartmentNum === null ||
-              deliverInfo.deliveryMethod.deliveryInfo.entrance === null ||
-              deliverInfo.deliveryMethod.deliveryInfo.floor === null
-            }
+            disabled={checkOrderInfo()}
             className={styles.checkout}
           >
             Оформить заказ
