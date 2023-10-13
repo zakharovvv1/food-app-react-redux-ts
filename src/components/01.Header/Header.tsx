@@ -76,7 +76,7 @@ const Header: React.FC = () => {
           onChange={(event) => setAdress(event.target.value)}
         />
         <ul className={styles.promt}>
-          {promt
+          {promt && promt.suggestions.length > 1
             ? (promt as any).suggestions.map((p: IPromtDaData, i: number) => {
                 return (
                   <motion.li
