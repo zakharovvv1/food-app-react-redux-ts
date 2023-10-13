@@ -21,22 +21,21 @@ const Ordering = () => {
   const checkOrderInfo = () => {
     const pickUp = deliverInfo.deliveryMethod.pickup;
     const orderInfo =
-      deliverInfo.deliveryMethod.deliveryInfo.apartmentNum !== null &&
-      deliverInfo.deliveryMethod.deliveryInfo.comment !== "" &&
-      deliverInfo.deliveryMethod.deliveryInfo.entrance !== null &&
-      deliverInfo.deliveryMethod.deliveryInfo.floor !== null &&
-      deliverInfo.deliveryMethod.deliveryInfo.numOfHome !== "" &&
-      deliverInfo.deliveryMethod.deliveryInfo.street !== "";
+      !deliverInfo.deliveryMethod.deliveryInfo.apartmentNum ||
+      !deliverInfo.deliveryMethod.deliveryInfo.comment ||
+      !deliverInfo.deliveryMethod.deliveryInfo.entrance ||
+      !deliverInfo.deliveryMethod.deliveryInfo.floor ||
+      !deliverInfo.deliveryMethod.deliveryInfo.numOfHome ||
+      !deliverInfo.deliveryMethod.deliveryInfo.street;
     console.log(
       "🚀 ~ file: 13.Ordering.tsx:24 ~ checkOrderInfo ~ orderInfo:",
       orderInfo
     );
-    const namePhoneCheck =
-      checkBox === false || deliverInfo.name === "" || validateNumber === false;
+    const namePhoneCheck = !checkBox || !deliverInfo.name || !validateNumber;
     if (pickUp) {
       return namePhoneCheck;
     } else {
-      return !namePhoneCheck && !orderInfo;
+      return namePhoneCheck || orderInfo;
     }
   };
   const navigate = useNavigate();
@@ -240,12 +239,40 @@ const Ordering = () => {
                     placeholder="Укажите улицу*"
                     type="text"
                     name=""
+                    onChange={(e) => {
+                      setDeliveryInfo((prev) => {
+                        return {
+                          ...prev,
+                          deliveryMethod: {
+                            ...prev.deliveryMethod,
+                            deliveryInfo: {
+                              ...prev.deliveryMethod.deliveryInfo,
+                              street: e.target.value,
+                            },
+                          },
+                        };
+                      });
+                    }}
                     id=""
                   />
                   <input
                     className={styles.adressInput}
                     placeholder="Номер дома*"
                     type="text"
+                    onChange={(e) => {
+                      setDeliveryInfo((prev) => {
+                        return {
+                          ...prev,
+                          deliveryMethod: {
+                            ...prev.deliveryMethod,
+                            deliveryInfo: {
+                              ...prev.deliveryMethod.deliveryInfo,
+                              numOfHome: e.target.value,
+                            },
+                          },
+                        };
+                      });
+                    }}
                     name=""
                     id=""
                   />
@@ -254,6 +281,20 @@ const Ordering = () => {
                     placeholder="№ квартиры/офиса*"
                     type="text"
                     name=""
+                    onChange={(e) => {
+                      setDeliveryInfo((prev) => {
+                        return {
+                          ...prev,
+                          deliveryMethod: {
+                            ...prev.deliveryMethod,
+                            deliveryInfo: {
+                              ...prev.deliveryMethod.deliveryInfo,
+                              apartmentNum: e.target.value,
+                            },
+                          },
+                        };
+                      });
+                    }}
                     id=""
                   />
                   <input
@@ -261,6 +302,20 @@ const Ordering = () => {
                     placeholder="Подъезд*"
                     type="text"
                     name=""
+                    onChange={(e) => {
+                      setDeliveryInfo((prev) => {
+                        return {
+                          ...prev,
+                          deliveryMethod: {
+                            ...prev.deliveryMethod,
+                            deliveryInfo: {
+                              ...prev.deliveryMethod.deliveryInfo,
+                              entrance: e.target.value,
+                            },
+                          },
+                        };
+                      });
+                    }}
                     id=""
                   />
                   <input
@@ -268,6 +323,20 @@ const Ordering = () => {
                     placeholder="Этаж*"
                     type="text"
                     name=""
+                    onChange={(e) => {
+                      setDeliveryInfo((prev) => {
+                        return {
+                          ...prev,
+                          deliveryMethod: {
+                            ...prev.deliveryMethod,
+                            deliveryInfo: {
+                              ...prev.deliveryMethod.deliveryInfo,
+                              floor: e.target.value,
+                            },
+                          },
+                        };
+                      });
+                    }}
                     id=""
                   />
                   <input
@@ -275,6 +344,20 @@ const Ordering = () => {
                     placeholder="Комментарий*"
                     type="text"
                     name=""
+                    onChange={(e) => {
+                      setDeliveryInfo((prev) => {
+                        return {
+                          ...prev,
+                          deliveryMethod: {
+                            ...prev.deliveryMethod,
+                            deliveryInfo: {
+                              ...prev.deliveryMethod.deliveryInfo,
+                              comment: e.target.value,
+                            },
+                          },
+                        };
+                      });
+                    }}
                     id=""
                   />
                 </>
