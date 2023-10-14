@@ -13,12 +13,8 @@ export function useSignIn() {
   console.log("🚀 ~ file: useSignIn.ts:15 ~ useSignIn ~ buySlice:", buySlice);
   console.log("🚀 ~ file: useSignIn.ts:13 ~ useSignIn ~ userSlice:", userSlice);
   const user = JSON.parse(localStorage.getItem("user")) as any;
-  const shoppingBasket = localStorage.getItem("shoppingBasket");
+  const shoppingBasket = JSON.parse(localStorage.getItem("shoppingBasket"));
 
-  console.log(
-    "🚀 ~ file: useSignIn.ts:16 ~ useSignIn ~ shoppingBasket:",
-    JSON.parse(shoppingBasket)
-  );
   const orderAdress = localStorage.getItem("orderAdress");
   console.log(
     "🚀 ~ file: useSignIn.ts:16 ~ useSignIn ~ orderAdress:",
@@ -28,18 +24,19 @@ export function useSignIn() {
   useEffect(() => {
     if (!effect.current && userSlice.order.length === 0) {
       auth.onAuthStateChanged(async (user) => {
-        const { userInfo } = await getHistoryOfOrders(user.uid);
-        console.log("userInfoinAwait", userInfo);
-        dispatch(UserSlice.actions.setOrder(userInfo.flat()));
+        try {
+          const { userInfo } = await getHistoryOfOrders(user.uid);
+          console.log("userInfoinAwait", userInfo);
+          dispatch(UserSlice.actions.setOrder(userInfo.flat()));
+        } finally {
+          dispatch(buySlice.actions.updateFromeLocalStorege(shoppingBasket));
+          dispatch(UserSlice.actions.setOrderAdress(orderAdress));
+          if (user !== null) {
+            dispatch(UserSlice.actions.setUser(user));
+            console.log("userSlice123", userSlice);
+          }
+        }
       });
-    }
-
-    dispatch(
-      buySlice.actions.updateFromeLocalStorege(JSON.parse(shoppingBasket))
-    );
-    dispatch(UserSlice.actions.setOrderAdress(orderAdress));
-    if (user !== null) {
-      dispatch(UserSlice.actions.setUser(user));
     }
     return () => {
       effect.current = true;

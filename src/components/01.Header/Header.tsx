@@ -33,11 +33,14 @@ const Header: React.FC = () => {
   console.log("🚀 ~ file: Header.tsx:33 ~ adress:", adress);
 
   useEffect(() => {
-    fetchAdress(adress).then((data) =>
-      console.log("data24", setPromt(JSON.parse(data)))
-    );
-    setAdress(orderAdressFromLocalStorage);
-  }, [adress]);
+    try {
+      fetchAdress(adress).then((data) =>
+        console.log("data24", setPromt(JSON.parse(data)))
+      );
+    } finally {
+      setAdress(orderAdressFromLocalStorage);
+    }
+  }, [adress, orderAdressFromLocalStorage]);
   const root = document.getElementById("root");
 
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
@@ -146,6 +149,7 @@ const Header: React.FC = () => {
             <a
               className={styles.logIn}
               onClick={() => {
+                debugger;
                 setlogInWindow(true);
               }}
             >

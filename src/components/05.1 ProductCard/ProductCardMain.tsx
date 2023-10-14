@@ -44,8 +44,9 @@ const ProductCardMain = () => {
       return food.id === params.id;
     });
   console.log("currentFood", currentFood);
-  //*! Сделать сохранение активного блюда в локале
+
   const food = UseCurrentFood();
+
   console.log("foodCurrent!!!!!!!!!!!!!!!!!", food);
 
   let newData;
