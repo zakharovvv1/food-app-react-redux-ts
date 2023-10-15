@@ -9,8 +9,12 @@ import back from "./img/back.svg";
 import { motion } from "framer-motion";
 import { Link, scroller } from "react-scroll";
 import * as Scroll from "react-scroll";
+import { useEffect } from "react";
 
 const ProductCard: React.FC<{ food: IProps }> = ({ food }) => {
+  useEffect(() => {
+    document.title = food.name;
+  }, []);
   localStorage.setItem("currentFood", JSON.stringify(food));
   console.log("food!!!!!!!!", food);
   const scroll = Scroll.animateScroll;

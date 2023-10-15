@@ -1,0 +1,12 @@
+{
+  "name": "Эклер с маком",
+  "description": "Эклер с обильной маковой шапкой и ванильно-творожным кремом",
+	"composition": "Слоеное тесто, крем, мак",
+  "category": "Десерты",
+  "weight": 150,
+  "price": 390,
+  "proteins": 12.3,
+  "fats": 40.9,
+  "carbohydrates": 44.4,
+  "kilocalories": 595
+}

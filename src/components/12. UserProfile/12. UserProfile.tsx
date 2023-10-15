@@ -50,6 +50,9 @@ const daysOfMoth = [
 
 const moths = ["Месяц", "Января", "Февраля", "Марта", "Апреля"];
 const UserProfile = () => {
+  useEffect(() => {
+    document.title = "Личные данные";
+  }, []);
   useSignIn();
   const auth = getAuth();
   console.log("AUTH", auth);

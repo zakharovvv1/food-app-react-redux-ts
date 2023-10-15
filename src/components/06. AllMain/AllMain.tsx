@@ -1,31 +1,22 @@
 import Main from "../04.Main/Main";
-import { useGetFoodQuery } from "../API/dadata/dadataApi";
 import { IProps } from "../Interfaces/IProps";
 import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { filterCategories } from "./filterOfCategories";
-import { useEffect, useMemo } from "react";
-import { UserSlice } from "../../store/user/UserSlice";
 import { useSignIn } from "../hooks/useSignIn";
+import { imgToFood } from "./ImgToFood";
 const AllMain: React.FC = () => {
-  useSignIn();
+  let { isLoading, data } = useSignIn();
   const dispatch = useDispatch();
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
-  let { isLoading, data } = useGetFoodQuery();
+
   console.log("data useGetFood", data);
   let newData;
   let arrObjOfAllFoods;
   if (data) {
-    let data2 = data.map((item: any) =>
-      Object.assign(
-        {},
-        item,
-        { count: 1 },
-        { imgUrlHigh: imageHighForAll },
-        { imgUrlSmall: imageSmallForAll }
-      )
-    );
+    console.log(data);
+    let data2 = data.map((item: any) => imgToFood(item));
     newData = {
       coldAppetizers: data2.filter(
         (el: IProps) => el.category === "Холодные закуски"
@@ -53,21 +44,6 @@ const AllMain: React.FC = () => {
     toogleCategory,
     arrObjOfAllFoods
   );
-
-  useEffect(() => {
-    const userFromLocalStorage = localStorage.getItem("user");
-    if (JSON.parse(localStorage.getItem("user")) !== null) {
-      console.log(
-        'localStorage.getItem("user")',
-        JSON.parse(localStorage.getItem("user")).user
-      );
-      if (userFromLocalStorage !== null) {
-        dispatch(
-          UserSlice.actions.setUser(JSON.parse(localStorage.getItem("user")))
-        );
-      }
-    }
-  }, []);
 
   return (
     <>

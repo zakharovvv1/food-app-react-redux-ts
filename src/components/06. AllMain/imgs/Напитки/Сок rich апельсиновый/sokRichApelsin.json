@@ -1,0 +1,12 @@
+{
+  "name": "Сок rich апельсиновый",
+  "description": "Сок со вкусом апельсина",
+	"composition": "Сок апельсиновый",
+  "category": "Напитки",
+  "weight": 200,
+  "price": 220,
+  "proteins": 0,
+  "fats": 0,
+  "carbohydrates": 10,
+  "kilocalories": 50
+}

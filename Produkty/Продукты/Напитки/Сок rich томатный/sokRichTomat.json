@@ -1,0 +1,12 @@
+{
+  "name": "Сок rich томатный",
+  "description": "Сок со вкусом томата",
+	"composition": "Сок томатный",
+  "category": "Напитки",
+  "weight": 200,
+  "price": 220,
+  "proteins": 0,
+  "fats": 0,
+  "carbohydrates": 10,
+  "kilocalories": 50
+}

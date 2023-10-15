@@ -22,6 +22,7 @@ import { getAuth } from "firebase/auth";
 import { getHistoryOfOrders } from "../hooks/getHistoryOfOrders";
 import { UserSlice } from "../../store/user/UserSlice";
 import { useSignIn } from "../hooks/useSignIn";
+import { imgToFood } from "../06. AllMain/ImgToFood";
 const ProductCardMain = () => {
   useSignIn();
   let { isLoading, data } = useGetFoodQuery();
@@ -51,15 +52,7 @@ const ProductCardMain = () => {
 
   let newData;
   if (data) {
-    data = data.map((item: any) =>
-      Object.assign(
-        {},
-        item,
-        { count: 1 },
-        { imgUrlHigh: imageHighForAll },
-        { imgUrlSmall: imageSmallForAll }
-      )
-    );
+    data = data.map((item: any) => imgToFood(item));
 
     newData = data.reduce((accum, item) => {
       if (item.id !== food.id) {

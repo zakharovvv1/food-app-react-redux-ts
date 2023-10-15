@@ -15,7 +15,6 @@ const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUrl = window.location.pathname;
-  const auth: any = getAuth();
 
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
   const toogleCategory = toogleCat.category;

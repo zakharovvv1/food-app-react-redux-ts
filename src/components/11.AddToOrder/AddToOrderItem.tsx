@@ -8,21 +8,14 @@ import imageHighForAll from "../06. AllMain/imageHighForAllFoods.jpg";
 import imageSmallForAll from "../06. AllMain/imageSmallForAllFoods.jpg";
 import { useNavigate } from "react-router";
 import { currentFoodSlice } from "../../store/currentFoodSlice/currentFoodSlice";
+import { imgToFood } from "../06. AllMain/ImgToFood";
 
 const AddToOrderItem: React.FC<any> = ({ filterShoppingCart }) => {
   let { isLoading, data } = useGetFoodQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   if (data) {
-    let data2 = data.map((item: any) =>
-      Object.assign(
-        {},
-        item,
-        { count: 1 },
-        { imgUrlHigh: imageHighForAll },
-        { imgUrlSmall: imageSmallForAll }
-      )
-    );
+    let data2 = data.map((item: any) => imgToFood(item));
 
     const filterShoppingCartArr = filterShoppingCart.flat();
     let newData = data2.reduce((accum, item) => {

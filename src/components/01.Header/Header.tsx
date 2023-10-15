@@ -149,7 +149,6 @@ const Header: React.FC = () => {
             <a
               className={styles.logIn}
               onClick={() => {
-                debugger;
                 setlogInWindow(true);
               }}
             >

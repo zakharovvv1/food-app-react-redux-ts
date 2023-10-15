@@ -1,0 +1,12 @@
+{
+  "name": "Кока-кола",
+  "description": "Кока-кола",
+	"composition": "Кока-кола",
+  "category": "Напитки",
+  "weight": 330,
+  "price": 250,
+  "proteins": 0,
+  "fats": 0,
+  "carbohydrates": 10.40,
+  "kilocalories": 42
+}

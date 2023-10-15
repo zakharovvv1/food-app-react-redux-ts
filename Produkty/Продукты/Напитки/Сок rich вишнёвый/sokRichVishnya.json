@@ -1,0 +1,12 @@
+{
+  "name": "Сок rich вишневый",
+  "description": "Сок со вкусом вишни",
+	"composition": "Сок вишневый",
+  "category": "Напитки",
+  "weight": 200,
+  "price": 220,
+  "proteins": 0,
+  "fats": 0,
+  "carbohydrates": 10,
+  "kilocalories": 50
+}

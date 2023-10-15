@@ -55,7 +55,7 @@
 
 .main {
   position: fixed;
-  left: 75vh;
+  left: 35vw;
   top: 40vh;
   z-index: 10;
 }
@@ -89,5 +89,31 @@
     height: 100%;
     opacity: 0.7;
     z-index: 10;
+  }
+}
+
+@media (max-width: 1025px) {
+  .main {
+    left: 30vw;
+  }
+}
+@media (max-width: 900px) {
+  .main {
+    left: 25vw;
+  }
+}
+@media (max-width: 769px) {
+  .main {
+    left: 20vw;
+  }
+}
+@media (max-width: 600px) {
+  .main {
+    left: 0;
+    width: 100%;
+  }
+
+  .modal {
+    width: 100%;
   }
 }

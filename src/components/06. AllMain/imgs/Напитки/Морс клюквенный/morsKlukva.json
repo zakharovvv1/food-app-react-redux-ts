@@ -1,0 +1,12 @@
+{
+  "name": "Морс клюквенный",
+  "description": "Насыщенный клюквенный морс",
+	"composition": "Вода, клюква, сахар",
+  "category": "Напитки",
+  "weight": 500,
+  "price": 310,
+  "proteins": 0,
+  "fats": 0,
+  "carbohydrates": 60.00,
+  "kilocalories": 250
+}

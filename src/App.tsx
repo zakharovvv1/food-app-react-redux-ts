@@ -8,7 +8,11 @@ import AllMain from "./components/06. AllMain/AllMain";
 import About from "./components/07.About/About";
 import Footer from "./components/09.Footer/Footer";
 import Contacts from "./components/08.Contacts/Contacts";
+import { useEffect } from "react";
 function App() {
+  useEffect(() => {
+    document.title = "Logos";
+  }, []);
   return (
     <>
       <Header />
