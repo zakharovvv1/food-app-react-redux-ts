@@ -25,22 +25,19 @@ const Header: React.FC = () => {
   const orderAdressFromLocalStorage = useSelector(
     (state) => state.UserSlice.adressOrder
   );
-  console.log(
-    "🚀 ~ file: Header.tsx:28 ~ orderAdressFromLocalStorage:",
-    orderAdressFromLocalStorage
-  );
   const [adress, setAdress] = useState("");
+  const [isChangeAdress, setIsChangeAdress] = useState(true);
   console.log("🚀 ~ file: Header.tsx:33 ~ adress:", adress);
-
   useEffect(() => {
     try {
-      fetchAdress(adress).then((data) =>
-        console.log("data24", setPromt(JSON.parse(data)))
-      );
+      fetchAdress(adress).then((data) => setPromt(JSON.parse(data)));
     } finally {
-      setAdress(orderAdressFromLocalStorage);
+      if (isChangeAdress && orderAdressFromLocalStorage !== null) {
+        setAdress(orderAdressFromLocalStorage);
+        setIsChangeAdress(false);
+      }
     }
-  }, [adress, orderAdressFromLocalStorage]);
+  }, [orderAdressFromLocalStorage, adress]);
   const root = document.getElementById("root");
 
   const toogleCat = useSelector((state) => state.toogleCategoriesReducer);
@@ -98,8 +95,8 @@ const Header: React.FC = () => {
           placeholder="Введите адрес доставки"
           value={adress}
           onChange={(event) => {
-            setAdress(event.target.value);
             setToogleAdress(true);
+            setAdress(event.target.value);
           }}
         />
         <ul className={styles.promt}>

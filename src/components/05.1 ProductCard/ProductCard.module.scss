@@ -16,6 +16,7 @@
 .ImgDiv {
   min-width: 600px;
   position: relative;
+  display: flex;
 }
 
 .mainDiv {
@@ -24,6 +25,8 @@
 }
 
 .descImg {
+  max-width: 600px;
+  max-height: 400px;
   height: 100%;
   width: 100%;
 }
